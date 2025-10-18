@@ -23,29 +23,29 @@ This package exposes subpackages that implement core functionality:
  - testing: testing utilities for LLM application development
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 # Re-export submodules for convenience
-from . import agent  # noqa: F401
-from . import cache  # noqa: F401
-from . import chunk  # noqa: F401
-from . import config  # noqa: F401
-from . import context  # noqa: F401
-from . import core  # noqa: F401
-from . import document  # noqa: F401
-from . import embedding  # noqa: F401
-from . import evaluation  # noqa: F401
-from . import fine_tuning  # noqa: F401
-from . import generation  # noqa: F401
-from . import memory  # noqa: F401
-from . import multimodal  # noqa: F401
-from . import parsing  # noqa: F401
-from . import preprocessing  # noqa: F401
-from . import prompt  # noqa: F401
-from . import retrieval  # noqa: F401
-from . import safety  # noqa: F401
-from . import testing  # noqa: F401
-from . import tokenizer  # noqa: F401
+from . import agent
+from . import cache
+from . import chunk
+from . import config
+from . import context
+from . import core
+from . import document
+from . import embedding
+from . import evaluation
+from . import fine_tuning
+from . import generation
+from . import memory
+from . import multimodal
+from . import parsing
+from . import preprocessing
+from . import prompt
+from . import retrieval
+from . import safety
+from . import testing
+from . import tokenizer
 
 __all__ = [
     "core",

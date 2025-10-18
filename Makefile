@@ -71,10 +71,10 @@ check-format:
 	isort --check-only kerb tests
 
 publish-test: build
-	python -m twine upload --repository testpypi dist/*
+	python -m twine upload --verbose --repository testpypi dist/*
 
 publish: build
-	python -m twine upload dist/*
+	python -m twine upload --verbose dist/*
 
 # Distribution info
 dist: build
