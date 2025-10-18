@@ -8,6 +8,7 @@ from enum import Enum
 
 class ConfigSource(Enum):
     """Configuration source types."""
+
     ENVIRONMENT = "environment"
     FILE = "file"
     CODE = "code"
@@ -16,6 +17,7 @@ class ConfigSource(Enum):
 
 class ProviderType(Enum):
     """LLM provider types."""
+
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     GOOGLE = "google"

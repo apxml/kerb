@@ -1,35 +1,22 @@
 """Comprehensive tests for the generation module."""
 
 import pytest
-from kerb.generation import (
-    LLMProvider,
-    MessageRole,
-    Message,
-    GenerationConfig,
-    GenerationResponse,
-    StreamChunk,
-    Usage,
-    generate,
-    generate_stream,
-    generate_batch,
-    parse_json_response,
-    validate_response,
-    format_messages,
-    calculate_cost,
-    get_cost_summary,
-    reset_cost_tracking,
-    CostTracker,
-    RateLimiter,
-    ResponseCache,
-    MODEL_PRICING,
-)
-# Use tokenizer module for token counting instead of deprecated count_tokens_estimate
-from kerb.tokenizer import count_tokens, Tokenizer
 
+from kerb.generation import (MODEL_PRICING, CostTracker, GenerationConfig,
+                             GenerationResponse, LLMProvider, Message,
+                             MessageRole, RateLimiter, ResponseCache,
+                             StreamChunk, Usage, calculate_cost,
+                             format_messages, generate, generate_batch,
+                             generate_stream, get_cost_summary,
+                             parse_json_response, reset_cost_tracking,
+                             validate_response)
+# Use tokenizer module for token counting instead of deprecated count_tokens_estimate
+from kerb.tokenizer import Tokenizer, count_tokens
 
 # ============================================================================
 # Fixtures
 # ============================================================================
+
 
 @pytest.fixture
 def sample_message():
@@ -49,11 +36,7 @@ def sample_messages():
 @pytest.fixture
 def sample_config():
     """Create a sample generation config."""
-    return GenerationConfig(
-        model="gpt-4o-mini",
-        temperature=0.7,
-        max_tokens=100
-    )
+    return GenerationConfig(model="gpt-4o-mini", temperature=0.7, max_tokens=100)
 
 
 @pytest.fixture
@@ -67,7 +50,7 @@ def sample_response():
         usage=usage,
         finish_reason="stop",
         latency=0.5,
-        cost=0.001
+        cost=0.001,
     )
 
 
@@ -82,6 +65,7 @@ def reset_costs():
 # ============================================================================
 # Data Class Tests
 # ============================================================================
+
 
 def test_message_creation():
     """Test Message data class creation."""
@@ -114,7 +98,7 @@ def test_usage_total_tokens():
     """Test Usage total tokens calculation."""
     usage = Usage(prompt_tokens=10, completion_tokens=20)
     assert usage.total_tokens == 0  # Not automatically calculated in dataclass
-    
+
     usage = Usage(prompt_tokens=10, completion_tokens=20, total_tokens=30)
     assert usage.total_tokens == 30
 
@@ -140,14 +124,15 @@ def test_stream_chunk_creation():
 # Provider Detection Tests
 # ============================================================================
 
+
 def test_provider_validation():
     """Test that provider parameter is validated."""
     import pytest
-    
+
     # Should raise ValueError when provider not specified
     with pytest.raises(ValueError, match="Provider must be specified"):
         generate("Test", model="gpt-4o-mini")
-    
+
     # Should work when provider is spxecified
     response = generate("Test", model="custom-model", provider=LLMProvider.LOCAL)
     assert response.provider == LLMProvider.LOCAL
@@ -156,6 +141,7 @@ def test_provider_validation():
 # ============================================================================
 # Cost Calculation Tests
 # ============================================================================
+
 
 def test_calculate_cost_openai():
     """Test cost calculation for OpenAI models."""
@@ -184,6 +170,7 @@ def test_calculate_cost_unknown_model():
 # Cost Tracking Tests
 # ============================================================================
 
+
 def test_cost_tracker_initialization():
     """Test CostTracker initialization."""
     tracker = CostTracker()
@@ -196,7 +183,7 @@ def test_cost_tracker_add_request():
     tracker = CostTracker()
     usage = Usage(prompt_tokens=100, completion_tokens=50, total_tokens=150)
     tracker.add_request("gpt-4o-mini", usage, 0.001)
-    
+
     assert tracker.total_cost == 0.001
     assert tracker.total_tokens == 150
     assert tracker.requests_by_model["gpt-4o-mini"] == 1
@@ -207,10 +194,10 @@ def test_cost_tracker_summary():
     tracker = CostTracker()
     usage1 = Usage(prompt_tokens=100, completion_tokens=50, total_tokens=150)
     usage2 = Usage(prompt_tokens=200, completion_tokens=100, total_tokens=300)
-    
+
     tracker.add_request("gpt-4o-mini", usage1, 0.001)
     tracker.add_request("gpt-4o-mini", usage2, 0.002)
-    
+
     summary = tracker.get_summary()
     assert summary["total_cost"] == 0.003
     assert summary["total_tokens"] == 450
@@ -223,7 +210,7 @@ def test_cost_tracker_reset():
     tracker = CostTracker()
     usage = Usage(prompt_tokens=100, completion_tokens=50, total_tokens=150)
     tracker.add_request("gpt-4o-mini", usage, 0.001)
-    
+
     tracker.reset()
     assert tracker.total_cost == 0.0
     assert tracker.total_tokens == 0
@@ -239,6 +226,7 @@ def test_global_cost_tracking():
 # ============================================================================
 # Rate Limiter Tests
 # ============================================================================
+
 
 def test_rate_limiter_initialization():
     """Test RateLimiter initialization."""
@@ -267,6 +255,7 @@ def test_rate_limiter_request_tracking():
 # Response Cache Tests
 # ============================================================================
 
+
 def test_response_cache_initialization():
     """Test ResponseCache initialization."""
     cache = ResponseCache(max_size=100, ttl=3600)
@@ -278,7 +267,7 @@ def test_response_cache_set_and_get(sample_messages, sample_config, sample_respo
     """Test caching and retrieving responses."""
     cache = ResponseCache()
     cache.set(sample_messages, sample_config, sample_response)
-    
+
     cached = cache.get(sample_messages, sample_config)
     assert cached is not None
     assert cached.content == sample_response.content
@@ -292,11 +281,13 @@ def test_response_cache_miss(sample_messages, sample_config):
     assert cached is None
 
 
-def test_response_cache_different_messages(sample_messages, sample_config, sample_response):
+def test_response_cache_different_messages(
+    sample_messages, sample_config, sample_response
+):
     """Test cache differentiation by messages."""
     cache = ResponseCache()
     cache.set(sample_messages, sample_config, sample_response)
-    
+
     different_messages = [Message(role=MessageRole.USER, content="Different")]
     cached = cache.get(different_messages, sample_config)
     assert cached is None
@@ -305,6 +296,7 @@ def test_response_cache_different_messages(sample_messages, sample_config, sampl
 # ============================================================================
 # Utility Function Tests
 # ============================================================================
+
 
 def test_format_messages_simple():
     """Test format_messages with simple inputs."""
@@ -326,7 +318,7 @@ def test_format_messages_with_history():
     """Test format_messages with conversation history."""
     history = [
         {"role": "user", "content": "Hi"},
-        {"role": "assistant", "content": "Hello!"}
+        {"role": "assistant", "content": "Hello!"},
     ]
     messages = format_messages(history=history, user="How are you?")
     assert len(messages) == 3
@@ -346,6 +338,7 @@ def test_count_tokens():
 # ============================================================================
 # Response Parsing Tests
 # ============================================================================
+
 
 def test_parse_json_response_plain():
     """Test parsing plain JSON response."""
@@ -369,7 +362,7 @@ def test_parse_json_response_from_generation_response():
         content='{"status": "success"}',
         model="gpt-4o-mini",
         provider=LLMProvider.OPENAI,
-        usage=Usage(prompt_tokens=10, completion_tokens=5, total_tokens=15)
+        usage=Usage(prompt_tokens=10, completion_tokens=5, total_tokens=15),
     )
     result = parse_json_response(response)
     assert result["status"] == "success"
@@ -415,6 +408,7 @@ def test_validate_response_pattern(sample_response):
 # Mock Generation Tests (no API calls)
 # ============================================================================
 
+
 def test_generate_mock_simple():
     """Test mock generation with simple string input."""
     # Use LOCAL provider for mock generation
@@ -426,9 +420,7 @@ def test_generate_mock_simple():
 
 def test_generate_mock_with_messages():
     """Test mock generation with message list."""
-    messages = [
-        Message(role=MessageRole.USER, content="What is AI?")
-    ]
+    messages = [Message(role=MessageRole.USER, content="What is AI?")]
     response = generate(messages, model="custom-model", provider=LLMProvider.LOCAL)
     assert response.content is not None
 
@@ -436,17 +428,18 @@ def test_generate_mock_with_messages():
 def test_generate_mock_with_config():
     """Test mock generation with custom config."""
     config = GenerationConfig(
-        model="local-custom-model",
-        temperature=0.5,
-        max_tokens=50
+        model="local-custom-model", temperature=0.5, max_tokens=50
     )
-    response = generate("Test", config=config, model="local-custom-model", provider=LLMProvider.LOCAL)
+    response = generate(
+        "Test", config=config, model="local-custom-model", provider=LLMProvider.LOCAL
+    )
     assert response.model == "local-custom-model"
 
 
 # ============================================================================
 # Message Role Enum Tests
 # ============================================================================
+
 
 def test_message_role_enum_values():
     """Test MessageRole enum values."""
@@ -459,6 +452,7 @@ def test_message_role_enum_values():
 # LLM Provider Enum Tests
 # ============================================================================
 
+
 def test_llm_provider_enum_values():
     """Test LLMProvider enum values."""
     assert LLMProvider.OPENAI.value == "openai"
@@ -469,6 +463,7 @@ def test_llm_provider_enum_values():
 # ============================================================================
 # Model Pricing Tests
 # ============================================================================
+
 
 def test_model_pricing_exists():
     """Test that MODEL_PRICING contains expected models."""
@@ -490,12 +485,15 @@ def test_model_pricing_format():
 # Integration Tests (Mock-based)
 # ============================================================================
 
+
 def test_generate_with_cost_tracking():
     """Test generation with automatic cost tracking."""
     reset_cost_tracking()
-    
-    response = generate("Test prompt", model="custom-model", provider=LLMProvider.LOCAL, track_cost=True)
-    
+
+    response = generate(
+        "Test prompt", model="custom-model", provider=LLMProvider.LOCAL, track_cost=True
+    )
+
     summary = get_cost_summary()
     assert summary["total_requests"] >= 1
 
@@ -503,8 +501,10 @@ def test_generate_with_cost_tracking():
 def test_generate_batch_mock():
     """Test batch generation with mock provider."""
     prompts = ["Hello", "How are you?", "Goodbye"]
-    responses = generate_batch(prompts, model="custom-model", provider=LLMProvider.LOCAL, max_concurrent=2)
-    
+    responses = generate_batch(
+        prompts, model="custom-model", provider=LLMProvider.LOCAL, max_concurrent=2
+    )
+
     assert len(responses) == len(prompts)
     for response in responses:
         assert response.content is not None
@@ -512,9 +512,7 @@ def test_generate_batch_mock():
 
 def test_message_conversion_from_dict():
     """Test automatic message conversion from dict."""
-    messages_dict = [
-        {"role": "user", "content": "Hello"}
-    ]
+    messages_dict = [{"role": "user", "content": "Hello"}]
     response = generate(messages_dict, model="custom-model", provider=LLMProvider.LOCAL)
     assert response.content is not None
 
@@ -523,10 +521,11 @@ def test_message_conversion_from_dict():
 # Universal Generator Tests
 # ============================================================================
 
+
 def test_universal_generator_with_model_enum():
     """Test universal generator with ModelName enum."""
     from kerb.generation import Generator, ModelName
-    
+
     gen = Generator(model=ModelName.GPT_4O_MINI, provider=LLMProvider.OPENAI)
     assert gen.model == ModelName.GPT_4O_MINI
     assert gen.provider == LLMProvider.OPENAI
@@ -535,7 +534,7 @@ def test_universal_generator_with_model_enum():
 def test_universal_generator_with_provider():
     """Test universal generator with provider parameter."""
     from kerb.generation import Generator, LLMProvider
-    
+
     # Custom model name with provider
     gen = Generator(model="my-custom-gpt-model", provider=LLMProvider.OPENAI)
     assert gen.model == "my-custom-gpt-model"
@@ -545,7 +544,7 @@ def test_universal_generator_with_provider():
 def test_universal_generator_with_string_model():
     """Test universal generator with string model."""
     from kerb.generation import Generator
-    
+
     gen = Generator(model="gpt-4o-mini", provider=LLMProvider.OPENAI)
     assert gen.model == "gpt-4o-mini"
     assert gen.provider == LLMProvider.OPENAI
@@ -554,9 +553,7 @@ def test_universal_generator_with_string_model():
 def test_generate_with_provider():
     """Test generate function with provider parameter."""
     response = generate(
-        "Hello, test",
-        model="custom-model-name",
-        provider=LLMProvider.LOCAL
+        "Hello, test", model="custom-model-name", provider=LLMProvider.LOCAL
     )
     assert response is not None
     assert response.provider == LLMProvider.LOCAL
@@ -565,9 +562,7 @@ def test_generate_with_provider():
 def test_generate_provider_routing():
     """Test that provider parameter controls routing."""
     response = generate(
-        "Test",
-        model="gpt-like-custom-model",
-        provider=LLMProvider.LOCAL
+        "Test", model="gpt-like-custom-model", provider=LLMProvider.LOCAL
     )
     # Should route to specified provider
     assert response.provider == LLMProvider.LOCAL
@@ -576,13 +571,17 @@ def test_generate_provider_routing():
 def test_generator_class_easy_model_switching():
     """Test that Generator class makes model switching easy."""
     from kerb.generation import Generator, ModelName
-    
+
     # Create generators for different models with same config
     config = {"temperature": 0.7, "max_tokens": 100}
-    
-    gen_gpt = Generator(model=ModelName.GPT_4O_MINI, provider=LLMProvider.OPENAI, **config)
-    gen_claude = Generator(model=ModelName.CLAUDE_35_HAIKU, provider=LLMProvider.ANTHROPIC, **config)
-    
+
+    gen_gpt = Generator(
+        model=ModelName.GPT_4O_MINI, provider=LLMProvider.OPENAI, **config
+    )
+    gen_claude = Generator(
+        model=ModelName.CLAUDE_35_HAIKU, provider=LLMProvider.ANTHROPIC, **config
+    )
+
     # Both should have same config but different models
     assert gen_gpt.default_config["temperature"] == 0.7
     assert gen_claude.default_config["temperature"] == 0.7
@@ -592,13 +591,11 @@ def test_generator_class_easy_model_switching():
 def test_generator_with_custom_model_and_provider():
     """Test Generator with custom model name and provider."""
     from kerb.generation import Generator, LLMProvider
-    
+
     gen = Generator(
-        model="my-company-internal-gpt",
-        provider=LLMProvider.OPENAI,
-        temperature=0.5
+        model="my-company-internal-gpt", provider=LLMProvider.OPENAI, temperature=0.5
     )
-    
+
     assert gen.model == "my-company-internal-gpt"
     assert gen.provider == LLMProvider.OPENAI
     assert gen.default_config["temperature"] == 0.5
@@ -606,12 +603,8 @@ def test_generator_with_custom_model_and_provider():
 
 def test_provider_routing():
     """Test that provider routing uses provider parameter."""
-    response = generate(
-        "Test",
-        model="xyzabc-model-123",
-        provider=LLMProvider.LOCAL
-    )
-    
+    response = generate("Test", model="xyzabc-model-123", provider=LLMProvider.LOCAL)
+
     # Should route to specified provider
     assert response.provider == LLMProvider.LOCAL
 
@@ -619,7 +612,7 @@ def test_provider_routing():
 def test_provider_required():
     """Test that provider parameter is required."""
     import pytest
-    
+
     # Should raise ValueError when provider not specified
     with pytest.raises(ValueError, match="Provider must be specified"):
         generate("Test", model="gpt-4o-mini")

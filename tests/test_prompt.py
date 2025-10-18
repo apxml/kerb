@@ -1,37 +1,18 @@
 """Comprehensive tests for the prompt management module."""
 
 import pytest
-from kerb.prompt import (
-    # Template engine
-    render_template,
-    render_template_safe,
-    validate_template,
-    extract_template_variables,
-    # Versioning
-    PromptVersion,
-    PromptRegistry,
-    create_version,
-    register_prompt,
-    get_prompt,
-    list_versions,
-    compare_versions,
-    select_version,
-    # Few-shot examples
-    FewShotExample,
-    ExampleSelector,
-    create_example,
-    select_examples,
-    format_examples,
-    # Compression
-    compress_prompt,
-    optimize_whitespace,
-    analyze_prompt,
-)
 
+from kerb.prompt import (  # Template engine; Versioning; Few-shot examples; Compression
+    ExampleSelector, FewShotExample, PromptRegistry, PromptVersion,
+    analyze_prompt, compare_versions, compress_prompt, create_example,
+    create_version, extract_template_variables, format_examples, get_prompt,
+    list_versions, optimize_whitespace, register_prompt, render_template,
+    render_template_safe, select_examples, select_version, validate_template)
 
 # ============================================================================
 # Template Engine Tests
 # ============================================================================
+
 
 def test_render_template_basic():
     """Test basic template rendering with single variable."""
@@ -148,13 +129,14 @@ def test_extract_template_variables_custom_delimiters():
 # Prompt Versioning Tests
 # ============================================================================
 
+
 def test_create_prompt_version():
     """Test creating a basic prompt version."""
     version = create_version(
         name="greeting",
         version="1.0",
         template="Hello {{name}}!",
-        description="Simple greeting"
+        description="Simple greeting",
     )
     assert version.name == "greeting"
     assert version.version == "1.0"
@@ -179,11 +161,11 @@ def test_prompt_version_render_with_defaults():
         name="greeting",
         version="1.0",
         template="Hello {{name}}!",
-        variables={"name": "World"}
+        variables={"name": "World"},
     )
     result = version.render()
     assert result == "Hello World!"
-    
+
     # Override default
     result = version.render({"name": "Alice"})
     assert result == "Hello Alice!"
@@ -192,14 +174,10 @@ def test_prompt_version_render_with_defaults():
 def test_prompt_registry_register_and_get():
     """Test registering and retrieving prompts."""
     registry = PromptRegistry()
-    
-    version = create_version(
-        name="greeting",
-        version="1.0",
-        template="Hello {{name}}!"
-    )
+
+    version = create_version(name="greeting", version="1.0", template="Hello {{name}}!")
     registry.register(version)
-    
+
     retrieved = registry.get("greeting", "1.0")
     assert retrieved is not None
     assert retrieved.version == "1.0"
@@ -208,13 +186,13 @@ def test_prompt_registry_register_and_get():
 def test_prompt_registry_get_latest():
     """Test getting latest version when version not specified."""
     registry = PromptRegistry()
-    
+
     v1 = create_version(name="greeting", version="1.0", template="Hello {{name}}!")
     v2 = create_version(name="greeting", version="2.0", template="Hi {{name}}!")
-    
+
     registry.register(v1)
     registry.register(v2)
-    
+
     latest = registry.get("greeting")
     assert latest is not None
     # Latest should be v2 (most recent)
@@ -224,15 +202,15 @@ def test_prompt_registry_get_latest():
 def test_prompt_registry_list_versions():
     """Test listing all versions of a prompt."""
     registry = PromptRegistry()
-    
+
     v1 = create_version(name="greeting", version="1.0", template="Hello!")
     v2 = create_version(name="greeting", version="2.0", template="Hi!")
     v3 = create_version(name="greeting", version="3.0", template="Hey!")
-    
+
     registry.register(v1)
     registry.register(v2)
     registry.register(v3)
-    
+
     versions = registry.list_versions("greeting")
     assert len(versions) == 3
     assert "1.0" in versions
@@ -243,40 +221,43 @@ def test_prompt_registry_list_versions():
 def test_prompt_registry_compare_versions():
     """Test comparing different prompt versions."""
     registry = PromptRegistry()
-    
+
     v1 = create_version(
         name="greeting",
         version="1.0",
         template="Hello {{name}}!",
-        description="First version"
+        description="First version",
     )
     v2 = create_version(
         name="greeting",
         version="2.0",
         template="Hi {{name}}, welcome!",
-        description="Second version"
+        description="Second version",
     )
-    
+
     registry.register(v1)
     registry.register(v2)
-    
+
     comparison = registry.compare("greeting")
     assert "versions" in comparison
     assert "1.0" in comparison["versions"]
     assert "2.0" in comparison["versions"]
-    assert comparison["versions"]["1.0"]["length"] < comparison["versions"]["2.0"]["length"]
+    assert (
+        comparison["versions"]["1.0"]["length"]
+        < comparison["versions"]["2.0"]["length"]
+    )
 
 
 def test_prompt_registry_select_ab_random():
     """Test random A/B version selection."""
     registry = PromptRegistry()
-    
+
     v1 = create_version(name="greeting", version="1.0", template="Hello!")
     v2 = create_version(name="greeting", version="2.0", template="Hi!")
-    
+
     registry.register(v1)
     registry.register(v2)
-    
+
     selected = registry.select_ab_version("greeting", strategy="random")
     assert selected is not None
     assert selected.version in ["1.0", "2.0"]
@@ -285,13 +266,13 @@ def test_prompt_registry_select_ab_random():
 def test_prompt_registry_select_ab_newest():
     """Test selecting newest version."""
     registry = PromptRegistry()
-    
+
     v1 = create_version(name="greeting", version="1.0", template="Hello!")
     v2 = create_version(name="greeting", version="2.0", template="Hi!")
-    
+
     registry.register(v1)
     registry.register(v2)
-    
+
     selected = registry.select_ab_version("greeting", strategy="newest")
     assert selected is not None
     assert selected.version == "2.0"
@@ -300,16 +281,14 @@ def test_prompt_registry_select_ab_newest():
 def test_global_registry_functions():
     """Test global registry convenience functions."""
     version = create_version(
-        name="test_global",
-        version="1.0",
-        template="Test {{value}}"
+        name="test_global", version="1.0", template="Test {{value}}"
     )
     register_prompt(version)
-    
+
     retrieved = get_prompt("test_global", "1.0")
     assert retrieved is not None
     assert retrieved.template == "Test {{value}}"
-    
+
     versions = list_versions("test_global")
     assert "1.0" in versions
 
@@ -318,12 +297,11 @@ def test_global_registry_functions():
 # Few-Shot Example Tests
 # ============================================================================
 
+
 def test_create_example():
     """Test creating a few-shot example."""
     example = create_example(
-        input_text="What is 2+2?",
-        output_text="4",
-        metadata={"difficulty": "easy"}
+        input_text="What is 2+2?", output_text="4", metadata={"difficulty": "easy"}
     )
     assert example.input == "What is 2+2?"
     assert example.output == "4"
@@ -348,40 +326,34 @@ def test_example_format_custom():
 def test_example_selector_add():
     """Test adding examples to selector."""
     selector = ExampleSelector()
-    
+
     ex1 = create_example("What is 2+2?", "4")
     ex2 = create_example("What is 3+3?", "6")
-    
+
     selector.add(ex1)
     selector.add(ex2)
-    
+
     assert len(selector.examples) == 2
 
 
 def test_example_selector_random():
     """Test random selection strategy."""
-    examples = [
-        create_example(f"Question {i}", f"Answer {i}")
-        for i in range(10)
-    ]
-    
+    examples = [create_example(f"Question {i}", f"Answer {i}") for i in range(10)]
+
     selector = ExampleSelector(examples)
     selected = selector.select(k=3, strategy="random")
-    
+
     assert len(selected) == 3
     assert all(isinstance(ex, FewShotExample) for ex in selected)
 
 
 def test_example_selector_first():
     """Test first selection strategy."""
-    examples = [
-        create_example(f"Question {i}", f"Answer {i}")
-        for i in range(10)
-    ]
-    
+    examples = [create_example(f"Question {i}", f"Answer {i}") for i in range(10)]
+
     selector = ExampleSelector(examples)
     selected = selector.select(k=3, strategy="first")
-    
+
     assert len(selected) == 3
     assert selected[0].input == "Question 0"
     assert selected[1].input == "Question 1"
@@ -390,14 +362,11 @@ def test_example_selector_first():
 
 def test_example_selector_last():
     """Test last selection strategy."""
-    examples = [
-        create_example(f"Question {i}", f"Answer {i}")
-        for i in range(10)
-    ]
-    
+    examples = [create_example(f"Question {i}", f"Answer {i}") for i in range(10)]
+
     selector = ExampleSelector(examples)
     selected = selector.select(k=3, strategy="last")
-    
+
     assert len(selected) == 3
     assert selected[0].input == "Question 7"
     assert selected[1].input == "Question 8"
@@ -406,14 +375,11 @@ def test_example_selector_last():
 
 def test_example_selector_diverse():
     """Test diverse selection strategy."""
-    examples = [
-        create_example(f"Question {i}", f"Answer {i}")
-        for i in range(10)
-    ]
-    
+    examples = [create_example(f"Question {i}", f"Answer {i}") for i in range(10)]
+
     selector = ExampleSelector(examples)
     selected = selector.select(k=3, strategy="diverse")
-    
+
     assert len(selected) == 3
     # Diverse strategy should space out selections
 
@@ -421,17 +387,19 @@ def test_example_selector_diverse():
 def test_example_selector_with_filter():
     """Test selection with filter function."""
     examples = [
-        create_example(f"Question {i}", f"Answer {i}", metadata={"difficulty": "easy" if i < 5 else "hard"})
+        create_example(
+            f"Question {i}",
+            f"Answer {i}",
+            metadata={"difficulty": "easy" if i < 5 else "hard"},
+        )
         for i in range(10)
     ]
-    
+
     selector = ExampleSelector(examples)
     selected = selector.select(
-        k=3,
-        strategy="first",
-        filter_fn=lambda ex: ex.metadata["difficulty"] == "easy"
+        k=3, strategy="first", filter_fn=lambda ex: ex.metadata["difficulty"] == "easy"
     )
-    
+
     assert len(selected) == 3
     assert all(ex.metadata["difficulty"] == "easy" for ex in selected)
 
@@ -440,9 +408,9 @@ def test_format_examples_function():
     """Test formatting multiple examples."""
     examples = [
         create_example("What is 2+2?", "4"),
-        create_example("What is 3+3?", "6")
+        create_example("What is 3+3?", "6"),
     ]
-    
+
     formatted = format_examples(examples)
     assert "Input: What is 2+2?" in formatted
     assert "Output: 4" in formatted
@@ -454,13 +422,11 @@ def test_format_examples_custom_template():
     """Test formatting with custom template and separator."""
     examples = [
         create_example("What is 2+2?", "4"),
-        create_example("What is 3+3?", "6")
+        create_example("What is 3+3?", "6"),
     ]
-    
+
     formatted = format_examples(
-        examples,
-        template="Q: {input} | A: {output}",
-        separator=" | "
+        examples, template="Q: {input} | A: {output}", separator=" | "
     )
     assert "Q: What is 2+2? | A: 4 | Q: What is 3+3? | A: 6" == formatted
 
@@ -468,6 +434,7 @@ def test_format_examples_custom_template():
 # ============================================================================
 # Compression and Optimization Tests
 # ============================================================================
+
 
 def test_optimize_whitespace_multiple_spaces():
     """Test removing multiple spaces."""
@@ -515,7 +482,7 @@ def test_compress_prompt_with_max_length():
 def test_truncate_prompt_end():
     """Test truncating prompt at the end - now uses preprocessing module."""
     from kerb.preprocessing import truncate_text
-    
+
     prompt = "This is a long prompt that needs truncation"
     truncated = truncate_text(prompt, max_length=20, strategy="end", suffix="...")
     assert len(truncated) == 20
@@ -526,7 +493,7 @@ def test_truncate_prompt_end():
 def test_truncate_prompt_middle():
     """Test truncating prompt in the middle - now uses preprocessing module."""
     from kerb.preprocessing import truncate_text
-    
+
     prompt = "This is a long prompt that needs truncation"
     truncated = truncate_text(prompt, max_length=20, strategy="middle", suffix="...")
     assert len(truncated) == 20
@@ -538,7 +505,7 @@ def test_truncate_prompt_middle():
 def test_truncate_prompt_smart():
     """Test smart truncation at sentence boundary - now uses preprocessing module."""
     from kerb.preprocessing import truncate_text
-    
+
     prompt = "First sentence. Second sentence. Third sentence. Fourth sentence."
     truncated = truncate_text(prompt, max_length=35, strategy="smart", suffix="...")
     assert len(truncated) <= 35
@@ -549,7 +516,7 @@ def test_truncate_prompt_smart():
 def test_truncate_prompt_no_truncation_needed():
     """Test that short prompts are not truncated - now uses preprocessing module."""
     from kerb.preprocessing import truncate_text
-    
+
     prompt = "Short prompt"
     truncated = truncate_text(prompt, max_length=50, suffix="...")
     assert truncated == prompt
@@ -559,7 +526,7 @@ def test_analyze_prompt_basic():
     """Test basic prompt analysis."""
     prompt = "Hello world! This is a test."
     analysis = analyze_prompt(prompt)
-    
+
     assert analysis["length"] == len(prompt)
     assert analysis["words"] == 6
     assert analysis["lines"] == 1
@@ -570,7 +537,7 @@ def test_analyze_prompt_with_variables():
     """Test analyzing prompt with template variables."""
     prompt = "Hello {{name}}! You are {{age}} years old."
     analysis = analyze_prompt(prompt)
-    
+
     assert "name" in analysis["variables"]
     assert "age" in analysis["variables"]
 
@@ -586,16 +553,17 @@ def test_analyze_prompt_empty():
 # Integration Tests
 # ============================================================================
 
+
 def test_complete_workflow_template_to_prompt():
     """Test complete workflow from template creation to rendering."""
     # Create template
     template = "Hello {{user.name}}! Your balance is ${{user.balance}}."
-    
+
     # Validate template
     variables = {"user": {"name": "Alice", "balance": 100}}
     is_valid, missing = validate_template(template, variables)
     assert is_valid is True
-    
+
     # Render template
     result = render_template(template, variables)
     assert result == "Hello Alice! Your balance is $100."
@@ -608,16 +576,16 @@ def test_complete_workflow_versioning_and_rendering():
         name="welcome",
         version="1.0",
         template="Welcome {{name}}!",
-        variables={"name": "Guest"}
+        variables={"name": "Guest"},
     )
-    
+
     # Register
     register_prompt(v1)
-    
+
     # Retrieve and render
     prompt = get_prompt("welcome", "1.0")
     assert prompt is not None
-    
+
     result = prompt.render({"name": "Alice"})
     assert result == "Welcome Alice!"
 
@@ -628,13 +596,13 @@ def test_complete_workflow_few_shot_examples():
     examples = [
         create_example("What is 2+2?", "4"),
         create_example("What is 3+3?", "6"),
-        create_example("What is 5+5?", "10")
+        create_example("What is 5+5?", "10"),
     ]
-    
+
     # Select examples
     selected = select_examples(examples, k=2, strategy="first")
     assert len(selected) == 2
-    
+
     # Format examples
     formatted = format_examples(selected, template="Q: {input}\nA: {output}")
     assert "Q: What is 2+2?" in formatted
@@ -651,16 +619,16 @@ def test_complete_workflow_prompt_optimization():
     
     This is very important for my work.
     """
-    
+
     # Analyze before optimization
     analysis_before = analyze_prompt(prompt)
-    
+
     # Compress
     compressed = compress_prompt(prompt)
-    
+
     # Analyze after optimization
     analysis_after = analyze_prompt(compressed)
-    
+
     # Should be shorter and cleaner
     assert analysis_after["length"] < analysis_before["length"]
     assert "  " not in compressed

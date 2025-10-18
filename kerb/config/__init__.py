@@ -11,7 +11,7 @@ Usage:
         load_config,         # Load configuration from file
         save_config,         # Save configuration to file
     )
-    
+
     # Providers - specialized
     from kerb.config.providers import (
         get_openai_config,
@@ -33,31 +33,20 @@ Features:
 - Configuration history and rollback
 """
 
-# Core classes and common functions (top-level imports)
-from .manager import ConfigManager
-from .io import load_config, save_config
-
 # Submodules for specialized functionality
-from . import providers, factories
-
+from . import factories, providers
 # Export core types for convenience
 from .enums import ConfigSource, ProviderType
-from .types import AppConfig, ModelConfig, ProviderConfig
-
 # Export factory functions at top level for convenience
-from .factories import (
-    create_config_manager,
-    create_model_config,
-    create_provider_config,
-)
-
+from .factories import (create_config_manager, create_model_config,
+                        create_provider_config)
+from .io import load_config, save_config
+# Core classes and common functions (top-level imports)
+from .manager import ConfigManager
 # Export provider utilities at top level for convenience
-from .providers import (
-    get_openai_config,
-    get_anthropic_config,
-    get_google_config,
-    validate_credentials,
-)
+from .providers import (get_anthropic_config, get_google_config,
+                        get_openai_config, validate_credentials)
+from .types import AppConfig, ModelConfig, ProviderConfig
 
 # Backward compatibility aliases (old API)
 load_config_from_file = load_config
@@ -76,29 +65,24 @@ __all__ = [
     "ConfigManager",
     "load_config",
     "save_config",
-    
     # Submodules
     "providers",
     "factories",
-    
     # Types (for type hints and direct access)
     "ConfigSource",
     "ProviderType",
     "AppConfig",
     "ModelConfig",
     "ProviderConfig",
-    
     # Factory functions
     "create_config_manager",
     "create_model_config",
     "create_provider_config",
-    
     # Provider utilities
     "get_openai_config",
     "get_anthropic_config",
     "get_google_config",
     "validate_credentials",
-    
     # Backward compatibility (old API)
     "load_config_from_file",
     "save_config_to_file",

@@ -7,13 +7,14 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-
 # ============================================================================
 # Enums
 # ============================================================================
 
+
 class MediaType(Enum):
     """Supported media types."""
+
     IMAGE = "image"
     AUDIO = "audio"
     VIDEO = "video"
@@ -22,6 +23,7 @@ class MediaType(Enum):
 
 class ImageFormat(Enum):
     """Supported image formats."""
+
     JPEG = "jpeg"
     PNG = "png"
     WEBP = "webp"
@@ -33,6 +35,7 @@ class ImageFormat(Enum):
 
 class AudioFormat(Enum):
     """Supported audio formats."""
+
     MP3 = "mp3"
     WAV = "wav"
     M4A = "m4a"
@@ -44,6 +47,7 @@ class AudioFormat(Enum):
 
 class VideoFormat(Enum):
     """Supported video formats."""
+
     MP4 = "mp4"
     AVI = "avi"
     MOV = "mov"
@@ -54,6 +58,7 @@ class VideoFormat(Enum):
 
 class VisionModel(Enum):
     """Supported vision models."""
+
     GPT4_VISION = "gpt-4-vision-preview"
     GPT4O = "gpt-4o"
     GPT4O_MINI = "gpt-4o-mini"
@@ -68,6 +73,7 @@ class VisionModel(Enum):
 
 class TranscriptionModel(Enum):
     """Supported transcription models."""
+
     WHISPER_TINY = "whisper-tiny"
     WHISPER_BASE = "whisper-base"
     WHISPER_SMALL = "whisper-small"
@@ -79,6 +85,7 @@ class TranscriptionModel(Enum):
 
 class EmbeddingModelMultimodal(Enum):
     """Supported multi-modal embedding models."""
+
     CLIP_VIT_B_32 = "clip-vit-b-32"
     CLIP_VIT_L_14 = "clip-vit-l-14"
     OPENAI_CLIP = "openai/clip-vit-base-patch32"
@@ -89,9 +96,11 @@ class EmbeddingModelMultimodal(Enum):
 # Data Classes
 # ============================================================================
 
+
 @dataclass
 class ImageInfo:
     """Information about an image."""
+
     width: int
     height: int
     format: ImageFormat
@@ -104,6 +113,7 @@ class ImageInfo:
 @dataclass
 class AudioInfo:
     """Information about an audio file."""
+
     duration_seconds: float
     sample_rate: int
     channels: int
@@ -116,6 +126,7 @@ class AudioInfo:
 @dataclass
 class VideoInfo:
     """Information about a video file."""
+
     width: int
     height: int
     duration_seconds: float
@@ -131,6 +142,7 @@ class VideoInfo:
 @dataclass
 class TranscriptionResult:
     """Result of audio transcription."""
+
     text: str
     language: Optional[str] = None
     segments: Optional[List[Dict[str, Any]]] = None
@@ -143,6 +155,7 @@ class TranscriptionResult:
 @dataclass
 class VisionAnalysis:
     """Result of vision model analysis."""
+
     description: str
     objects: Optional[List[Dict[str, Any]]] = None
     text_content: Optional[str] = None
@@ -155,6 +168,7 @@ class VisionAnalysis:
 @dataclass
 class MultiModalContent:
     """Represents multi-modal content for prompts."""
+
     type: str  # "text", "image", "audio", "video"
     content: Union[str, bytes, Dict[str, Any]]
     metadata: Dict[str, Any] = field(default_factory=dict)

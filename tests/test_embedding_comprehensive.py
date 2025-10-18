@@ -1,39 +1,18 @@
 """Comprehensive tests for the embedding module."""
 
 import pytest
-from kerb.embedding import (
-    # Core functions
-    embed,
-    embed_batch,
-    
-    # Similarity metrics
-    cosine_similarity,
-    euclidean_distance,
-    manhattan_distance,
-    dot_product,
-    batch_similarity,
-    top_k_similar,
-    
-    # Vector utilities
-    normalize_vector,
-    vector_magnitude,
-    mean_pooling,
-    weighted_mean_pooling,
-    max_pooling,
-    
-    # Analysis
-    embedding_dimension,
-    pairwise_similarities,
-    cluster_embeddings,
-    
-    # Backend-specific
-    local_embed,
-)
 
+from kerb.embedding import (  # Core functions; Similarity metrics; Vector utilities; Analysis; Backend-specific
+    batch_similarity, cluster_embeddings, cosine_similarity, dot_product,
+    embed, embed_batch, embedding_dimension, euclidean_distance, local_embed,
+    manhattan_distance, max_pooling, mean_pooling, normalize_vector,
+    pairwise_similarities, top_k_similar, vector_magnitude,
+    weighted_mean_pooling)
 
 # ============================================================================
 # Core Embedding Function Tests
 # ============================================================================
+
 
 def test_embed_basic():
     """Test basic embedding generation."""
@@ -89,6 +68,7 @@ def test_embed_batch_consistency():
 # ============================================================================
 # Similarity Metric Tests
 # ============================================================================
+
 
 def test_cosine_similarity_identical():
     """Test cosine similarity of identical vectors."""
@@ -204,6 +184,7 @@ def test_top_k_similar_k_larger_than_list():
 # Vector Utility Tests
 # ============================================================================
 
+
 def test_normalize_vector():
     """Test vector normalization."""
     vec = [3.0, 4.0]  # Length 5
@@ -307,6 +288,7 @@ def test_max_pooling_single_vector():
 # Analysis Function Tests
 # ============================================================================
 
+
 def test_embedding_dimension():
     """Test getting embedding dimension."""
     vec = embed("test", backend="local")
@@ -319,15 +301,15 @@ def test_pairwise_similarities():
     """Test pairwise similarity matrix."""
     vectors = embed_batch(["a", "b", "c"])
     matrix = pairwise_similarities(vectors)
-    
+
     # Should be NxN matrix
     assert len(matrix) == 3
     assert all(len(row) == 3 for row in matrix)
-    
+
     # Diagonal should be 1.0 (self-similarity)
     for i in range(3):
         assert abs(matrix[i][i] - 1.0) < 1e-6
-    
+
     # Should be symmetric
     assert abs(matrix[0][1] - matrix[1][0]) < 1e-6
 
@@ -338,12 +320,12 @@ def test_cluster_embeddings_basic():
     vectors = [
         [1.0, 0.0, 0.0],
         [0.99, 0.1, 0.0],  # Similar to first
-        [0.0, 1.0, 0.0],   # Different
+        [0.0, 1.0, 0.0],  # Different
     ]
     vectors = [normalize_vector(v) for v in vectors]
-    
+
     clusters = cluster_embeddings(vectors, threshold=0.9)
-    
+
     # Should have at least 2 clusters
     assert len(clusters) >= 2
     assert all(isinstance(cluster, list) for cluster in clusters)
@@ -353,7 +335,7 @@ def test_cluster_embeddings_high_threshold():
     """Test clustering with high threshold (each item separate)."""
     vectors = embed_batch(["a", "b", "c"])
     clusters = cluster_embeddings(vectors, threshold=0.99)
-    
+
     # With high threshold, likely each item is its own cluster
     assert len(clusters) >= 1
 
@@ -361,6 +343,7 @@ def test_cluster_embeddings_high_threshold():
 # ============================================================================
 # Local Backend Tests
 # ============================================================================
+
 
 def test_local_embed_dimensions():
     """Test local embedding with custom dimensions."""
@@ -387,19 +370,20 @@ def test_local_embed_deterministic():
 # Integration Tests
 # ============================================================================
 
+
 def test_full_workflow():
     """Test a complete embedding workflow."""
     # Generate embeddings
     documents = ["Document 1", "Document 2", "Document 3"]
     doc_embeddings = embed_batch(documents, dimensions=256)
-    
+
     # Create query
     query = "Document 1"
     query_embedding = embed(query, dimensions=256)
-    
+
     # Find similar documents
     top_docs = top_k_similar(query_embedding, doc_embeddings, k=2, return_scores=True)
-    
+
     assert len(top_docs) == 2
     # First result should be most similar
     assert top_docs[0][0] == 0  # Index of "Document 1"
@@ -414,22 +398,17 @@ def test_semantic_search_simulation():
         "The sky is blue",
     ]
     doc_embeddings = embed_batch(documents, dimensions=256)
-    
+
     # Search query
     query = "programming languages"
     query_embedding = embed(query, dimensions=256)
-    
+
     # Find top-2 similar
-    results = top_k_similar(
-        query_embedding,
-        doc_embeddings,
-        k=2,
-        return_scores=True
-    )
-    
+    results = top_k_similar(query_embedding, doc_embeddings, k=2, return_scores=True)
+
     # Should return 2 results
     assert len(results) == 2
-    
+
     # Note: With hash-based embeddings, semantic quality isn't guaranteed,
     # but the mechanics should work
 
@@ -442,13 +421,13 @@ def test_document_averaging():
         "Third part of the story",
     ]
     embeddings = embed_batch(docs, dimensions=256)
-    
+
     # Average the embeddings
     avg_embedding = mean_pooling(embeddings)
-    
+
     # Should have same dimension
     assert len(avg_embedding) == len(embeddings[0])
-    
+
     # Should be a valid embedding
     mag = vector_magnitude(avg_embedding)
     assert mag > 0

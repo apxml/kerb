@@ -6,6 +6,7 @@ from typing import Dict, Tuple
 
 class LLMProvider(Enum):
     """Supported LLM providers."""
+
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     GOOGLE = "google"
@@ -64,7 +65,6 @@ MODEL_PRICING: Dict[str, Tuple[float, float]] = {
     "gpt-3.5-turbo": (0.50, 1.50),
     "o1": (15.00, 60.00),
     "o1-mini": (3.00, 12.00),
-
     # Anthropic
     "claude-opus-4": (15.00, 75.00),
     "claude-sonnet-4": (3.00, 15.00),
@@ -73,17 +73,14 @@ MODEL_PRICING: Dict[str, Tuple[float, float]] = {
     "claude-3-opus": (15.00, 75.00),
     "claude-3-sonnet": (3.00, 15.00),
     "claude-3-haiku": (0.25, 1.25),
-
     # Google
     "gemini-2.5-pro": (1.25, 10.00),
     "gemini-2.5-flash": (0.075, 0.30),
     "gemini-1.5-pro": (1.25, 5.00),
     "gemini-1.5-flash": (0.075, 0.30),
-
     # Cohere
     "command-r-plus": (3.00, 15.00),
     "command-r": (0.50, 1.50),
-
     # Mistral
     "mistral-large": (4.00, 12.00),
     "mistral-medium": (2.70, 8.10),

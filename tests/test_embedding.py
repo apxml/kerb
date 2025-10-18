@@ -1,4 +1,4 @@
-from kerb.embedding import embed, embed_batch, cosine_similarity
+from kerb.embedding import cosine_similarity, embed, embed_batch
 
 
 def test_embedding_dimension_and_norm():

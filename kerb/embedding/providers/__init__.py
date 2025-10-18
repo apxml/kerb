@@ -1,7 +1,7 @@
 """Embedding providers.
 
 Local Providers (run on your machine):
-- Hash-based (no dependencies) 
+- Hash-based (no dependencies)
 - Sentence Transformers (local ML models)
 
 Remote Providers (API-based):
@@ -9,24 +9,12 @@ Remote Providers (API-based):
 """
 
 # Local providers (both run locally)
-from .local import (
-    # Hash-based (no dependencies)
-    LocalEmbedder,
-    local_embed,
-    # Sentence Transformers (local ML)
-    SentenceTransformerEmbedder,
-    sentence_transformer_embed,
-    sentence_transformer_embed_batch,
-)
-
+from .local import (  # Hash-based (no dependencies); Sentence Transformers (local ML)
+    LocalEmbedder, SentenceTransformerEmbedder, local_embed,
+    sentence_transformer_embed, sentence_transformer_embed_batch)
 # Remote providers (API-based)
-from .openai import (
-    OpenAIEmbedder,
-    openai_embed,
-    openai_embed_batch,
-    openai_embed_async,
-    openai_embed_batch_async,
-)
+from .openai import (OpenAIEmbedder, openai_embed, openai_embed_async,
+                     openai_embed_batch, openai_embed_batch_async)
 
 __all__ = [
     # Local providers - Hash-based

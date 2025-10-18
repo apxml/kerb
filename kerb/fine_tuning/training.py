@@ -1,6 +1,6 @@
 """Training configuration and optimization utilities."""
 
-from typing import List, Dict, Any, Optional
+from typing import Any, Dict, List, Optional
 
 from .types import TrainingConfig, TrainingDataset
 
@@ -10,17 +10,17 @@ def create_training_config(
     n_epochs: int = 3,
     batch_size: Optional[int] = None,
     learning_rate_multiplier: Optional[float] = None,
-    **kwargs
+    **kwargs,
 ) -> TrainingConfig:
     """Create training configuration.
-    
+
     Args:
         model: Base model name
         n_epochs: Number of training epochs
         batch_size: Batch size (if None, provider determines automatically)
         learning_rate_multiplier: Learning rate multiplier
         **kwargs: Additional configuration options
-        
+
     Returns:
         TrainingConfig
     """
@@ -29,36 +29,34 @@ def create_training_config(
         n_epochs=n_epochs,
         batch_size=batch_size,
         learning_rate_multiplier=learning_rate_multiplier,
-        **kwargs
+        **kwargs,
     )
 
 
 def estimate_training_time(
-    dataset: TrainingDataset,
-    n_epochs: int = 3,
-    batch_size: int = 8
+    dataset: TrainingDataset, n_epochs: int = 3, batch_size: int = 8
 ) -> Dict[str, Any]:
     """Estimate training duration.
-    
+
     Args:
         dataset: Training dataset
         n_epochs: Number of epochs
         batch_size: Batch size
-        
+
     Returns:
         Dictionary with time estimates
     """
     n_examples = len(dataset)
     steps_per_epoch = n_examples // batch_size
     total_steps = steps_per_epoch * n_epochs
-    
+
     # Rough estimates (seconds per step)
     time_per_step = 2.0  # This varies widely by model and hardware
-    
+
     total_seconds = total_steps * time_per_step
     total_minutes = total_seconds / 60
     total_hours = total_minutes / 60
-    
+
     return {
         "total_examples": n_examples,
         "n_epochs": n_epochs,
@@ -73,11 +71,11 @@ def estimate_training_time(
 
 def calculate_optimal_batch_size(dataset_size: int, gpu_memory_gb: float = 16) -> int:
     """Calculate optimal batch size.
-    
+
     Args:
         dataset_size: Size of dataset
         gpu_memory_gb: Available GPU memory in GB
-        
+
     Returns:
         Recommended batch size
     """
@@ -90,21 +88,21 @@ def calculate_optimal_batch_size(dataset_size: int, gpu_memory_gb: float = 16) -
         base_batch_size = 8
     else:
         base_batch_size = 4
-    
+
     # Adjust for dataset size
     if dataset_size < 100:
         return min(base_batch_size, dataset_size // 4)
-    
+
     return base_batch_size
 
 
 def recommend_learning_rate(model: str, dataset_size: int) -> float:
     """Recommend learning rate for fine-tuning.
-    
+
     Args:
         model: Base model name
         dataset_size: Size of dataset
-        
+
     Returns:
         Recommended learning rate multiplier
     """
@@ -122,15 +120,15 @@ def recommend_learning_rate(model: str, dataset_size: int) -> float:
 def create_hyperparameter_grid(
     n_epochs: List[int] = None,
     batch_sizes: Optional[List[int]] = None,
-    learning_rates: Optional[List[float]] = None
+    learning_rates: Optional[List[float]] = None,
 ) -> List[Dict[str, Any]]:
     """Create hyperparameter search grid.
-    
+
     Args:
         n_epochs: List of epoch values to try
         batch_sizes: List of batch sizes to try
         learning_rates: List of learning rate multipliers to try
-        
+
     Returns:
         List of hyperparameter configurations
     """
@@ -140,15 +138,17 @@ def create_hyperparameter_grid(
         batch_sizes = [4, 8, 16]
     if learning_rates is None:
         learning_rates = [0.05, 0.1, 0.2]
-    
+
     grid = []
     for epochs in n_epochs:
         for batch_size in batch_sizes:
             for lr in learning_rates:
-                grid.append({
-                    "n_epochs": epochs,
-                    "batch_size": batch_size,
-                    "learning_rate_multiplier": lr,
-                })
-    
+                grid.append(
+                    {
+                        "n_epochs": epochs,
+                        "batch_size": batch_size,
+                        "learning_rate_multiplier": lr,
+                    }
+                )
+
     return grid
