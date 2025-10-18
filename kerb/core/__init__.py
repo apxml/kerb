@@ -27,29 +27,18 @@ from kerb.core.enums import ReorderStrategy, ParseMode
 """
 
 # Make submodules available for organized access
-from . import types, enums
-
+from . import enums, types
+from .enums import ChainStrategy, ChunkingStrategy, CompressionStrategy
 # Import only the most commonly used items for top-level convenience
-from .types import (
-    Document,
-    Message,
-)
-
-from .enums import (
-    ChainStrategy,
-    CompressionStrategy,
-    ChunkingStrategy,
-)
+from .types import Document, Message
 
 __all__ = [
     # Submodules (for organized access to all types and enums)
     "types",
     "enums",
-    
     # Most commonly used types
     "Document",
     "Message",
-    
     # Most commonly used enums
     "ChainStrategy",
     "CompressionStrategy",

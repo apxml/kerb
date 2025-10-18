@@ -8,6 +8,7 @@ from enum import Enum
 
 class SafetyLevel(Enum):
     """Safety check strictness level."""
+
     PERMISSIVE = "permissive"  # Minimal filtering
     MODERATE = "moderate"  # Balanced approach
     STRICT = "strict"  # Maximum safety
@@ -15,6 +16,7 @@ class SafetyLevel(Enum):
 
 class ContentCategory(Enum):
     """Content classification categories."""
+
     SAFE = "safe"
     TOXICITY = "toxicity"
     SEXUAL = "sexual"
@@ -28,6 +30,7 @@ class ContentCategory(Enum):
 
 class PIIType(Enum):
     """Types of personally identifiable information."""
+
     EMAIL = "email"
     PHONE = "phone"
     SSN = "ssn"
@@ -42,6 +45,7 @@ class PIIType(Enum):
 
 class ToxicityLevel(Enum):
     """Toxicity severity levels."""
+
     NONE = 0
     LOW = 1
     MEDIUM = 2

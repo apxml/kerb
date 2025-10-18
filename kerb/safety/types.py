@@ -3,8 +3,8 @@
 This module defines all data classes and type definitions used in the safety subpackage.
 """
 
-from typing import List, Dict, Optional, Any, Callable
 from dataclasses import dataclass, field
+from typing import Any, Callable, Dict, List, Optional
 
 from .enums import ContentCategory, PIIType, ToxicityLevel
 
@@ -12,6 +12,7 @@ from .enums import ContentCategory, PIIType, ToxicityLevel
 @dataclass
 class SafetyResult:
     """Result from safety check."""
+
     safe: bool
     score: float  # 0.0 (unsafe) to 1.0 (safe)
     category: ContentCategory = ContentCategory.SAFE
@@ -23,6 +24,7 @@ class SafetyResult:
 @dataclass
 class PIIMatch:
     """Detected PII with metadata."""
+
     pii_type: PIIType
     text: str
     start: int
@@ -34,6 +36,7 @@ class PIIMatch:
 @dataclass
 class ModerationResult:
     """Comprehensive moderation check result."""
+
     safe: bool
     categories: Dict[ContentCategory, float] = field(default_factory=dict)
     flagged_categories: List[ContentCategory] = field(default_factory=list)
@@ -45,6 +48,7 @@ class ModerationResult:
 @dataclass
 class Guardrail:
     """Custom safety guardrail."""
+
     name: str
     check_function: Callable[[str], SafetyResult]
     description: Optional[str] = None

@@ -9,6 +9,7 @@ from .enums import NormalizationLevel
 @dataclass
 class LanguageResult:
     """Language detection result."""
+
     language: str
     confidence: float
     alternatives: List[Tuple[str, float]] = field(default_factory=list)
@@ -17,6 +18,7 @@ class LanguageResult:
 @dataclass
 class QualityMetrics:
     """Text quality metrics."""
+
     length: int
     word_count: int
     avg_word_length: float
@@ -31,7 +33,7 @@ class QualityMetrics:
 @dataclass
 class NormalizationConfig:
     """Configuration for text normalization operations.
-    
+
     Attributes:
         level: Normalization intensity level
         lowercase: Convert to lowercase
@@ -39,6 +41,7 @@ class NormalizationConfig:
         remove_emails: Remove email addresses
         remove_extra_spaces: Remove redundant whitespace
     """
+
     level: NormalizationLevel = NormalizationLevel.STANDARD
     lowercase: bool = False
     remove_urls: bool = True

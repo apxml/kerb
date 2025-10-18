@@ -12,10 +12,10 @@ from .types import ProviderConfig
 
 def get_openai_config(api_key_env_var: str = "OPENAI_API_KEY") -> ProviderConfig:
     """Get default OpenAI provider configuration.
-    
+
     Args:
         api_key_env_var: Environment variable name for API key
-    
+
     Returns:
         ProviderConfig for OpenAI
     """
@@ -31,10 +31,10 @@ def get_openai_config(api_key_env_var: str = "OPENAI_API_KEY") -> ProviderConfig
 
 def get_anthropic_config(api_key_env_var: str = "ANTHROPIC_API_KEY") -> ProviderConfig:
     """Get default Anthropic provider configuration.
-    
+
     Args:
         api_key_env_var: Environment variable name for API key
-    
+
     Returns:
         ProviderConfig for Anthropic
     """
@@ -50,10 +50,10 @@ def get_anthropic_config(api_key_env_var: str = "ANTHROPIC_API_KEY") -> Provider
 
 def get_google_config(api_key_env_var: str = "GOOGLE_API_KEY") -> ProviderConfig:
     """Get default Google (Gemini) provider configuration.
-    
+
     Args:
         api_key_env_var: Environment variable name for API key
-    
+
     Returns:
         ProviderConfig for Google
     """
@@ -71,26 +71,26 @@ def validate_credentials(
     api_key: str,
 ) -> bool:
     """Validate provider credentials (basic check).
-    
+
     Note: This is a basic validation. For production, implement
     actual API calls to verify credentials.
-    
+
     Args:
         provider: Provider type
         api_key: API key to validate
-    
+
     Returns:
         True if credentials appear valid (basic check)
     """
     if not api_key or len(api_key) < 10:
         return False
-    
+
     # Basic prefix checks
     prefix_checks = {
-        ProviderType.OPENAI: api_key.startswith('sk-'),
-        ProviderType.ANTHROPIC: api_key.startswith('sk-ant-'),
+        ProviderType.OPENAI: api_key.startswith("sk-"),
+        ProviderType.ANTHROPIC: api_key.startswith("sk-ant-"),
         ProviderType.COHERE: len(api_key) > 20,
         ProviderType.GOOGLE: len(api_key) > 20,
     }
-    
+
     return prefix_checks.get(provider, len(api_key) > 10)

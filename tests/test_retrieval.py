@@ -1,28 +1,18 @@
 """Comprehensive tests for the retrieval module."""
 
 import pytest
-from kerb.retrieval import (
-    Document,
-    SearchResult,
-    rewrite_query,
-    expand_query,
-    generate_sub_queries,
-    keyword_search,
-    semantic_search,
-    hybrid_search,
-    rerank_results,
-    reciprocal_rank_fusion,
-    compress_context,
-    filter_results,
-    diversify_results,
-    format_results,
-    results_to_context,
-)
 
+from kerb.retrieval import (Document, SearchResult, compress_context,
+                            diversify_results, expand_query, filter_results,
+                            format_results, generate_sub_queries,
+                            hybrid_search, keyword_search,
+                            reciprocal_rank_fusion, rerank_results,
+                            results_to_context, rewrite_query, semantic_search)
 
 # ============================================================================
 # Fixtures
 # ============================================================================
+
 
 @pytest.fixture
 def sample_documents():
@@ -31,27 +21,31 @@ def sample_documents():
         Document(
             id="doc1",
             content="Python is a high-level programming language with dynamic typing.",
-            metadata={"category": "programming", "language": "python", "views": 1000}
+            metadata={"category": "programming", "language": "python", "views": 1000},
         ),
         Document(
             id="doc2",
             content="Asynchronous programming in Python uses async and await keywords.",
-            metadata={"category": "programming", "language": "python", "views": 500}
+            metadata={"category": "programming", "language": "python", "views": 500},
         ),
         Document(
             id="doc3",
             content="JavaScript is widely used for web development and Node.js.",
-            metadata={"category": "programming", "language": "javascript", "views": 800}
+            metadata={
+                "category": "programming",
+                "language": "javascript",
+                "views": 800,
+            },
         ),
         Document(
             id="doc4",
             content="Machine learning involves training models on data.",
-            metadata={"category": "data_science", "views": 1200}
+            metadata={"category": "data_science", "views": 1200},
         ),
         Document(
             id="doc5",
             content="Python offers excellent libraries for data science and ML.",
-            metadata={"category": "data_science", "language": "python", "views": 1500}
+            metadata={"category": "data_science", "language": "python", "views": 1500},
         ),
     ]
 
@@ -73,13 +67,11 @@ def sample_embeddings():
 # Data Classes Tests
 # ============================================================================
 
+
 def test_document_creation():
     """Test Document data class."""
     doc = Document(
-        id="test1",
-        content="Test content",
-        metadata={"key": "value"},
-        score=0.5
+        id="test1", content="Test content", metadata={"key": "value"}, score=0.5
     )
     assert doc.id == "test1"
     assert doc.content == "Test content"
@@ -97,12 +89,7 @@ def test_document_default_metadata():
 def test_search_result_creation():
     """Test SearchResult data class."""
     doc = Document(id="test1", content="Test")
-    result = SearchResult(
-        document=doc,
-        score=0.8,
-        rank=1,
-        method="keyword"
-    )
+    result = SearchResult(document=doc, score=0.8, rank=1, method="keyword")
     assert result.document.id == "test1"
     assert result.score == 0.8
     assert result.rank == 1
@@ -112,6 +99,7 @@ def test_search_result_creation():
 # ============================================================================
 # Query Processing Tests
 # ============================================================================
+
 
 def test_rewrite_query_clear():
     """Test query rewriting with 'clear' style."""
@@ -188,6 +176,7 @@ def test_generate_sub_queries():
 # Search Tests
 # ============================================================================
 
+
 def test_keyword_search_basic(sample_documents):
     """Test basic keyword search."""
     results = keyword_search("python", sample_documents, top_k=5)
@@ -223,10 +212,7 @@ def test_semantic_search_basic(sample_documents, sample_embeddings):
     """Test basic semantic search."""
     query_embedding = [0.1, 0.2, 0.3, 0.4]
     results = semantic_search(
-        query_embedding,
-        sample_documents,
-        sample_embeddings,
-        top_k=3
+        query_embedding, sample_documents, sample_embeddings, top_k=3
     )
     assert len(results) <= 3
     assert all(isinstance(r, SearchResult) for r in results)
@@ -236,10 +222,7 @@ def test_semantic_search_cosine(sample_documents, sample_embeddings):
     """Test semantic search with cosine similarity."""
     query_embedding = [0.1, 0.2, 0.3, 0.4]
     results = semantic_search(
-        query_embedding,
-        sample_documents,
-        sample_embeddings,
-        similarity_metric="cosine"
+        query_embedding, sample_documents, sample_embeddings, similarity_metric="cosine"
     )
     assert len(results) > 0
     assert all(-1 <= r.score <= 1 for r in results)
@@ -249,10 +232,7 @@ def test_semantic_search_dot_product(sample_documents, sample_embeddings):
     """Test semantic search with dot product."""
     query_embedding = [0.1, 0.2, 0.3, 0.4]
     results = semantic_search(
-        query_embedding,
-        sample_documents,
-        sample_embeddings,
-        similarity_metric="dot"
+        query_embedding, sample_documents, sample_embeddings, similarity_metric="dot"
     )
     assert len(results) > 0
 
@@ -264,7 +244,7 @@ def test_semantic_search_euclidean(sample_documents, sample_embeddings):
         query_embedding,
         sample_documents,
         sample_embeddings,
-        similarity_metric="euclidean"
+        similarity_metric="euclidean",
     )
     assert len(results) > 0
 
@@ -274,11 +254,7 @@ def test_hybrid_search_basic(sample_documents, sample_embeddings):
     query = "python programming"
     query_embedding = [0.1, 0.2, 0.3, 0.4]
     results = hybrid_search(
-        query,
-        query_embedding,
-        sample_documents,
-        sample_embeddings,
-        top_k=3
+        query, query_embedding, sample_documents, sample_embeddings, top_k=3
     )
     assert len(results) <= 3
     assert all(isinstance(r, SearchResult) for r in results)
@@ -295,7 +271,7 @@ def test_hybrid_search_weighted(sample_documents, sample_embeddings):
         sample_embeddings,
         keyword_weight=0.7,
         semantic_weight=0.3,
-        fusion_method="weighted"
+        fusion_method="weighted",
     )
     assert len(results) > 0
 
@@ -305,11 +281,7 @@ def test_hybrid_search_rrf(sample_documents, sample_embeddings):
     query = "python"
     query_embedding = [0.1, 0.2, 0.3, 0.4]
     results = hybrid_search(
-        query,
-        query_embedding,
-        sample_documents,
-        sample_embeddings,
-        fusion_method="rrf"
+        query, query_embedding, sample_documents, sample_embeddings, fusion_method="rrf"
     )
     assert len(results) > 0
 
@@ -317,6 +289,7 @@ def test_hybrid_search_rrf(sample_documents, sample_embeddings):
 # ============================================================================
 # Re-ranking Tests
 # ============================================================================
+
 
 def test_rerank_relevance(sample_documents):
     """Test re-ranking by relevance."""
@@ -342,15 +315,12 @@ def test_rerank_diversity(sample_documents):
 def test_rerank_custom_scorer(sample_documents):
     """Test re-ranking with custom scorer."""
     initial_results = keyword_search("python", sample_documents, top_k=5)
-    
+
     def custom_scorer(query, doc):
         return doc.metadata.get("views", 0) * 0.001
-    
+
     reranked = rerank_results(
-        "python",
-        initial_results,
-        method="custom",
-        scorer=custom_scorer
+        "python", initial_results, method="custom", scorer=custom_scorer
     )
     assert len(reranked) > 0
 
@@ -359,7 +329,7 @@ def test_reciprocal_rank_fusion(sample_documents):
     """Test reciprocal rank fusion."""
     results1 = keyword_search("python", sample_documents, top_k=3)
     results2 = keyword_search("programming", sample_documents, top_k=3)
-    
+
     fused = reciprocal_rank_fusion([results1, results2], top_k=5)
     assert len(fused) <= 5
     assert all(isinstance(r, SearchResult) for r in fused)
@@ -383,6 +353,7 @@ def test_diversify_results(sample_documents):
 # Context Compression Tests
 # ============================================================================
 
+
 def test_compress_context_top_k(sample_documents):
     """Test context compression with top_k strategy."""
     results = keyword_search("python", sample_documents, top_k=5)
@@ -393,7 +364,9 @@ def test_compress_context_top_k(sample_documents):
 def test_compress_context_summarize(sample_documents):
     """Test context compression with summarize strategy."""
     results = keyword_search("python", sample_documents, top_k=5)
-    compressed = compress_context("python", results, max_tokens=100, strategy="summarize")
+    compressed = compress_context(
+        "python", results, max_tokens=100, strategy="summarize"
+    )
     assert len(compressed) <= len(results)
 
 
@@ -413,6 +386,7 @@ def test_compress_context_empty_results():
 # ============================================================================
 # Filtering Tests
 # ============================================================================
+
 
 def test_filter_results_min_score(sample_documents):
     """Test filtering by minimum score."""
@@ -450,7 +424,7 @@ def test_filter_results_combined(sample_documents):
         results,
         min_score=0.1,
         max_results=3,
-        metadata_filter={"category": "programming"}
+        metadata_filter={"category": "programming"},
     )
     assert len(filtered) <= 3
     assert all(r.document.metadata.get("category") == "programming" for r in filtered)
@@ -459,6 +433,7 @@ def test_filter_results_combined(sample_documents):
 # ============================================================================
 # Formatting Tests
 # ============================================================================
+
 
 def test_format_results_simple(sample_documents):
     """Test simple result formatting."""
@@ -471,11 +446,7 @@ def test_format_results_simple(sample_documents):
 def test_format_results_detailed(sample_documents):
     """Test detailed result formatting."""
     results = keyword_search("python", sample_documents, top_k=3)
-    formatted = format_results(
-        results,
-        format_style="detailed",
-        include_metadata=True
-    )
+    formatted = format_results(results, format_style="detailed", include_metadata=True)
     assert isinstance(formatted, str)
     assert "Metadata" in formatted
 
@@ -487,6 +458,7 @@ def test_format_results_json(sample_documents):
     assert isinstance(formatted, str)
     # Should be valid JSON
     import json
+
     parsed = json.loads(formatted)
     assert isinstance(parsed, list)
 
@@ -532,6 +504,7 @@ def test_results_to_context_empty():
 # Edge Cases and Error Handling
 # ============================================================================
 
+
 def test_empty_documents_keyword_search():
     """Test keyword search with empty documents."""
     results = keyword_search("python", [], top_k=5)
@@ -550,10 +523,7 @@ def test_mismatched_embeddings(sample_documents):
     # Only 2 embeddings for 5 documents
     doc_embeddings = [[0.1, 0.2, 0.3], [0.2, 0.3, 0.4]]
     results = semantic_search(
-        query_embedding,
-        sample_documents,
-        doc_embeddings,
-        top_k=5
+        query_embedding, sample_documents, doc_embeddings, top_k=5
     )
     assert len(results) == 0  # Should return empty due to mismatch
 
@@ -586,33 +556,30 @@ def test_unicode_query(sample_documents):
 # Integration Tests
 # ============================================================================
 
+
 def test_full_rag_pipeline(sample_documents, sample_embeddings):
     """Test complete RAG pipeline."""
     # Query processing
     query = "python async"
     expanded = expand_query(query, method="synonyms")
     assert len(expanded) >= 1
-    
+
     # Hybrid search
     query_embedding = [0.1, 0.2, 0.3, 0.4]
     results = hybrid_search(
-        expanded[0],
-        query_embedding,
-        sample_documents,
-        sample_embeddings,
-        top_k=5
+        expanded[0], query_embedding, sample_documents, sample_embeddings, top_k=5
     )
     assert len(results) > 0
-    
+
     # Re-ranking
     reranked = rerank_results(query, results, method="relevance")
     assert len(reranked) > 0
-    
+
     # Filtering and compression
     filtered = filter_results(reranked, min_score=0.0)
     compressed = compress_context(query, filtered, max_tokens=500)
     assert len(compressed) > 0
-    
+
     # Convert to context
     context = results_to_context(compressed)
     assert isinstance(context, str)
@@ -623,11 +590,11 @@ def test_multi_query_fusion(sample_documents):
     """Test fusion of multiple query results."""
     queries = ["python", "programming", "async"]
     all_results = []
-    
+
     for q in queries:
         results = keyword_search(q, sample_documents, top_k=3)
         all_results.append(results)
-    
+
     fused = reciprocal_rank_fusion(all_results, top_k=5)
     assert len(fused) <= 5
     assert len(fused) > 0

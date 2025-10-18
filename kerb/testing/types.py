@@ -1,13 +1,14 @@
 """Data types and enums for testing utilities."""
 
-from typing import Dict, Any, Optional, List, Callable
 from dataclasses import dataclass, field
-from enum import Enum
 from datetime import datetime
+from enum import Enum
+from typing import Any, Callable, Dict, List, Optional
 
 
 class MockBehavior(Enum):
     """Behavior modes for mock LLM."""
+
     FIXED = "fixed"  # Return fixed responses
     SEQUENTIAL = "sequential"  # Return responses in sequence
     RANDOM = "random"  # Return random responses
@@ -17,6 +18,7 @@ class MockBehavior(Enum):
 
 class FixtureFormat(Enum):
     """Supported fixture file formats."""
+
     JSON = "json"
     JSONL = "jsonl"
     CSV = "csv"
@@ -26,6 +28,7 @@ class FixtureFormat(Enum):
 @dataclass
 class MockResponse:
     """Mock LLM response."""
+
     content: str
     model: str = "mock-model"
     finish_reason: str = "stop"
@@ -33,11 +36,11 @@ class MockResponse:
     completion_tokens: int = 0
     latency: float = 0.1
     metadata: Dict[str, Any] = field(default_factory=dict)
-    
+
     def to_generation_response(self):
         """Convert to GenerationResponse format."""
-        from ..generation import GenerationResponse, Usage, LLMProvider
-        
+        from ..generation import GenerationResponse, LLMProvider, Usage
+
         return GenerationResponse(
             content=self.content,
             model=self.model,
@@ -45,18 +48,19 @@ class MockResponse:
             usage=Usage(
                 prompt_tokens=self.prompt_tokens,
                 completion_tokens=self.completion_tokens,
-                total_tokens=self.prompt_tokens + self.completion_tokens
+                total_tokens=self.prompt_tokens + self.completion_tokens,
             ),
             finish_reason=self.finish_reason,
             latency=self.latency,
             cached=False,
-            metadata=self.metadata
+            metadata=self.metadata,
         )
 
 
 @dataclass
 class TestCase:
     """Test case definition."""
+
     id: str
     prompt: str
     expected_output: Optional[str] = None
@@ -68,6 +72,7 @@ class TestCase:
 @dataclass
 class TestResult:
     """Test execution result."""
+
     test_id: str
     passed: bool
     actual_output: str
@@ -81,6 +86,7 @@ class TestResult:
 @dataclass
 class FixtureData:
     """Container for fixture data."""
+
     prompt: str
     response: str
     metadata: Dict[str, Any] = field(default_factory=dict)
@@ -91,6 +97,7 @@ class FixtureData:
 @dataclass
 class PromptFixture:
     """Fixture for prompt-response pairs."""
+
     id: str
     prompt: str
     expected_response: str
@@ -101,6 +108,7 @@ class PromptFixture:
 @dataclass
 class ResponseFixture:
     """Fixture for deterministic responses."""
+
     pattern: str
     response: str
     response_type: str = "exact"  # exact, template, function
@@ -110,6 +118,7 @@ class ResponseFixture:
 @dataclass
 class PromptTestCase:
     """Prompt test case for regression testing."""
+
     name: str
     prompt_template: str
     test_inputs: List[Dict[str, Any]]
@@ -121,6 +130,7 @@ class PromptTestCase:
 @dataclass
 class SnapshotData:
     """Snapshot data for snapshot testing."""
+
     name: str
     content: str
     hash: str
@@ -131,6 +141,7 @@ class SnapshotData:
 @dataclass
 class PerformanceMetrics:
     """Performance metrics for testing."""
+
     total_requests: int
     total_latency: float
     avg_latency: float
@@ -147,6 +158,7 @@ class PerformanceMetrics:
 @dataclass
 class CostReport:
     """Cost tracking report."""
+
     total_cost: float
     total_tokens: int
     total_requests: int
