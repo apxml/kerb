@@ -1,0 +1,147 @@
+{
+  "package": "kerb",
+  "format": "sphinx-json",
+  "version": "1.0",
+  "modules": [
+    {
+      "name": "core",
+      "fullname": "kerb.core",
+      "file": "api/core.json",
+      "functions_count": 0,
+      "classes_count": 5
+    },
+    {
+      "name": "agent",
+      "fullname": "kerb.agent",
+      "file": "api/agent.json",
+      "functions_count": 2,
+      "classes_count": 3
+    },
+    {
+      "name": "cache",
+      "fullname": "kerb.cache",
+      "file": "api/cache.json",
+      "functions_count": 11,
+      "classes_count": 7
+    },
+    {
+      "name": "chunk",
+      "fullname": "kerb.chunk",
+      "file": "api/chunk.json",
+      "functions_count": 11,
+      "classes_count": 6
+    },
+    {
+      "name": "config",
+      "fullname": "kerb.config",
+      "file": "api/config.json",
+      "functions_count": 15,
+      "classes_count": 7
+    },
+    {
+      "name": "context",
+      "fullname": "kerb.context",
+      "file": "api/context.json",
+      "functions_count": 18,
+      "classes_count": 5
+    },
+    {
+      "name": "document",
+      "fullname": "kerb.document",
+      "file": "api/document.json",
+      "functions_count": 30,
+      "classes_count": 2
+    },
+    {
+      "name": "embedding",
+      "fullname": "kerb.embedding",
+      "file": "api/embedding.json",
+      "functions_count": 27,
+      "classes_count": 5
+    },
+    {
+      "name": "evaluation",
+      "fullname": "kerb.evaluation",
+      "file": "api/evaluation.json",
+      "functions_count": 19,
+      "classes_count": 6
+    },
+    {
+      "name": "fine_tuning",
+      "fullname": "kerb.fine_tuning",
+      "file": "api/fine_tuning.json",
+      "functions_count": 18,
+      "classes_count": 9
+    },
+    {
+      "name": "generation",
+      "fullname": "kerb.generation",
+      "file": "api/generation.json",
+      "functions_count": 15,
+      "classes_count": 18
+    },
+    {
+      "name": "memory",
+      "fullname": "kerb.memory",
+      "file": "api/memory.json",
+      "functions_count": 8,
+      "classes_count": 3
+    },
+    {
+      "name": "multimodal",
+      "fullname": "kerb.multimodal",
+      "file": "api/multimodal.json",
+      "functions_count": 25,
+      "classes_count": 13
+    },
+    {
+      "name": "parsing",
+      "fullname": "kerb.parsing",
+      "file": "api/parsing.json",
+      "functions_count": 25,
+      "classes_count": 4
+    },
+    {
+      "name": "preprocessing",
+      "fullname": "kerb.preprocessing",
+      "file": "api/preprocessing.json",
+      "functions_count": 55,
+      "classes_count": 7
+    },
+    {
+      "name": "prompt",
+      "fullname": "kerb.prompt",
+      "file": "api/prompt.json",
+      "functions_count": 16,
+      "classes_count": 4
+    },
+    {
+      "name": "retrieval",
+      "fullname": "kerb.retrieval",
+      "file": "api/retrieval.json",
+      "functions_count": 13,
+      "classes_count": 4
+    },
+    {
+      "name": "safety",
+      "fullname": "kerb.safety",
+      "file": "api/safety.json",
+      "functions_count": 39,
+      "classes_count": 8
+    },
+    {
+      "name": "testing",
+      "fullname": "kerb.testing",
+      "file": "api/testing.json",
+      "functions_count": 8,
+      "classes_count": 16
+    },
+    {
+      "name": "tokenizer",
+      "fullname": "kerb.tokenizer",
+      "file": "api/tokenizer.json",
+      "functions_count": 8,
+      "classes_count": 1
+    }
+  ]
+}

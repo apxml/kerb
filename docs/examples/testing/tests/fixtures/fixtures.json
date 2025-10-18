@@ -1,0 +1,35 @@
+{
+  "code_gen_fibonacci": {
+    "prompt": "Write a Python function to calculate Fibonacci numbers",
+    "response": "def fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)",
+    "metadata": {
+      "task_type": "code_generation",
+      "language": "python",
+      "difficulty": "easy"
+    },
+    "tags": [],
+    "created_at": "2025-10-17T22:39:54.043294"
+  },
+  "code_gen_binary_search": {
+    "prompt": "Write a Python function for binary search",
+    "response": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+    "metadata": {
+      "task_type": "code_generation",
+      "language": "python",
+      "difficulty": "medium"
+    },
+    "tags": [],
+    "created_at": "2025-10-17T22:39:54.043300"
+  },
+  "summarize_article": {
+    "prompt": "Summarize: Machine learning is a subset of artificial intelligence...",
+    "response": "Machine learning is an AI subset that enables systems to learn from data without explicit programming.",
+    "metadata": {
+      "task_type": "summarization",
+      "input_length": 100,
+      "target_length": 20
+    },
+    "tags": [],
+    "created_at": "2025-10-17T22:39:54.043302"
+  }
+}
