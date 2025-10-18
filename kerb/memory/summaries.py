@@ -125,12 +125,8 @@ def summarize_conversation(
         ConversationSummary: Structured summary of conversation
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import SummaryStrategy
         >>> summary = summarize_conversation(messages, summary_strategy=SummaryStrategy.EXTRACTIVE)
-
-        >>> # Using string (for backward compatibility)
-        >>> summary = summarize_conversation(messages, key_points=3)
     """
     from kerb.core.enums import SummaryStrategy, validate_enum_or_string
 

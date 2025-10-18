@@ -157,12 +157,8 @@ def compute_perplexity(
         Dictionary with perplexity statistics
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import Device
         >>> stats = compute_perplexity(dataset, model_name="gpt2", device=Device.CUDA)
-
-        >>> # Using string (for backward compatibility)
-        >>> stats = compute_perplexity(dataset, model_name="gpt2")
         >>> print(f"Average perplexity: {stats['mean_perplexity']:.2f}")
 
     Note:

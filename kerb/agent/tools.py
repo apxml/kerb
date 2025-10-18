@@ -921,12 +921,8 @@ def format_tool_result(
         Formatted result string
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import ToolResultFormat
         >>> formatted = format_tool_result(result, format=ToolResultFormat.JSON)
-
-        >>> # Using string (for backward compatibility)
-        >>> formatted = format_tool_result(result, format="json")
     """
     from kerb.core.enums import ToolResultFormat, validate_enum_or_string
 

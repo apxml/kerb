@@ -371,12 +371,8 @@ class ConversationBuffer:
             ConversationBuffer: Self (for method chaining, modifies in place)
 
         Examples:
-            >>> # Using enum (recommended)
             >>> from kerb.core.enums import PruneStrategy
             >>> buffer.prune(strategy=PruneStrategy.OLDEST, keep_count=50)
-
-            >>> # Using string (for backward compatibility)
-            >>> buffer.prune(strategy="oldest", keep_count=50)
         """
         from kerb.core.enums import PruneStrategy, validate_enum_or_string
 

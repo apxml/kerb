@@ -513,12 +513,8 @@ def embed_multimodal(
         List of embedding values
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import Device
         >>> embedding = embed_multimodal("photo.jpg", "image", device=Device.CUDA)
-
-        >>> # Using string (for backward compatibility)
-        >>> embedding = embed_multimodal("photo.jpg", "image")
         >>> len(embedding)
         512
     """

@@ -173,12 +173,8 @@ def export_cache_stats(
         Union[Dict, str]: Statistics in requested format
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import ExportFormat
         >>> stats = export_cache_stats(cache, format=ExportFormat.JSON)
-
-        >>> # Using string (for backward compatibility)
-        >>> stats = export_cache_stats(cache, format="json")
         >>> print(stats)
     """
     from kerb.core.enums import ExportFormat, validate_enum_or_string
@@ -232,12 +228,8 @@ def estimate_cache_size(
         Union[int, str]: Size in requested unit
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import SizeUnit
         >>> size = estimate_cache_size(cache, unit=SizeUnit.MB)
-
-        >>> # Using string (for backward compatibility)
-        >>> size = estimate_cache_size(cache, unit="human")
         >>> print(f"Cache size: {size}")
     """
     from kerb.core.enums import SizeUnit, validate_enum_or_string

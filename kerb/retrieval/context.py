@@ -31,12 +31,8 @@ def compress_context(
         List[SearchResult]: Compressed results
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import CompressionStrategy
         >>> compressed = compress_context(query, results, max_tokens=1000, strategy=CompressionStrategy.TOP_K)
-
-        >>> # Using string (for backward compatibility)
-        >>> compressed = compress_context(query, results, max_tokens=1000, strategy="top_k")
     """
     from kerb.core.enums import CompressionStrategy, validate_enum_or_string
 

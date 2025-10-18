@@ -74,12 +74,8 @@ def reorder_context(
         List[ContextItem]: Reordered items
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import ReorderStrategy
         >>> reordered = reorder_context(items, strategy=ReorderStrategy.PRIORITY)
-
-        >>> # Using string (for backward compatibility)
-        >>> reordered = reorder_context(items, strategy="priority")
     """
     from kerb.core.enums import ReorderStrategy, validate_enum_or_string
 

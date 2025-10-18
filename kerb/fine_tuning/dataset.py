@@ -175,12 +175,8 @@ def balance_dataset(
         TrainingDataset: Balanced dataset
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import BalanceMethod
         >>> balanced = balance_dataset(dataset, method=BalanceMethod.UNDERSAMPLE)
-
-        >>> # Using string (for backward compatibility)
-        >>> balanced = balance_dataset(dataset, method="oversample")
     """
     from kerb.core.enums import BalanceMethod, validate_enum_or_string
 

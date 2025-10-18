@@ -343,12 +343,8 @@ def balance_dataset(
         TrainingDataset: Balanced dataset
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import BalanceMethod
         >>> balanced = balance_dataset(dataset, method=BalanceMethod.UNDERSAMPLE)
-
-        >>> # Using string (for backward compatibility)
-        >>> balanced = balance_dataset(dataset, method="oversample")
     """
     from kerb.core.enums import BalanceMethod, validate_enum_or_string
 
@@ -1382,12 +1378,8 @@ def compute_perplexity(
         Dictionary with perplexity statistics
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import Device
         >>> stats = compute_perplexity(dataset, model_name="gpt2", device=Device.CUDA)
-
-        >>> # Using string (for backward compatibility)
-        >>> stats = compute_perplexity(dataset, model_name="gpt2")
         >>> print(f"Average perplexity: {stats['mean_perplexity']:.2f}")
 
     Note:

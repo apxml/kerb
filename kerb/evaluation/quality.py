@@ -301,15 +301,8 @@ def assess_faithfulness(
         EvaluationResult: Faithfulness score (1 = fully faithful, 0 = not faithful)
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import FaithfulnessMethod
         >>> result = assess_faithfulness(output, source, method=FaithfulnessMethod.ENTAILMENT)
-
-        >>> # Using string (for backward compatibility)
-        >>> result = assess_faithfulness(
-        ...     "The cat sat on the mat",
-        ...     "A cat was sitting on a mat"
-        ... )
         >>> result.score > 0.7
         True
     """

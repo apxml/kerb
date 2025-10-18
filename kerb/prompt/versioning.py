@@ -309,12 +309,8 @@ def select_version(
         Optional[PromptVersion]: Selected prompt version
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import VersionSelectionStrategy
         >>> version = select_version("greeting", strategy=VersionSelectionStrategy.BEST_PERFORMING)
-
-        >>> # Using string (for backward compatibility)
-        >>> version = select_version("greeting", strategy="random")
     """
     # Validate and normalize strategy
     strategy_val = validate_enum_or_string(
