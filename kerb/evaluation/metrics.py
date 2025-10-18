@@ -304,14 +304,11 @@ def calculate_semantic_similarity(
         float: Similarity score between 0 and 1
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import SimilarityMethod
         >>> score = calculate_semantic_similarity(text1, text2, method=SimilarityMethod.EMBEDDING)
-
-        >>> # Using string (for backward compatibility)
-        >>> calculate_semantic_similarity("cat", "kitten", method="jaccard")
+        >>> calculate_semantic_similarity("cat", "kitten", method=SimilarityMethod.JACCARD)
         0.0
-        >>> calculate_semantic_similarity("the cat sat", "the cat sits", method="jaccard")
+        >>> calculate_semantic_similarity("the cat sat", "the cat sits", method=SimilarityMethod.JACCARD)
         0.5
     """
     from kerb.core.enums import SimilarityMethod, validate_enum_or_string

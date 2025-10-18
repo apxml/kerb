@@ -493,11 +493,7 @@ def create_chain(
         Chain instance
 
     Examples:
-        >>> # Using enum (recommended)
         >>> chain = create_chain(steps, strategy=ChainStrategy.SEQUENTIAL)
-
-        >>> # Using string (for backward compatibility)
-        >>> chain = create_chain(steps, strategy="parallel")
     """
     # Validate and normalize strategy
     strategy_val = validate_enum_or_string(strategy, ChainStrategy, "strategy")
@@ -549,11 +545,7 @@ def chain_from_functions(
         Chain instance
 
     Examples:
-        >>> # Using enum (recommended)
         >>> chain = chain_from_functions([func1, func2], strategy=ChainStrategy.PARALLEL)
-
-        >>> # Using string (for backward compatibility)
-        >>> chain = chain_from_functions([func1, func2], strategy="sequential")
     """
     steps = []
     for i, func in enumerate(functions):

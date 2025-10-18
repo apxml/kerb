@@ -26,12 +26,8 @@ def rewrite_query(
         str: Rewritten query
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import QueryStyle
         >>> rewritten = rewrite_query("python async", style=QueryStyle.DETAILED)
-
-        >>> # Using string (for backward compatibility)
-        >>> rewritten = rewrite_query("python async", style="keyword")
     """
     from kerb.core.enums import QueryStyle, validate_enum_or_string
 
@@ -144,12 +140,8 @@ def expand_query(
         List[str]: List of query variations
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import ExpansionMethod
         >>> queries = expand_query("machine learning", method=ExpansionMethod.SYNONYMS)
-
-        >>> # Using string (for backward compatibility)
-        >>> queries = expand_query("machine learning", method="related_terms")
     """
     from kerb.core.enums import ExpansionMethod, validate_enum_or_string
 

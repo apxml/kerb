@@ -214,12 +214,8 @@ def select_examples(
         List[FewShotExample]: Selected examples
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import SelectionStrategy
         >>> selected = select_examples(examples, k=3, strategy=SelectionStrategy.SIMILARITY, query="example query")
-
-        >>> # Using string (for backward compatibility)
-        >>> selected = select_examples(examples, k=3, strategy="random")
     """
     from kerb.core.enums import validate_enum_or_string
 

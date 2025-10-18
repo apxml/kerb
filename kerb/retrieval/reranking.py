@@ -33,14 +33,9 @@ def rerank_results(
         List[SearchResult]: Re-ranked search results
 
     Examples:
-        >>> # Using enum (recommended)
         >>> from kerb.core.enums import RerankMethod
         >>> results = keyword_search("python", docs)
         >>> reranked = rerank_results("python", results, method=RerankMethod.MMR)
-
-        >>> # Using string (for backward compatibility)
-        >>> results = keyword_search("python", docs)
-        >>> reranked = rerank_results("python", results, method="relevance")
     """
     from kerb.core.enums import RerankMethod, validate_enum_or_string
 

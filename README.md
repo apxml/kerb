@@ -135,6 +135,34 @@ answer = generate(
 )
 ```
 
+### LLM Caching
+```python
+from kerb.cache import create_memory_cache, generate_prompt_key
+from kerb.generation import generate, ModelName
+
+cache = create_memory_cache(max_size=1000, default_ttl=3600)
+
+def cached_generate(prompt, model=ModelName.GPT_4O_MINI, temperature=0.7):
+    cache_key = generate_prompt_key(
+        prompt, 
+        model=model.value, 
+        temperature=temperature
+    )
+    
+    if cached := cache.get(cache_key):
+        return cached['response']
+    
+    response = generate(prompt, model=model, temperature=temperature)
+    cache.set(cache_key, {'response': response, 'cost': response.cost})
+    return response
+
+# First call
+response1 = cached_generate("Explain Python decorators briefly")
+
+# Hit Cache
+response2 = cached_generate("Explain Python decorators briefly")
+```
+
 ### Agent Workflow
 ```python
 from kerb.agent.patterns import ReActAgent
