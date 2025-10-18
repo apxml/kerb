@@ -371,7 +371,9 @@ def parallel_read_jsonl(
         num_workers = num_workers or mp.cpu_count()
         chunks = [lines[i : i + chunk_size] for i in range(0, len(lines), chunk_size)]
 
-        with ProcessPoolExecutor(max_workers=num_workers) as executor:
+        # Use ThreadPoolExecutor for better cross-platform compatibility
+        # JSON parsing benefits from parallelism without multiprocessing overhead
+        with ThreadPoolExecutor(max_workers=num_workers) as executor:
             results = executor.map(_parse_json_chunk, chunks)
 
         # Flatten results
