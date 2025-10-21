@@ -2,7 +2,9 @@
 
 The complete toolkit for developers building LLM applications.
 
-Built to drive production ML systems at ApX Machine Learning (apxml.com), now available as open source.
+Built to drive production ML systems at ApX Machine Learning ([apxml.com](https://apxml.com)), now available as open source.
+
+**[Getting Started](https://apxml.com/courses/getting-started-with-llm-toolkit)**
 
 ## Overview 
 
@@ -263,6 +265,9 @@ Apache 2.0 License - see [LICENSE](LICENSE) for details.
 
 ## Links
 
-- [Documentation](https://apxml.com/references/kerb)
+- [Documentation](https://apxml.com/courses/getting-started-with-llm-toolkit)
 - [GitHub](https://github.com/apxml/kerb)
-
+- [Reference](https://apxml.com/references/kerb)
+- [PyPI](https://pypi.org/project/kerb/)
+- [Issues & Bug Reports](https://github.com/apxml/kerb/issues)
+- [Code Examples](https://github.com/apxml/kerb/tree/main/docs/examples)
