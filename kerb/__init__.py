@@ -23,7 +23,7 @@ This package exposes subpackages that implement core functionality:
  - testing: testing utilities for LLM application development
 """
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 # Re-export submodules for convenience
 from . import agent
