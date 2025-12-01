@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kerb"
-version = "0.1.3"
+version = "0.1.4"
 authors = [
   { name="Wei-Ming Thor", email="twm_npm@outlook.com" },
 ]
@@ -110,6 +110,7 @@ filterwarnings = [
 "Documentation" = "https://github.com/apxml/kerb/docs"
 "Source Code" = "https://github.com/apxml/kerb"
 
-[tool.setuptools]
-package-dir = {"" = "."}
-packages = ["kerb"]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["kerb*"]
+exclude = ["tests*", "docs*", "scripts*", "env*"]
