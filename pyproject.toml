@@ -11,12 +11,11 @@ authors = [
 ]
 description = "A toolkit library for developers building LLM applications"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 license = {text = "Apache-2.0"}
 keywords = ["llm", "ai", "machine-learning", "nlp", "natural-language-processing", "toolkit", "openai", "anthropic", "gemini", "embeddings", "tokenization", "generation", "evaluation"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -29,8 +28,9 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
-    # List project dependencies here, e.g.,
-    # "requests>=2.28.1",
+    # Core dependencies are intentionally minimal.
+    # Feature-specific dependencies are available as optional extras (see below).
+    # Install with: pip install kerb[tokenizers,embeddings] or pip install kerb[all]
 ]
 
 [project.optional-dependencies]
