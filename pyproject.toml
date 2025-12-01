@@ -98,6 +98,11 @@ all = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# Suppress urllib3 OpenSSL warning on macOS (LibreSSL compatibility)
+# This warning appears because macOS uses LibreSSL instead of OpenSSL, but functionality is unaffected
+filterwarnings = [
+    "ignore:urllib3 v2 only supports OpenSSL"
+]
 
 [project.urls]
 "Homepage" = "https://github.com/apxml/kerb"
