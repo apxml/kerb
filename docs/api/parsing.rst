@@ -13,23 +13,8 @@ Parsing Functions
 
 .. autofunction:: kerb.parsing.extract_json
 
-.. autofunction:: kerb.parsing.extract_code
+.. autofunction:: kerb.parsing.extract_code_blocks
 
 .. autofunction:: kerb.parsing.parse_function_call
 
 .. autofunction:: kerb.parsing.validate_json_schema
-
-Parsing Classes
----------------
-
-.. autoclass:: kerb.parsing.JsonParser
-   :members:
-   :undoc-members:
-
-.. autoclass:: kerb.parsing.CodeParser
-   :members:
-   :undoc-members:
-
-.. autoclass:: kerb.parsing.StructuredParser
-   :members:
-   :undoc-members:

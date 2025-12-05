@@ -13,23 +13,35 @@ Chunking Functions
 
 .. autofunction:: kerb.chunk.chunk_text
 
-.. autofunction:: kerb.chunk.chunk_by_tokens
+.. autofunction:: kerb.chunk.simple_chunker
 
-.. autofunction:: kerb.chunk.chunk_by_sentences
+.. autofunction:: kerb.chunk.token_based_chunker
 
-.. autofunction:: kerb.chunk.semantic_chunk
+.. autofunction:: kerb.chunk.recursive_chunker
 
 Chunker Classes
 ---------------
 
-.. autoclass:: kerb.chunk.TextChunker
+.. autoclass:: kerb.chunk.Chunker
    :members:
    :undoc-members:
 
-.. autoclass:: kerb.chunk.TokenChunker
+.. autoclass:: kerb.chunk.RecursiveChunker
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.chunk.SentenceChunker
    :members:
    :undoc-members:
 
 .. autoclass:: kerb.chunk.SemanticChunker
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.chunk.CodeChunker
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.chunk.MarkdownChunker
    :members:
    :undoc-members:

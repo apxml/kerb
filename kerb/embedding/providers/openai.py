@@ -27,9 +27,10 @@ def openai_embed(
         List[float]: Embedding vector
 
     Popular models:
-        - "text-embedding-3-small" (1536 dim, cost-effective)
-        - "text-embedding-3-large" (3072 dim, highest quality)
-        - "text-embedding-ada-002" (1536 dim, legacy)
+
+    - "text-embedding-3-small" (1536 dim, cost-effective)
+    - "text-embedding-3-large" (3072 dim, highest quality)
+    - "text-embedding-ada-002" (1536 dim, legacy)
     """
     try:
         from openai import OpenAI
@@ -238,7 +239,8 @@ class OpenAIEmbedder:
         model_name (str): OpenAI model name (default: "text-embedding-3-small")
         api_key (str, optional): OpenAI API key (or set OPENAI_API_KEY env var)
 
-    Examples:
+    Examples::
+
         embedder = OpenAIEmbedder(model_name="text-embedding-3-large")
         vec = embedder.embed("Hello world")
         vecs = embedder.embed_batch(["Hello", "World"])

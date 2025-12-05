@@ -13,7 +13,7 @@ Tokenizer Functions
 
 .. autofunction:: kerb.tokenizer.count_tokens
 
-.. autofunction:: kerb.tokenizer.split_by_tokens
+.. autofunction:: kerb.tokenizer.truncate_to_token_limit
 
 .. autofunction:: kerb.tokenizer.estimate_cost
 

@@ -15,21 +15,27 @@ Safety Functions
 
 .. autofunction:: kerb.safety.check_toxicity
 
-.. autofunction:: kerb.safety.filter_profanity
+.. autofunction:: kerb.safety.detect_pii
 
-.. autofunction:: kerb.safety.validate_input
+.. autofunction:: kerb.safety.redact_pii
+
+.. autofunction:: kerb.safety.detect_prompt_injection
 
 Safety Classes
 --------------
 
-.. autoclass:: kerb.safety.ContentModerator
-   :members:
-   :undoc-members:
-
-.. autoclass:: kerb.safety.SafetyFilter
-   :members:
-   :undoc-members:
-
 .. autoclass:: kerb.safety.ModerationResult
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.safety.SafetyResult
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.safety.PIIMatch
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.safety.Guardrail
    :members:
    :undoc-members:

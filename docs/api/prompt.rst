@@ -13,26 +13,25 @@ Template Functions
 
 .. autofunction:: kerb.prompt.render_template
 
-.. autofunction:: kerb.prompt.create_template
+.. autofunction:: kerb.prompt.validate_template
 
-.. autofunction:: kerb.prompt.load_template
+.. autofunction:: kerb.prompt.extract_template_variables
 
-Prompt Patterns
----------------
+Prompt Management
+-----------------
 
-.. autofunction:: kerb.prompt.chain_of_thought
-
-.. autofunction:: kerb.prompt.few_shot_examples
-
-.. autofunction:: kerb.prompt.react_prompt
-
-Prompt Classes
---------------
-
-.. autoclass:: kerb.prompt.PromptTemplate
+.. autoclass:: kerb.prompt.PromptVersion
    :members:
    :undoc-members:
 
-.. autoclass:: kerb.prompt.ChatPrompt
+.. autoclass:: kerb.prompt.PromptRegistry
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.prompt.FewShotExample
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.prompt.ExampleSelector
    :members:
    :undoc-members:

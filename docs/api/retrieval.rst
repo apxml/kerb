@@ -23,11 +23,16 @@ Retrieval Classes
 .. autoclass:: kerb.retrieval.Document
    :members:
    :undoc-members:
+   :no-index:
 
 .. autoclass:: kerb.retrieval.SearchResult
    :members:
    :undoc-members:
 
-.. autoclass:: kerb.retrieval.VectorStore
+.. autoclass:: kerb.retrieval.HybridSearchConfig
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.retrieval.FilterConfig
    :members:
    :undoc-members:

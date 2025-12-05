@@ -3,7 +3,8 @@
 This module provides comprehensive tools for managing LLM-specific configuration
 across different providers and models.
 
-Usage:
+Usage::
+
     # Common imports - top-level
     from kerb.config import (
         Config,              # Alias for ConfigManager
@@ -21,6 +22,7 @@ Usage:
     )
 
 Features:
+
 - Centralized LLM configuration management
 - Multi-provider support (OpenAI, Anthropic, Google, Cohere, Azure, HuggingFace)
 - Secure API key management with environment variables

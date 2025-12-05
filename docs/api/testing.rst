@@ -11,11 +11,13 @@ Testing utilities for LLM outputs and evaluation.
 Testing Functions
 -----------------
 
-.. autofunction:: kerb.testing.create_mock_response
+.. autofunction:: kerb.testing.create_mock_llm
 
-.. autofunction:: kerb.testing.assert_contains
+.. autofunction:: kerb.testing.assert_response_contains
 
-.. autofunction:: kerb.testing.assert_quality_score
+.. autofunction:: kerb.testing.assert_response_quality
+
+.. autofunction:: kerb.testing.load_fixtures
 
 Testing Classes
 ---------------
@@ -28,6 +30,10 @@ Testing Classes
    :members:
    :undoc-members:
 
-.. autoclass:: kerb.testing.OutputValidator
+.. autoclass:: kerb.testing.FixtureManager
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.testing.TestDataset
    :members:
    :undoc-members:

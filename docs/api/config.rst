@@ -8,15 +8,6 @@ Config Module
 
 Configuration management for models, providers, and application settings.
 
-API Key Management
-------------------
-
-.. autofunction:: kerb.config.set_api_key
-
-.. autofunction:: kerb.config.get_api_key
-
-.. autofunction:: kerb.config.delete_api_key
-
 Configuration Functions
 -----------------------
 
@@ -24,6 +15,27 @@ Configuration Functions
 
 .. autofunction:: kerb.config.save_config
 
-.. autofunction:: kerb.config.get_config_value
+.. autofunction:: kerb.config.get_openai_config
 
-.. autofunction:: kerb.config.set_config_value
+.. autofunction:: kerb.config.get_anthropic_config
+
+.. autofunction:: kerb.config.validate_credentials
+
+Configuration Classes
+---------------------
+
+.. autoclass:: kerb.config.ConfigManager
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.config.AppConfig
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.config.ModelConfig
+   :members:
+   :undoc-members:
+
+.. autoclass:: kerb.config.ProviderConfig
+   :members:
+   :undoc-members:
