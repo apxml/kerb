@@ -7,11 +7,3 @@ Agent Module
    :show-inheritance:
 
 Agent orchestration and execution patterns for multi-step reasoning.
-
-Agent Patterns
---------------
-
-.. automodule:: kerb.agent.patterns
-   :members:
-   :undoc-members:
-   :show-inheritance:
