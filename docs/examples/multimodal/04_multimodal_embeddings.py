@@ -1,4 +1,6 @@
-"""Multimodal Embeddings Example
+"""
+Multimodal Embeddings Example
+=============================
 
 This example demonstrates multimodal embeddings for image-text similarity.
 
@@ -66,6 +68,10 @@ def create_sample_images():
 
 def main():
     """Run multimodal embeddings examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("MULTIMODAL EMBEDDINGS EXAMPLE")

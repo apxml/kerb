@@ -1,4 +1,6 @@
-"""Text Transformations for Data Standardization
+"""
+Text Transformations for Data Standardization
+=============================================
 
 This example demonstrates text transformation techniques to standardize
 training data for consistent LLM input formats.
@@ -191,6 +193,10 @@ def main():
     
     def standardize_text(text):
         """Apply all standardization transformations."""
+
+# %%
+# Setup and Imports
+# -----------------
         text = expand_contractions(text)
         text = standardize_numbers(text)
         text = standardize_dates(text)

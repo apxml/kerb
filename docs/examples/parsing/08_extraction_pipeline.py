@@ -1,4 +1,6 @@
-"""Structured Data Extraction Pipeline
+"""
+Structured Data Extraction Pipeline
+===================================
 
 This example demonstrates a complete real-world workflow combining multiple
 parsing techniques to extract, validate, and process structured information
@@ -27,6 +29,10 @@ from kerb.parsing import (
 def simulate_complex_llm_analysis() -> str:
     """Simulate a complex LLM response analyzing a software project."""
     return """# Software Project Analysis Report
+
+# %%
+# Setup and Imports
+# -----------------
 
 <executive_summary>
 The codebase shows good architecture with room for optimization. 
@@ -65,6 +71,11 @@ Here are the detailed metrics I extracted:
 **Location:** src/processors/data_processor.py
 
 ```python
+
+# %%
+# Process Data
+# ------------
+
 def process_data(items):
     results = []
     for item in items:
@@ -87,6 +98,11 @@ from N queries to 1 query for N items.
 ### Recommended Fix
 
 ```python
+
+# %%
+# Process Data
+# ------------
+
 def process_data(items):
     # Batch fetch all users
     user_ids = [item.user_id for item in items if item.status == 'active']
@@ -150,12 +166,22 @@ LOW: Code quality improvements can be scheduled for next quarter
 class ProjectAnalysisExtractor:
     """Extract and validate project analysis data from LLM output."""
     
+
+# %%
+#   Init  
+# --------
+
     def __init__(self, llm_output: str):
         self.raw_output = llm_output
         self.errors = []
         self.warnings = []
         self.data = {}
     
+
+# %%
+# Extract Executive Summary
+# -------------------------
+
     def extract_executive_summary(self) -> Optional[str]:
         """Extract executive summary from XML tag."""
         summaries = extract_xml_tag(self.raw_output, "executive_summary")
@@ -192,6 +218,11 @@ class ProjectAnalysisExtractor:
         
         return result.data
     
+
+# %%
+# Extract Code Issues
+# -------------------
+
     def extract_code_issues(self) -> List[Dict[str, str]]:
         """Extract code blocks showing issues and fixes."""
         code_blocks = extract_code_blocks(self.raw_output, language="python")
@@ -222,6 +253,11 @@ class ProjectAnalysisExtractor:
         
         return security_findings
     
+
+# %%
+# Extract Dependencies
+# --------------------
+
     def extract_dependencies(self) -> Optional[Dict[str, Any]]:
         """Extract dependencies analysis."""
         deps = extract_xml_tag(self.raw_output, "dependencies")
@@ -254,6 +290,11 @@ class ProjectAnalysisExtractor:
         
         return action_items
     
+
+# %%
+# Extract Priority Info
+# ---------------------
+
     def extract_priority_info(self) -> Optional[str]:
         """Extract priority information."""
         priorities = extract_xml_tag(self.raw_output, "priority")
@@ -294,6 +335,11 @@ class ProjectAnalysisExtractor:
         
         return self.data
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run structured extraction pipeline example."""

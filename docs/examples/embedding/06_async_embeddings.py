@@ -1,4 +1,6 @@
-"""Async Embeddings Example
+"""
+Async Embeddings Example
+========================
 
 This example demonstrates asynchronous embedding operations for concurrent processing.
 
@@ -42,6 +44,10 @@ async def example_1_basic_async():
 
 async def example_2_concurrent_requests():
     """Example 2: Concurrent async requests."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n2. CONCURRENT ASYNC REQUESTS")
     print("-"*80)
     

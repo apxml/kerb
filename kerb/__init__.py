@@ -23,7 +23,7 @@ This package exposes subpackages that implement core functionality:
  - testing: testing utilities for LLM application development
 """
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 
 # Submodules are available for import but not eagerly loaded to avoid circular imports
 # Users can import them explicitly: from kerb import chunk, agent, etc.
@@ -58,7 +58,7 @@ def __getattr__(name):
     """Lazy import submodules to avoid circular import issues."""
     # Handle __version__ specially
     if name == "__version__":
-        return "0.1.4"
+        return "0.1.5"
     
     # Lazy import submodules
     if name in __all__ and name != "__version__":

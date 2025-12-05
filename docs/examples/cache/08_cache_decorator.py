@@ -1,4 +1,6 @@
-"""Cache Decorator Example
+"""
+Cache Decorator Example
+=======================
 
 This example demonstrates using the @cached decorator for automatic function caching.
 
@@ -36,6 +38,10 @@ def main():
     @cached()
     def expensive_function(x):
         """Simulate expensive computation."""
+
+# %%
+# Setup and Imports
+# -----------------
         print(f"    Computing for x={x}...")
         time.sleep(0.1)  # Simulate work
         return x * x
@@ -63,6 +69,11 @@ def main():
     my_cache = create_memory_cache(max_size=100, default_ttl=3600)
     
     @cached(cache=my_cache)
+
+# %%
+# Fetch User Data
+# ---------------
+
     def fetch_user_data(user_id):
         """Simulate API call to fetch user data."""
         print(f"    Fetching data for user {user_id} from API...")
@@ -111,6 +122,11 @@ def main():
     print("4. CUSTOM KEY GENERATION")
     print("-"*80)
     
+
+# %%
+# Custom Key Fn
+# -------------
+
     def custom_key_fn(*args, **kwargs):
         """Custom function to generate cache keys."""
         # Only use first argument, ignore case
@@ -158,6 +174,11 @@ def main():
             return {"id": data_id, "processed": True}
         
         @cached(ttl=5.0)
+
+# %%
+# Get Stats
+# ---------
+
         def get_stats(self):
             """Get statistics with 5-second cache."""
             print("    Computing statistics...")
@@ -187,11 +208,21 @@ def main():
     class WeatherAPIClient:
         """Weather API client with automatic caching."""
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self):
             self.cache = create_memory_cache(default_ttl=300)  # 5 min cache
             self.request_count = 0
         
         @cached(ttl=300)  # Cache weather for 5 minutes
+
+# %%
+# Get Weather
+# -----------
+
         def get_weather(self, city):
             """Get weather for a city."""
             self.request_count += 1
@@ -248,6 +279,11 @@ def main():
     )
     
     @cached(cache=disk_cache)
+
+# %%
+# Load Model Weights
+# ------------------
+
     def load_model_weights(model_name):
         """Load model weights (expensive operation)."""
         print(f"    Loading weights for {model_name}...")

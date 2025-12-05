@@ -1,4 +1,6 @@
-"""Mock LLM Testing Example
+"""
+Mock LLM Testing Example
+========================
 
 This example demonstrates how to use MockLLM for testing LLM applications
 without making actual API calls.
@@ -29,10 +31,19 @@ def chatbot_summarize(llm, text: str) -> str:
 
 def chatbot_translate(llm, text: str, target_lang: str) -> str:
     """Example chatbot function that translates text."""
+
+# %%
+# Setup and Imports
+# -----------------
     prompt = f"Translate to {target_lang}: {text}"
     response = llm.generate(prompt)
     return response.content
 
+
+
+# %%
+# Chatbot Classify
+# ----------------
 
 def chatbot_classify(llm, text: str) -> str:
     """Example chatbot function that classifies text sentiment."""
@@ -192,6 +203,11 @@ def main():
     print("\n7. TOKEN COUNTING AND METRICS")
     print("-"*80)
     
+
+# %%
+# Custom Token Counter
+# --------------------
+
     def custom_token_counter(text: str) -> int:
         """More accurate token counting."""
         # Rough approximation: ~4 chars per token

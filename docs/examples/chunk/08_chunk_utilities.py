@@ -1,4 +1,6 @@
-"""Chunk Utilities Example
+"""
+Chunk Utilities Example
+=======================
 
 This example demonstrates advanced chunking utilities and customization.
 
@@ -56,6 +58,10 @@ def demonstrate_merge_chunks():
 
 def demonstrate_optimize_chunk_size():
     """Show finding optimal chunk size for content."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("OPTIMIZING CHUNK SIZE")
     print("="*80)
@@ -84,6 +90,11 @@ The attention mechanism is fundamental to transformers. It computes weighted sum
         status = "within target" if in_range else "outside target"
         print(f"  {i}. {len(chunk)} chars ({status})")
 
+
+
+# %%
+# Demonstrate Custom Chunker
+# --------------------------
 
 def demonstrate_custom_chunker():
     """Show custom chunking logic for specific domains."""
@@ -121,6 +132,11 @@ def demonstrate_custom_chunker():
     for i, chunk in enumerate(chunks, 1):
         print(f"Chunk {i}: {chunk}")
 
+
+
+# %%
+# Demonstrate Json Chunking
+# -------------------------
 
 def demonstrate_json_chunking():
     """Show custom chunking for JSON-like data."""
@@ -163,6 +179,11 @@ def demonstrate_json_chunking():
     for i, chunk in enumerate(chunks, 1):
         print(f"  {i}. {chunk.strip()}")
 
+
+
+# %%
+# Demonstrate Merge And Optimize
+# ------------------------------
 
 def demonstrate_merge_and_optimize():
     """Combine merging and optimization."""
@@ -223,6 +244,11 @@ def demonstrate_custom_domain_chunking():
     print(f"Email content:\n{email_content[:100]}...\n")
     
     # Custom function for email structure
+
+# %%
+# Split Email Sections
+# --------------------
+
     def split_email_sections(text):
         """Split email into header and body sections."""
         parts = []
@@ -303,6 +329,11 @@ def demonstrate_quality_improvement():
     print(f"  - All chunks > 20 characters")
 
 
+
+# %%
+# Demonstrate Adaptive Chunking
+# -----------------------------
+
 def demonstrate_adaptive_chunking():
     """Show adaptive chunking based on content analysis."""
     print("\n" + "="*80)
@@ -367,6 +398,11 @@ def demonstrate_adaptive_chunking():
         print(f"  Content: {lines[1] if len(lines) > 1 else 'N/A'}...")
         print(f"  Size: {len(chunk)} chars")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run chunk utilities examples."""

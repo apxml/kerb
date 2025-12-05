@@ -1,4 +1,6 @@
-"""Production-Ready Preprocessing Pipelines
+"""
+Production-Ready Preprocessing Pipelines
+========================================
 
 This example demonstrates how to build robust, reusable preprocessing pipelines
 for production LLM training workflows.
@@ -69,6 +71,10 @@ def main():
     
     def create_cleaning_pipeline():
         """Create a comprehensive cleaning pipeline."""
+
+# %%
+# Setup and Imports
+# -----------------
         config = NormalizationConfig(
             level=NormalizationLevel.STANDARD,
             lowercase=True,
@@ -77,6 +83,11 @@ def main():
             remove_extra_spaces=True
         )
         
+
+# %%
+# Clean
+# -----
+
         def clean(text):
             # Step 1: Normalize
             text = normalize_text(text, config=config)
@@ -107,6 +118,11 @@ def main():
     print("Example 3: Quality Control Pipeline")
     print("-"*80)
     
+
+# %%
+# Quality Control Pipeline
+# ------------------------
+
     def quality_control_pipeline(texts, min_length=20, max_length=500):
         """Apply quality control filters."""
         # Stage 1: Length filtering
@@ -154,6 +170,11 @@ def main():
         if target_languages is None:
             target_languages = ["en"]
         
+
+# %%
+# Process
+# -------
+
         def process(texts):
             # Stage 1: Language detection and filtering
             # Filter for each target language
@@ -208,6 +229,11 @@ def main():
     
     from kerb.preprocessing import detect_code
     
+
+# %%
+# Create Text Only Pipeline
+# -------------------------
+
     def create_text_only_pipeline():
         """Create pipeline that filters out code."""
         def process(texts):
@@ -257,6 +283,11 @@ def main():
     class ProductionPreprocessor:
         """Complete preprocessing pipeline for production."""
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self, config=None):
             self.config = config or NormalizationConfig(
                 level=NormalizationLevel.STANDARD,
@@ -267,6 +298,11 @@ def main():
             )
             self.stats = {}
         
+
+# %%
+# Process
+# -------
+
         def process(self, texts, target_language="en"):
             """Process texts through complete pipeline."""
             print(f"\n  Starting with {len(texts)} samples")

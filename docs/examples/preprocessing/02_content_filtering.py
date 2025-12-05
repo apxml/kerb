@@ -1,4 +1,8 @@
-"""Content Filtering for Dataset Quality
+"""
+Content Filtering for Dataset Quality
+=====================================
+
+=====================================
 
 This example demonstrates filtering techniques to ensure high-quality training data
 for LLMs by removing low-quality, inappropriate, or irrel    print(f"\nOriginal dataset:")

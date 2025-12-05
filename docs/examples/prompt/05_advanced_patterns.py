@@ -1,4 +1,6 @@
-"""Advanced prompt engineering patterns for LLM applications.
+"""
+Advanced prompt engineering patterns for LLM applications.
+==========================================================
 
 This example demonstrates:
 - Chain-of-thought prompting
@@ -27,6 +29,10 @@ def chain_of_thought_prompting():
     
     # Standard prompt (without CoT)
     standard = """Solve: If a train travels 120 miles in 2 hours, how far will it 
+
+# %%
+# Setup and Imports
+# -----------------
 travel in 5 hours at the same speed?"""
     
     print("Standard prompt:")
@@ -109,6 +115,11 @@ Let's solve step by step:"""
     print(complete_prompt)
     print("\nBenefit: Demonstrates reasoning process through examples")
 
+
+
+# %%
+# Role Based Prompts
+# ------------------
 
 def role_based_prompts():
     """Create role-based prompts for different personas."""
@@ -215,6 +226,11 @@ Provide a detailed solution with code example:"""
     print("\nBenefit: Break complex tasks into manageable steps")
 
 
+
+# %%
+# Context Aware Prompts
+# ---------------------
+
 def context_aware_prompts():
     """Build context-aware prompts based on user state."""
     print("\n" + "=" * 80)
@@ -320,6 +336,11 @@ def prompt_versioning_for_workflows():
     print("\nBenefit: Consistent multi-stage workflows")
 
 
+
+# %%
+# Adaptive Prompting
+# ------------------
+
 def adaptive_prompting():
     """Adapt prompts based on previous responses."""
     print("\n" + "=" * 80)
@@ -424,6 +445,11 @@ Review:"""
     
     print("\nBenefit: Consistent, parseable outputs")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all advanced prompt engineering examples."""

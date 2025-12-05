@@ -1,4 +1,8 @@
-"""Vector Operations Example
+"""
+Vector Operations Example
+=========================
+
+=========================
 
 This example demonstrates vector operations for combining and analyzing embeddings.
 

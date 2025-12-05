@@ -1,4 +1,6 @@
-"""Benchmarking LLM Models and Prompts.
+"""
+Benchmarking LLM Models and Prompts.
+====================================
 
 This example demonstrates how to benchmark LLM systems systematically
 using test cases and metrics. Common use cases:
@@ -22,6 +24,10 @@ def simple_qa_generator(question: str) -> str:
     Simple Q&A generator for demonstration.
     In production, replace with actual LLM calls.
     """
+
+# %%
+# Setup and Imports
+# -----------------
     qa_map = {
         "what is python": "Python is a high-level programming language known for its simplicity and readability.",
         "what is machine learning": "Machine learning is a subset of AI that enables systems to learn from data.",
@@ -36,6 +42,11 @@ def simple_qa_generator(question: str) -> str:
             return answer
     return "I don't have information about that topic."
 
+
+
+# %%
+# Benchmark Qa System
+# -------------------
 
 def benchmark_qa_system():
     """Benchmark a question-answering system on test cases."""
@@ -105,6 +116,11 @@ def benchmark_qa_system():
         print(f"  {test_case.id}: {score:.3f} [{status}]")
 
 
+
+# %%
+# Compare Prompt Templates
+# ------------------------
+
 def compare_prompt_templates():
     """Compare different prompt templates to find the best one."""
     print("\n" + "=" * 80)
@@ -133,6 +149,11 @@ def compare_prompt_templates():
         # Extract just the question for our simple generator
         return simple_qa_generator(input_text)
     
+
+# %%
+# Evaluate By Length
+# ------------------
+
     def evaluate_by_length(output: str) -> float:
         """Simple evaluation: longer answers score higher."""
         word_count = len(output.split())
@@ -168,6 +189,11 @@ def benchmark_summarization():
     print("SUMMARIZATION BENCHMARK")
     print("=" * 80)
     
+
+# %%
+# Simple Summarizer
+# -----------------
+
     def simple_summarizer(text: str) -> str:
         """Simple extractive summarizer - takes first sentence."""
         sentences = text.split('.')
@@ -212,6 +238,11 @@ def benchmark_summarization():
     print(f"Average BLEU: {result.average_score:.3f}")
     print(f"Passed: {result.passed_tests}/{result.total_tests}")
 
+
+
+# %%
+# Regression Testing
+# ------------------
 
 def regression_testing():
     """Use benchmarking for regression testing."""
@@ -261,6 +292,11 @@ def regression_testing():
     print(f"Average Score: {result_v1.average_score:.3f}")
     
     # Simulate improved model
+
+# %%
+# Improved Generator
+# ------------------
+
     def improved_generator(question: str) -> str:
         """Improved version with better answers."""
         base_answer = simple_qa_generator(question)
@@ -309,6 +345,11 @@ def track_performance_over_time():
         TestCase(id="t2", input="What is ML?", expected_output="machine learning"),
     ]
     
+
+# %%
+# Keyword Eval
+# ------------
+
     def keyword_eval(output: str, expected: str) -> float:
         return 1.0 if expected.lower() in output.lower() else 0.0
     
@@ -336,6 +377,11 @@ def track_performance_over_time():
     print(f"Mean Score: {sum(scores_history) / len(scores_history):.3f}")
     print(f"Score Range: {max(scores_history) - min(scores_history):.3f}")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all benchmarking examples."""

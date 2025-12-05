@@ -1,4 +1,6 @@
-"""Content Extraction Pipeline Example
+"""
+Content Extraction Pipeline Example
+===================================
 
 This example demonstrates a complete multimodal content extraction pipeline.
 
@@ -54,6 +56,10 @@ def create_sample_document_image():
 
 def extract_text_from_image(image_path: str) -> dict:
     """Extract text and structured information from an image."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     result = {
         "source": image_path,
@@ -101,6 +107,11 @@ Return only valid JSON.""",
     
     return result
 
+
+
+# %%
+# Process Audio File
+# ------------------
 
 def process_audio_file(audio_path: str) -> dict:
     """Transcribe and process audio content."""
@@ -175,6 +186,11 @@ def process_video_file(video_path: str) -> dict:
     
     return result
 
+
+
+# %%
+# Build Searchable Content
+# ------------------------
 
 def build_searchable_content(extraction_results: list) -> dict:
     """Build searchable content from multimodal extractions."""

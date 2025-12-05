@@ -1,4 +1,6 @@
-"""Document Retrieval System Example
+"""
+Document Retrieval System Example
+=================================
 
 This example demonstrates building a RAG-like document retrieval system.
 
@@ -35,12 +37,26 @@ class Document:
 
 class DocumentRetriever:
     """Semantic document retrieval system."""
+
+# %%
+# Setup and Imports
+# -----------------
     
+
+# %%
+#   Init  
+# --------
+
     def __init__(self):
         self.documents = []
         self.embeddings = []
         self.doc_index = {}
     
+
+# %%
+# Add Document
+# ------------
+
     def add_document(self, document):
         """Add a document to the index."""
         # Create embedding from title and content
@@ -73,6 +89,11 @@ class DocumentRetriever:
             self.embeddings.append(embedding)
             self.doc_index[doc.doc_id] = doc_idx
     
+
+# %%
+# Search
+# ------
+
     def search(self, query, top_k=5, min_score=0.0):
         """Search for relevant documents."""
         if not self.embeddings:
@@ -105,6 +126,11 @@ class DocumentRetriever:
             return self.documents[idx]
         return None
     
+
+# %%
+# Update Document
+# ---------------
+
     def update_document(self, doc_id, new_content=None, new_title=None):
         """Update a document and re-compute its embedding."""
         idx = self.doc_index.get(doc_id)
@@ -131,6 +157,11 @@ class DocumentRetriever:
             'embedding_dimension': len(self.embeddings[0]) if self.embeddings else 0
         }
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run document retrieval example."""

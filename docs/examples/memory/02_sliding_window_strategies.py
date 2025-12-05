@@ -1,4 +1,6 @@
-"""Sliding Window Strategies Example
+"""
+Sliding Window Strategies Example
+=================================
 
 This example demonstrates different window strategies for managing conversation context
 in LLM applications with token limits.
@@ -26,6 +28,10 @@ def simple_token_counter(text: str) -> int:
 
 def main():
     """Run sliding window strategies example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("SLIDING WINDOW STRATEGIES EXAMPLE")

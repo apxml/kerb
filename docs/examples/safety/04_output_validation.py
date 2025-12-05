@@ -1,4 +1,6 @@
-"""Output Validation Example
+"""
+Output Validation Example
+=========================
 
 This example demonstrates how to validate and filter LLM outputs to ensure
 they are safe, appropriate, and meet quality standards.
@@ -40,6 +42,10 @@ def simulate_llm_output(output_type: str) -> str:
 
 def main():
     """Run output validation example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("OUTPUT VALIDATION EXAMPLE")
@@ -183,6 +189,11 @@ def main():
     print("\n\nExample 10: LLM Output Pipeline")
     print("-"*80)
     
+
+# %%
+# Safe Llm Output Pipeline
+# ------------------------
+
     def safe_llm_output_pipeline(raw_output: str) -> tuple:
         """Process LLM output through safety pipeline."""
         # Step 1: Validate (skip toxicity check to avoid bug)

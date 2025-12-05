@@ -1,4 +1,6 @@
-"""Agent Memory Example
+"""
+Agent Memory Example
+====================
 
 This example demonstrates agent memory systems.
 
@@ -35,6 +37,10 @@ def memory_aware_llm(prompt: str, memory: Dict[str, Any] = None) -> str:
 
 def main():
     """Run agent memory example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("AGENT MEMORY EXAMPLE")
@@ -150,6 +156,11 @@ def main():
     working_mem.add({"type": "user_name", "value": "Bob"})
     working_mem.add({"type": "expertise_level", "value": "intermediate"})
     
+
+# %%
+# Memory Llm
+# ----------
+
     def memory_llm(prompt: str) -> str:
         """LLM that uses agent memory."""
         # Check working memory for context

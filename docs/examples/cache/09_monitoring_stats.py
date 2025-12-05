@@ -1,4 +1,6 @@
-"""Cache Monitoring and Statistics Example
+"""
+Cache Monitoring and Statistics Example
+=======================================
 
 This example demonstrates monitoring cache performance and statistics.
 
@@ -185,6 +187,10 @@ def main():
     
     def show_stats(label):
         """Display current cache statistics."""
+
+# %%
+# Setup and Imports
+# -----------------
         stats = realtime_cache.get_stats()
         print(f"\n{label}:")
         print(f"  Hit rate: {stats.hit_rate:.2%} | "
@@ -281,6 +287,11 @@ def main():
     print("8. OPTIMIZATION RECOMMENDATIONS")
     print("-"*80)
     
+
+# %%
+# Analyze Cache Performance
+# -------------------------
+
     def analyze_cache_performance(cache):
         """Analyze cache and provide recommendations."""
         stats = cache.get_stats()

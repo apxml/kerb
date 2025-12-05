@@ -1,4 +1,6 @@
-"""Multi-Agent Teams Example
+"""
+Multi-Agent Teams Example
+=========================
 
 This example demonstrates multi-agent coordination and teamwork.
 
@@ -24,10 +26,19 @@ def researcher_llm(prompt: str) -> str:
 
 def writer_llm(prompt: str) -> str:
     """LLM function for writer agent."""
+
+# %%
+# Setup and Imports
+# -----------------
     if "write" in prompt.lower() or "article" in prompt.lower():
         return "I have written a comprehensive article based on the research findings."
     return "Writing content..."
 
+
+
+# %%
+# Editor Llm
+# ----------
 
 def editor_llm(prompt: str) -> str:
     """LLM function for editor agent."""
@@ -42,6 +53,11 @@ def analyst_llm(prompt: str) -> str:
         return "Analysis complete: The data shows a positive trend."
     return "Analyzing data..."
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run multi-agent teams example."""

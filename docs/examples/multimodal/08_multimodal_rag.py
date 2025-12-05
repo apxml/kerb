@@ -1,4 +1,6 @@
-"""Multimodal RAG Example
+"""
+Multimodal RAG Example
+======================
 
 This example demonstrates a complete multimodal Retrieval Augmented Generation pipeline.
 
@@ -113,7 +115,16 @@ def create_knowledge_base_images():
 
 class MultimodalRAG:
     """Simple multimodal RAG system."""
+
+# %%
+# Setup and Imports
+# -----------------
     
+
+# %%
+#   Init  
+# --------
+
     def __init__(self):
         self.documents = {}  # {image_path: metadata}
         self.embeddings = {}  # {image_path: embedding}
@@ -127,6 +138,11 @@ class MultimodalRAG:
         except Exception:
             pass
     
+
+# %%
+# Index Document
+# --------------
+
     def index_document(self, image_path: str, metadata: Dict):
         """Add a document to the knowledge base."""
         self.documents[image_path] = metadata

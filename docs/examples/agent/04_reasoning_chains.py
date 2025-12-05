@@ -1,4 +1,6 @@
-"""Reasoning Chains Example
+"""
+Reasoning Chains Example
+========================
 
 This example demonstrates how to build and execute reasoning chains.
 
@@ -39,6 +41,10 @@ def analyze_sentiment(context: Dict[str, Any]) -> str:
 
 def extract_keywords(context: Dict[str, Any]) -> list:
     """Extract keywords from text."""
+
+# %%
+# Setup and Imports
+# -----------------
     text = context.get('text', '')
     
     # Simple keyword extraction
@@ -49,6 +55,11 @@ def extract_keywords(context: Dict[str, Any]) -> list:
     
     return list(set(keywords))[:5]  # Return top 5 unique keywords
 
+
+
+# %%
+# Count Words
+# -----------
 
 def count_words(context: Dict[str, Any]) -> int:
     """Count words in text."""
@@ -69,6 +80,11 @@ def summarize_analysis(context: Dict[str, Any]) -> str:
     
     return summary
 
+
+
+# %%
+# Check Word Count
+# ----------------
 
 def check_word_count(context: Dict[str, Any]) -> bool:
     """Condition: Check if text is long enough for detailed analysis."""

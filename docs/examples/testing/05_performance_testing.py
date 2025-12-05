@@ -1,4 +1,6 @@
-"""Performance Testing Example
+"""
+Performance Testing Example
+===========================
 
 This example demonstrates how to measure and benchmark LLM application performance.
 
@@ -37,6 +39,10 @@ def simulate_llm_call(prompt: str, delay: float = 0.1) -> str:
 
 def main():
     """Run performance testing examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("PERFORMANCE TESTING EXAMPLE")
@@ -53,6 +59,11 @@ def main():
         latency=0.05  # 50ms
     )
     
+
+# %%
+# Call Llm
+# --------
+
     def call_llm(prompt):
         return fast_llm.generate(prompt).content
     
@@ -78,6 +89,11 @@ def main():
     print("-"*80)
     
     # Simulate different latencies for different prompt lengths
+
+# %%
+# Variable Latency Llm
+# --------------------
+
     def variable_latency_llm(prompt: str) -> str:
         # Longer prompts take slightly longer
         delay = 0.05 + (len(prompt) * 0.0001)
@@ -116,6 +132,11 @@ def main():
         latency=0.01
     )
     
+
+# %%
+# Batch Call
+# ----------
+
     def batch_call(prompt):
         return fast_mock.generate(prompt).content
     
@@ -151,6 +172,11 @@ def main():
         "What is natural language processing?",
     ]
     
+
+# %%
+# Llm Function
+# ------------
+
     def llm_function(prompt: str) -> str:
         return test_llm.generate(prompt).content
     
@@ -243,6 +269,11 @@ def main():
     )
     
     # Add some variability
+
+# %%
+# Variable Call
+# -------------
+
     def variable_call(prompt):
         # Add random jitter
         extra_delay = random.random() * 0.05

@@ -1,4 +1,6 @@
-"""Snapshot Testing Example
+"""
+Snapshot Testing Example
+========================
 
 This example demonstrates snapshot-based testing for detecting unintended changes
 in LLM prompt outputs.
@@ -57,6 +59,10 @@ def mock_llm_generate(prompt: str, version: int = 1) -> str:
 
 def main():
     """Run snapshot testing examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("SNAPSHOT TESTING EXAMPLE")
@@ -215,6 +221,11 @@ def main():
     print("\n8. REGRESSION TEST SUITE")
     print("-"*80)
     
+
+# %%
+# Run Regression Suite
+# --------------------
+
     def run_regression_suite(
         test_cases: dict,
         llm_func,

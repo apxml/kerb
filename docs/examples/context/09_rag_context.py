@@ -1,4 +1,6 @@
-"""RAG Context Management Example
+"""
+RAG Context Management Example
+==============================
 
 This example demonstrates context management for Retrieval-Augmented
 Generation (RAG) systems, a critical LLM use case.
@@ -64,6 +66,10 @@ def create_document_corpus():
 
 def main():
     """Run RAG context management example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("RAG CONTEXT MANAGEMENT EXAMPLE")
@@ -331,6 +337,11 @@ def main():
     print("-"*80)
     print("Use case: Structured template for RAG prompts")
     
+
+# %%
+# Format Rag Prompt
+# -----------------
+
     def format_rag_prompt(query: str, documents: list, max_docs: int = 3) -> str:
         """Format RAG context into structured prompt."""
         lines = []

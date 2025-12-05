@@ -1,4 +1,6 @@
-"""Fixtures Management Example
+"""
+Fixtures Management Example
+===========================
 
 This example demonstrates how to create, save, load, and use fixtures for
 deterministic LLM testing.
@@ -129,12 +131,21 @@ def main():
     
     def test_code_generator(llm_func, fixture: FixtureData) -> bool:
         """Test a code generator against a fixture."""
+
+# %%
+# Setup and Imports
+# -----------------
         result = llm_func(fixture.prompt)
         # In real test, you'd check functional equivalence
         # Here we just check it's not empty
         return len(result.strip()) > 0
     
     # Mock LLM function
+
+# %%
+# Mock Llm
+# --------
+
     def mock_llm(prompt: str) -> str:
         # In real scenario, this would call actual LLM
         for fixture in loaded_manager.fixtures.values():

@@ -1,4 +1,6 @@
-"""Context Compression Example
+"""
+Context Compression Example
+===========================
 
 This example demonstrates context compression techniques for fitting
 large amounts of information into LLM token limits.
@@ -33,6 +35,10 @@ def main():
     print("-"*80)
     
     long_content = """
+
+# %%
+# Setup and Imports
+# -----------------
     Python is a high-level, interpreted programming language known for its 
     simplicity and readability. Python supports multiple programming paradigms 
     including procedural, object-oriented, and functional programming. Python 

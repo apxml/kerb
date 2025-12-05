@@ -1,4 +1,6 @@
-"""PII Detection and Redaction Example
+"""
+PII Detection and Redaction Example
+===================================
 
 This example demonstrates how to detect and redact personally identifiable
 information (PII) from user inputs and LLM outputs to protect privacy.
@@ -65,6 +67,10 @@ def main():
     print("-"*80)
     
     mixed_text = """
+
+# %%
+# Setup and Imports
+# -----------------
     Customer details:
     Email: support@example.com
     Phone: (555) 123-4567

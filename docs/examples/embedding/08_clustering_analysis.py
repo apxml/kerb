@@ -1,4 +1,8 @@
-"""Clustering and Analysis Example
+"""
+Clustering and Analysis Example
+===============================
+
+===============================
 
 This example demonstrates clustering embeddings to discover topics and patterns.
 

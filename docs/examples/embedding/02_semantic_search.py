@@ -1,4 +1,6 @@
-"""Semantic Search Example
+"""
+Semantic Search Example
+=======================
 
 This example demonstrates how to build a semantic search system using embeddings.
 
@@ -135,12 +137,26 @@ def main():
     
     class SimpleSearchEngine:
         """A basic semantic search engine."""
+
+# %%
+# Setup and Imports
+# -----------------
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self, documents):
             self.documents = documents
             self.embeddings = embed_batch(documents)
             print(f"Indexed {len(documents)} documents")
         
+
+# %%
+# Search
+# ------
+
         def search(self, query, top_k=3):
             """Search for relevant documents."""
             query_emb = embed(query)

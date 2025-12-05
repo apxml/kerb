@@ -1,4 +1,6 @@
-"""Basic Document Loading Example
+"""
+Basic Document Loading Example
+==============================
 
 This example demonstrates how to load documents from various formats for LLM processing.
 
@@ -82,6 +84,10 @@ def create_sample_files(temp_dir: str):
 
 def main():
     """Run basic document loading examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("BASIC DOCUMENT LOADING EXAMPLE")

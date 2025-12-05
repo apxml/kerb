@@ -1,4 +1,6 @@
-"""Multi-Query Retrieval Example
+"""
+Multi-Query Retrieval Example
+=============================
 
 This example demonstrates advanced multi-query retrieval patterns.
 
@@ -79,6 +81,10 @@ def create_sample_documents():
 
 def main():
     """Run multi-query retrieval examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("MULTI-QUERY RETRIEVAL PATTERNS")
@@ -325,6 +331,11 @@ def main():
     print("\n\n8. PRODUCTION MULTI-QUERY PIPELINE")
     print("-"*80)
     
+
+# %%
+# Multi Query Rag
+# ---------------
+
     def multi_query_rag(query_text, documents, max_queries=3):
         """Production-ready multi-query retrieval."""
         results = []

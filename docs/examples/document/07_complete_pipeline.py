@@ -1,4 +1,6 @@
-"""Complete Document Processing Pipeline for RAG
+"""
+Complete Document Processing Pipeline for RAG
+=============================================
 
 This example demonstrates a complete end-to-end pipeline for preparing
 documents for RAG (Retrieval-Augmented Generation) systems.
@@ -43,6 +45,10 @@ def create_sample_corpus(temp_dir: str):
     
     # Document 1: Technical guide
     doc1 = """Building RAG Systems: A Technical Guide
+
+# %%
+# Setup and Imports
+# -----------------
 
 Introduction
 
@@ -162,6 +168,11 @@ def stage1_load(directory: str) -> List[Document]:
     return documents
 
 
+
+# %%
+# Stage2 Clean
+# ------------
+
 def stage2_clean(documents: List[Document]) -> List[Document]:
     """Stage 2: Clean and preprocess documents."""
     print("\nSTAGE 2: CLEANING AND PREPROCESSING")
@@ -262,6 +273,11 @@ def stage3_extract_metadata(documents: List[Document]) -> List[Document]:
     return enriched_docs
 
 
+
+# %%
+# Stage4 Split Into Chunks
+# ------------------------
+
 def stage4_split_into_chunks(documents: List[Document]) -> List[Document]:
     """Stage 4: Split documents into chunks."""
     print("\nSTAGE 4: SPLITTING INTO CHUNKS")
@@ -361,6 +377,11 @@ def stage5_validate(chunks: List[Document]) -> List[Document]:
     
     return valid_chunks
 
+
+
+# %%
+# Stage6 Prepare For Embedding
+# ----------------------------
 
 def stage6_prepare_for_embedding(chunks: List[Document]) -> List[Dict[str, Any]]:
     """Stage 6: Prepare final format for embedding."""

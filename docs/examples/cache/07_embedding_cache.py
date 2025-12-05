@@ -1,4 +1,6 @@
-"""Embedding Cache Example
+"""
+Embedding Cache Example
+=======================
 
 This example demonstrates caching embeddings from embedding APIs.
 
@@ -21,6 +23,10 @@ def mock_embedding_api_call(text, model="text-embedding-ada-002"):
     
     In production, this would call OpenAI, Cohere, or other embedding APIs.
     """
+
+# %%
+# Setup and Imports
+# -----------------
     # Simulate cost
     cost = 0.0001 * len(text.split())
     
@@ -40,6 +46,11 @@ def mock_embedding_api_call(text, model="text-embedding-ada-002"):
         "cost": cost
     }
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run embedding cache example."""
@@ -162,11 +173,21 @@ def main():
     class EmbeddingSearchEngine:
         """Simple search engine with cached embeddings."""
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self):
             self.cache = create_memory_cache(max_size=10000)
             self.documents = []
             self.embeddings = []
         
+
+# %%
+# Add Document
+# ------------
+
         def add_document(self, doc):
             """Add document with cached embedding."""
             key = generate_embedding_key(doc, model="text-embedding-ada-002")
@@ -199,6 +220,11 @@ def main():
                 query_embedding = cached["embedding"]
             
             # Simple cosine similarity (simplified for demo)
+
+# %%
+# Similarity
+# ----------
+
             def similarity(emb1, emb2):
                 return sum(a * b for a, b in zip(emb1, emb2))
             
