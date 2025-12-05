@@ -1,4 +1,6 @@
-"""Document Preprocessing for LLM Consumption
+"""
+Document Preprocessing for LLM Consumption
+==========================================
 
 This example demonstrates text preprocessing and cleaning for LLM applications.
 
@@ -34,6 +36,10 @@ def create_noisy_documents(temp_dir: str):
     
     # Simulated PDF text with formatting artifacts
     pdf_text = """This is a sam-
+
+# %%
+# Setup and Imports
+# -----------------
 ple document extracted
 from a PDF    file.
 It has   extra    spaces and
@@ -74,6 +80,11 @@ This is **bold** and *italic* text with `code` snippets.
 Here's a [link](https://example.com) and an image ![alt](img.png).
 
 ```python
+
+# %%
+# Sample Code
+# -----------
+
 def sample_code():
     pass
 ```

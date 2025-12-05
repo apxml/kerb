@@ -3,7 +3,8 @@
 This module provides comprehensive multi-modal capabilities for working with
 images, audio, video, and vision models in LLM applications.
 
-Usage Examples:
+Usage Examples::
+
     # Common imports - most frequently used
     from kerb.multimodal import (
         # Enums
@@ -38,7 +39,8 @@ Usage Examples:
         build_google_multimodal_content,
     )
 
-For image editing (resize, crop, rotate, grid), use PIL/Pillow directly:
+For image editing (resize, crop, rotate, grid), use PIL/Pillow directly::
+
     from PIL import Image
     img = Image.open("photo.jpg")
     img = img.resize((800, 600))

@@ -1,4 +1,6 @@
-"""Retry and Error Handling Example
+"""
+Retry and Error Handling Example
+================================
 
 This example demonstrates robust error handling and retry strategies.
 
@@ -25,6 +27,10 @@ def example_basic_retry():
     
     def unreliable_request():
         """Simulates an unreliable API call."""
+
+# %%
+# Setup and Imports
+# -----------------
         attempt_count["count"] += 1
         print(f"  Attempt {attempt_count['count']}...")
         
@@ -51,6 +57,11 @@ def example_basic_retry():
     except Exception as e:
         print(f"Failed after all retries: {e}")
 
+
+
+# %%
+# Example Error Handling
+# ----------------------
 
 def example_error_handling():
     """Handle different types of errors."""
@@ -130,6 +141,11 @@ def example_fallback_strategy():
                 print("\nAll fallback models failed!")
 
 
+
+# %%
+# Example Timeout Handling
+# ------------------------
+
 def example_timeout_handling():
     """Handle timeouts and slow responses."""
     print("\n" + "="*80)
@@ -189,6 +205,11 @@ def example_retry_with_validation():
     print("EXAMPLE 5: Retry with Validation")
     print("="*80)
     
+
+# %%
+# Generate And Validate
+# ---------------------
+
     def generate_and_validate(prompt: str, min_length: int = 50):
         """Generate response and validate it meets criteria."""
         response = generate(
@@ -278,6 +299,11 @@ def example_graceful_degradation():
         for error in errors:
             print(f"  - {error['prompt']}: {error['error'][:50]}...")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all retry and error handling examples."""

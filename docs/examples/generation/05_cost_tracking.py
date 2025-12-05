@@ -1,4 +1,6 @@
-"""Cost Tracking Example
+"""
+Cost Tracking Example
+=====================
 
 This example demonstrates tracking and analyzing LLM API costs.
 
@@ -53,6 +55,10 @@ def example_basic_cost_tracking():
 
 def example_multi_model_tracking():
     """Track costs across multiple models."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("EXAMPLE 2: Multi-Model Cost Tracking")
     print("="*80)
@@ -104,6 +110,11 @@ def example_multi_model_tracking():
     
     print(f"Grand Total: ${summary['total_cost']:.6f}")
 
+
+
+# %%
+# Example Batch Cost Tracking
+# ---------------------------
 
 def example_batch_cost_tracking():
     """Track costs for batch operations."""
@@ -210,6 +221,11 @@ def example_cost_comparison():
         print(f"  Difference: ${savings:.6f}")
         print(f"  Savings: {savings_pct:.1f}%")
 
+
+
+# %%
+# Example Budget Monitoring
+# -------------------------
 
 def example_budget_monitoring():
     """Monitor costs against a budget."""
@@ -322,6 +338,11 @@ def example_cost_optimization():
         cheapest = min(results, key=lambda x: x['cost'])
         print(f"\nMost cost-effective: {cheapest['name']} at ${cheapest['cost']:.6f}")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all cost tracking examples."""

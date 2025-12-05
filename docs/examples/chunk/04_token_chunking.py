@@ -1,4 +1,6 @@
-"""Token-Based Chunking Example
+"""
+Token-Based Chunking Example
+============================
 
 This example demonstrates chunking based on token limits for LLM applications.
 
@@ -26,6 +28,10 @@ def demonstrate_basic_token_chunking():
     print("="*80)
     
     text = """
+
+# %%
+# Setup and Imports
+# -----------------
 Large language models process text as tokens, not characters. A token can be a word, part of a word, or punctuation. Different models use different tokenization schemes. GPT models use byte-pair encoding (BPE). The number of tokens affects both context limits and API costs. Understanding tokenization is crucial for efficient LLM usage. You can estimate roughly 4 characters per token in English. But this varies significantly by language and content type. Always use proper token counting for production applications.
     """.strip()
     
@@ -75,6 +81,11 @@ OpenAI's GPT-4 uses the cl100k_base tokenizer. GPT-3.5-turbo also uses cl100k_ba
     
     print("\nNote: Different tokenizers may produce different numbers of chunks!")
 
+
+
+# %%
+# Demonstrate Context Window Limits
+# ---------------------------------
 
 def demonstrate_context_window_limits():
     """Show how to respect different model context windows."""
@@ -155,6 +166,11 @@ API costs are typically calculated per token. GPT-4 costs significantly more per
     print(f"  - Critical for production applications with cost constraints")
 
 
+
+# %%
+# Demonstrate Multilingual Chunking
+# ---------------------------------
+
 def demonstrate_multilingual_chunking():
     """Show token chunking with multilingual text."""
     print("\n" + "="*80)
@@ -223,6 +239,11 @@ Vector embeddings represent text as high-dimensional vectors. Similar texts have
     print("  4. Response budget: ~200 tokens")
     print("  Total: ~470 tokens (fits in 4K context)")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run token-based chunking examples."""

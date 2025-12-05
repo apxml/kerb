@@ -1,4 +1,6 @@
-"""Multimodal Prompts Example
+"""
+Multimodal Prompts Example
+==========================
 
 This example demonstrates building multimodal prompts for different LLM providers.
 
@@ -51,6 +53,10 @@ def create_sample_images():
 
 def main():
     """Run multimodal prompts examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("MULTIMODAL PROMPTS EXAMPLE")

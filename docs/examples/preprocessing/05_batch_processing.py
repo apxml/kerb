@@ -1,4 +1,8 @@
-"""Batch Processing for Large-Scale Datasets
+"""
+Batch Processing for Large-Scale Datasets
+=========================================
+
+=========================================
 
 This example demonstrates efficient batch processing techniques for preprocessing
 large datasets at scale, essential for production LLM training pipelines.

@@ -1,4 +1,6 @@
-"""Prompt optimization and compression for LLM applications.
+"""
+Prompt optimization and compression for LLM applications.
+=========================================================
 
 This example demonstrates:
 - Prompt compression to reduce token usage
@@ -22,6 +24,10 @@ def optimize_prompt_whitespace():
     
     # Prompt with excessive whitespace
     messy_prompt = """You are a helpful assistant.    Please analyze    this code.
+
+# %%
+# Setup and Imports
+# -----------------
 
 
 The code is:    def   process():
@@ -76,6 +82,11 @@ def compress_long_prompts():
     print(f"Length: {len(compressed)} characters")
     print(f"Reduction: {((len(long_prompt) - len(compressed)) / len(long_prompt) * 100):.1f}%")
 
+
+
+# %%
+# Compress With Length Limit
+# --------------------------
 
 def compress_with_length_limit():
     """Compress and truncate prompts to meet token limits."""
@@ -142,6 +153,11 @@ Provide feedback on correctness and performance."""
     print(f"  Average word length: {analysis['avg_word_length']:.1f}")
 
 
+
+# %%
+# Token Efficient Design
+# ----------------------
+
 def token_efficient_design():
     """Design token-efficient prompts."""
     print("\n" + "=" * 80)
@@ -154,6 +170,11 @@ def token_efficient_design():
     Please let me know if there are any issues or improvements that could be made.
     
     Here is the function:
+
+# %%
+# Calculate Total
+# ---------------
+
     def calculate_total(items):
         total = 0
         for item in items:
@@ -164,6 +185,11 @@ def token_efficient_design():
     
     # Token-efficient version
     efficient = """Analyze this Python function:
+
+
+# %%
+# Calculate Total
+# ---------------
 
 def calculate_total(items):
     total = 0
@@ -215,6 +241,11 @@ def optimize_system_prompts():
     print(f"  Tokens: {optimized_analysis['tokens_approx']}")
     print(f"  Savings: {original_analysis['tokens_approx'] - optimized_analysis['tokens_approx']} tokens")
 
+
+
+# %%
+# Batch Optimization
+# ------------------
 
 def batch_optimization():
     """Optimize multiple prompts in batch."""
@@ -292,6 +323,11 @@ def maintain_clarity_while_compressing():
     print("\nRecommendation: Use light compression to save tokens while preserving")
     print("prompt clarity and effectiveness.")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all optimization examples."""

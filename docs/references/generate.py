@@ -34,7 +34,7 @@ def get_type_annotation(annotation) -> str:
     return str(annotation)
 
 
-def extract_function_info(func, name: str) -> Dict[str, Any]:
+def extract_function_info(func, name: str, project_root: Path) -> Dict[str, Any]:
     """Extract function information in Sphinx-compatible format."""
     try:
         sig = inspect.signature(func)
@@ -49,6 +49,17 @@ def extract_function_info(func, name: str) -> Dict[str, Any]:
                 'description': ''  # Would need to parse from docstring
             })
         
+        # Get relative source file path
+        source_file = None
+        if hasattr(func, '__code__'):
+            abs_path = inspect.getsourcefile(func)
+            if abs_path:
+                try:
+                    source_file = str(Path(abs_path).relative_to(project_root))
+                except ValueError:
+                    # If file is outside project, use absolute path
+                    source_file = abs_path
+        
         return {
             'name': name,
             'type': 'function',
@@ -59,7 +70,7 @@ def extract_function_info(func, name: str) -> Dict[str, Any]:
                 'type': get_type_annotation(sig.return_annotation),
                 'description': ''  # Would need to parse from docstring
             },
-            'source_file': inspect.getsourcefile(func) if hasattr(func, '__code__') else None,
+            'source_file': source_file,
         }
     except Exception as e:
         return {
@@ -70,16 +81,27 @@ def extract_function_info(func, name: str) -> Dict[str, Any]:
         }
 
 
-def extract_class_info(cls, name: str) -> Dict[str, Any]:
+def extract_class_info(cls, name: str, project_root: Path) -> Dict[str, Any]:
     """Extract class information in Sphinx-compatible format."""
     # Get methods
     methods = []
     for method_name, method in inspect.getmembers(cls, predicate=inspect.isfunction):
         if not method_name.startswith('_') or method_name in ['__init__', '__call__']:
-            methods.append(extract_function_info(method, method_name))
+            methods.append(extract_function_info(method, method_name, project_root))
     
     # Get bases
     bases = [base.__name__ for base in cls.__bases__ if base.__name__ != 'object']
+    
+    # Get relative source file path
+    source_file = None
+    if hasattr(cls, '__module__'):
+        abs_path = inspect.getsourcefile(cls)
+        if abs_path:
+            try:
+                source_file = str(Path(abs_path).relative_to(project_root))
+            except ValueError:
+                # If file is outside project, use absolute path
+                source_file = abs_path
     
     return {
         'name': name,
@@ -88,11 +110,11 @@ def extract_class_info(cls, name: str) -> Dict[str, Any]:
         'bases': bases,
         'methods': methods,
         'attributes': [],  # Could extract from __annotations__
-        'source_file': inspect.getsourcefile(cls) if hasattr(cls, '__module__') else None,
+        'source_file': source_file,
     }
 
 
-def extract_module_docs(module_name: str, base_package: str = 'kerb') -> Dict[str, Any]:
+def extract_module_docs(module_name: str, project_root: Path, base_package: str = 'kerb') -> Dict[str, Any]:
     """Extract documentation from a module in structured JSON format."""
     full_module_name = f'{base_package}.{module_name}'
     
@@ -114,9 +136,9 @@ def extract_module_docs(module_name: str, base_package: str = 'kerb') -> Dict[st
             obj_module = getattr(obj, '__module__', '')
             
             if inspect.isclass(obj) and obj_module.startswith(base_package):
-                classes.append(extract_class_info(obj, name))
+                classes.append(extract_class_info(obj, name, project_root))
             elif inspect.isfunction(obj) and obj_module.startswith(base_package):
-                functions.append(extract_function_info(obj, name))
+                functions.append(extract_function_info(obj, name, project_root))
         except Exception as e:
             print(f"Warning: Error processing {name} in {module_name}: {e}", file=sys.stderr)
     
@@ -153,11 +175,14 @@ def generate_api_docs(output_dir: Path, base_package: str = 'kerb'):
         'modules': []
     }
     
+    # Get project root for relative paths
+    project_root = output_dir.parent.parent
+    
     # Process each module
     for module_name in modules:
         print(f"Processing {module_name}...", file=sys.stderr)
         
-        docs = extract_module_docs(module_name, base_package)
+        docs = extract_module_docs(module_name, project_root, base_package)
         
         if docs:
             # Save module JSON

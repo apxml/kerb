@@ -1,4 +1,8 @@
-"""Basic Conversation Buffer Example
+"""
+Basic Conversation Buffer Example
+=================================
+
+=================================
 
 This example demonstrates the core functionality of ConversationBuffer for managing
 conversation history in LLM applications.

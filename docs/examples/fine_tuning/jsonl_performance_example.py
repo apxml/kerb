@@ -1,4 +1,6 @@
-"""Examples demonstrating high-performance JSONL utilities.
+"""
+Examples demonstrating high-performance JSONL utilities.
+========================================================
 
 This example showcases the enhanced JSONL utilities for handling large
 training datasets efficiently with compression, parallel processing,
@@ -23,6 +25,10 @@ def normalize_and_add_features(item):
 
 def example_compression():
     """Example: Using compression to save disk space."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("=" * 60)
     print("Example 1: Compression Support")
     print("=" * 60)
@@ -56,6 +62,11 @@ def example_compression():
     Path("temp_compressed.jsonl.gz").unlink()
     print()
 
+
+
+# %%
+# Example Parallel Reading
+# ------------------------
 
 def example_parallel_reading():
     """Example: Parallel reading for faster processing."""
@@ -132,6 +143,11 @@ def example_streaming_and_filtering():
     print()
 
 
+
+# %%
+# Example Transformation
+# ----------------------
+
 def example_transformation():
     """Example: Transforming data in parallel."""
     print("=" * 60)
@@ -201,6 +217,11 @@ def example_splitting():
         Path(file).unlink()
     print()
 
+
+
+# %%
+# Example Deduplication
+# ---------------------
 
 def example_deduplication():
     """Example: Remove duplicate entries."""
@@ -272,6 +293,11 @@ def example_sampling():
     print()
 
 
+
+# %%
+# Example File Stats
+# ------------------
+
 def example_file_stats():
     """Example: Get file statistics."""
     print("=" * 60)
@@ -337,6 +363,11 @@ def example_merge_files():
         Path(f).unlink()
     print()
 
+
+
+# %%
+# Example Compressed Workflow
+# ---------------------------
 
 def example_compressed_workflow():
     """Example: Complete workflow with compression."""

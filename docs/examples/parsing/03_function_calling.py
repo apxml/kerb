@@ -1,4 +1,6 @@
-"""Function Calling and Tool Use Formatting
+"""
+Function Calling and Tool Use Formatting
+========================================
 
 This example demonstrates how to format function definitions for LLM function calling,
 parse function calls from LLM outputs, and handle tool use patterns.
@@ -33,12 +35,21 @@ def get_weather(location: str, units: str = "celsius") -> dict:
 
 def search_database(query: str, limit: int = 10, filters: dict = None) -> list:
     """Search database with optional filters."""
+
+# %%
+# Setup and Imports
+# -----------------
     # Simulated search results
     return [
         {"id": 1, "title": f"Result for {query}", "score": 0.95},
         {"id": 2, "title": f"Another match for {query}", "score": 0.87}
     ]
 
+
+
+# %%
+# Send Email
+# ----------
 
 def send_email(to: str, subject: str, body: str) -> dict:
     """Send an email."""
@@ -83,6 +94,11 @@ def simulate_llm_with_function_call(prompt: str) -> str:
     
     return "{}"
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run function calling examples."""

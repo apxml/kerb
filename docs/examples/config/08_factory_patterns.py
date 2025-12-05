@@ -1,4 +1,6 @@
-"""Configuration Factory Patterns Example
+"""
+Configuration Factory Patterns Example
+======================================
 
 This example demonstrates using factory functions for rapid configuration setup.
 
@@ -54,6 +56,10 @@ def create_chatbot_config():
 
 def create_code_assistant_config():
     """Factory function for code assistant configuration."""
+
+# %%
+# Setup and Imports
+# -----------------
     config = create_config_manager(app_name="code_assistant")
     
     # Code-optimized models
@@ -80,6 +86,11 @@ def create_code_assistant_config():
     config.set_default_model("code-gpt-4")
     return config
 
+
+
+# %%
+# Create Analytics Config
+# -----------------------
 
 def create_analytics_config():
     """Factory function for data analytics configuration."""
@@ -141,6 +152,11 @@ def create_content_generation_config():
     config.set_default_model("creative-gpt-4")
     return config
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run configuration factory patterns example."""
@@ -261,6 +277,11 @@ def main():
     print("\nStep 5: Configuration Composition")
     print("-"*80)
     
+
+# %%
+# Compose Configs
+# ---------------
+
     def compose_configs(*configs):
         """Compose multiple configurations into one."""
         composed = create_config_manager(app_name="composed_config")
@@ -292,23 +313,48 @@ def main():
     class ConfigBuilder:
         """Builder for fluent configuration creation."""
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self, app_name: str):
             self.config = create_config_manager(app_name=app_name)
         
+
+# %%
+# Add Openai Model
+# ----------------
+
         def add_openai_model(self, name: str, **kwargs):
             model = create_model_config(name, ProviderType.OPENAI, **kwargs)
             self.config.add_model(model)
             return self
         
+
+# %%
+# Add Anthropic Model
+# -------------------
+
         def add_anthropic_model(self, name: str, **kwargs):
             model = create_model_config(name, ProviderType.ANTHROPIC, **kwargs)
             self.config.add_model(model)
             return self
         
+
+# %%
+# With Default
+# ------------
+
         def with_default(self, model_name: str):
             self.config.set_default_model(model_name)
             return self
         
+
+# %%
+# Build
+# -----
+
         def build(self):
             return self.config
     

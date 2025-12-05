@@ -1,4 +1,6 @@
-"""Image Processing Example
+"""
+Image Processing Example
+========================
 
 This example demonstrates basic image processing operations.
 
@@ -46,6 +48,10 @@ def create_sample_image():
 
 def main():
     """Run image processing examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("IMAGE PROCESSING EXAMPLE")

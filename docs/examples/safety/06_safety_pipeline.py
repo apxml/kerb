@@ -1,4 +1,6 @@
-"""Safety Pipeline Example
+"""
+Safety Pipeline Example
+=======================
 
 This example demonstrates a comprehensive end-to-end safety pipeline for
 production LLM applications, combining multiple safety checks and filters.
@@ -44,7 +46,16 @@ class SafetyEvent:
 
 class LLMSafetyPipeline:
     """Comprehensive safety pipeline for LLM applications."""
+
+# %%
+# Setup and Imports
+# -----------------
     
+
+# %%
+#   Init  
+# --------
+
     def __init__(
         self,
         safety_level: SafetyLevel = SafetyLevel.MODERATE,
@@ -54,6 +65,11 @@ class LLMSafetyPipeline:
         self.log_events = log_events
         self.events: List[SafetyEvent] = []
     
+
+# %%
+# Log Event
+# ---------
+
     def log_event(self, check_type: str, result: SafetyResult):
         """Log a safety check event."""
         if self.log_events:
@@ -213,6 +229,11 @@ class LLMSafetyPipeline:
             "by_check_type": by_type
         }
 
+
+
+# %%
+# Simulate Llm Response
+# ---------------------
 
 def simulate_llm_response(user_input: str) -> str:
     """Simulate LLM response based on input."""

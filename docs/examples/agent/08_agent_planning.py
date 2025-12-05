@@ -1,4 +1,6 @@
-"""Agent Planning Example
+"""
+Agent Planning Example
+======================
 
 This example demonstrates agent planning and plan execution.
 
@@ -19,6 +21,10 @@ def planner_llm(prompt: str) -> str:
     """LLM for planning."""
     if "plan" in prompt.lower():
         return """1. Research the topic
+
+# %%
+# Setup and Imports
+# -----------------
 2. Analyze findings
 3. Write summary
 4. Review and finalize"""
@@ -37,6 +43,11 @@ def executor_llm(prompt: str) -> str:
         return "Thought: I'll review the content.\nFinal Answer: Review complete: No issues found"
     return "Step executed"
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run agent planning example."""

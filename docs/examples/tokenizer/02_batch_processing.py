@@ -1,4 +1,8 @@
-"""Batch Token Counting Example
+"""
+Batch Token Counting Example
+============================
+
+============================
 
 This example demonstrates efficient batch processing of multiple texts
 for token counting, which is essential for LLM applications that need

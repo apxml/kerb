@@ -1,4 +1,6 @@
-"""Cost Estimation and Validation Example
+"""
+Cost Estimation and Validation Example
+======================================
 
 This example demonstrates how to estimate training costs and validate datasets.
 
@@ -51,6 +53,10 @@ def create_sample_training_dataset():
             user_msg = f"Question {i}: Explain how to use for loops in Python with examples."
             assistant_msg = """For loops in Python iterate over sequences. Here's an example:
 
+# %%
+# Setup and Imports
+# -----------------
+
 for i in range(5):
     print(i)
 
@@ -65,6 +71,11 @@ for fruit in fruits:
             assistant_msg = """Python decorators are a powerful feature that allows you to modify function behavior.
 
 Basic Decorator:
+
+# %%
+# My Decorator
+# ------------
+
 def my_decorator(func):
     def wrapper():
         print("Before function")
@@ -73,10 +84,20 @@ def my_decorator(func):
     return wrapper
 
 @my_decorator
+
+# %%
+# Say Hello
+# ---------
+
 def say_hello():
     print("Hello!")
 
 Decorator with Arguments:
+
+# %%
+# Repeat
+# ------
+
 def repeat(times):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -87,15 +108,30 @@ def repeat(times):
     return decorator
 
 @repeat(3)
+
+# %%
+# Greet
+# -----
+
 def greet(name):
     print(f"Hello, {name}!")
 
 Class-based Decorators:
 class Counter:
+
+# %%
+#   Init  
+# --------
+
     def __init__(self, func):
         self.func = func
         self.count = 0
     
+
+# %%
+#   Call  
+# --------
+
     def __call__(self, *args, **kwargs):
         self.count += 1
         print(f"Call {self.count}")

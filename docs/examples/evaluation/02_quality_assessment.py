@@ -1,4 +1,6 @@
-"""Quality Assessment for LLM Outputs.
+"""
+Quality Assessment for LLM Outputs.
+===================================
 
 This example demonstrates how to assess the quality of LLM-generated content
 without requiring ground truth references. Common use cases:
@@ -25,6 +27,10 @@ def detect_hallucinations_in_rag():
     
     # Context retrieved from knowledge base
     context = """
+
+# %%
+# Setup and Imports
+# -----------------
     Python was created by Guido van Rossum and first released in 1991.
     It emphasizes code readability with significant indentation.
     Python supports multiple programming paradigms including procedural,
@@ -101,6 +107,11 @@ def assess_document_faithfulness():
         print(f"Assessment: {'FAITHFUL' if result.passed else 'UNFAITHFUL'}")
 
 
+
+# %%
+# Evaluate Answer Relevance
+# -------------------------
+
 def evaluate_answer_relevance():
     """Evaluate whether answers are relevant to questions asked."""
     print("\n" + "=" * 80)
@@ -175,6 +186,11 @@ def measure_text_coherence():
         print(f"Assessment: {'COHERENT' if result.passed else 'INCOHERENT'}")
         print("-" * 80 + "\n")
 
+
+
+# %%
+# Measure Text Fluency
+# --------------------
 
 def measure_text_fluency():
     """Measure fluency and naturalness of generated text."""
@@ -257,6 +273,11 @@ def comprehensive_quality_check():
     
     print(f"\nOverall Quality Score: {overall_quality:.3f}")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all quality assessment examples."""

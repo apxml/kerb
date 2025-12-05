@@ -1,4 +1,6 @@
-"""Image Similarity Search Example
+"""
+Image Similarity Search Example
+===============================
 
 This example demonstrates finding similar images using perceptual hashing and embeddings.
 
@@ -79,6 +81,10 @@ def create_image_dataset():
 
 def find_duplicates_by_hash(image_paths: List[str], threshold: int = 5) -> List[Tuple[str, str, int]]:
     """Find duplicate images using perceptual hashing.
+
+# %%
+# Setup and Imports
+# -----------------
     
     Args:
         image_paths: List of image file paths

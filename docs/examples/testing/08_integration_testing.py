@@ -1,4 +1,6 @@
-"""Integration Testing Example
+"""
+Integration Testing Example
+===========================
 
 This example demonstrates end-to-end integration testing of complete LLM pipelines
 and applications.
@@ -42,6 +44,10 @@ class MockRetriever:
     
     def retrieve(self, query: str, top_k: int = 3) -> List[str]:
         """Retrieve relevant documents."""
+
+# %%
+# Setup and Imports
+# -----------------
         # Simple keyword-based retrieval for demo
         results = []
         query_words = set(query.lower().split())
@@ -117,6 +123,11 @@ class ChatbotFlow:
         
         return response.content
     
+
+# %%
+#  Build Prompt
+# -------------
+
     def _build_prompt(self) -> str:
         """Build prompt from conversation history."""
         messages = []
@@ -129,6 +140,11 @@ class ChatbotFlow:
         """Reset conversation."""
         self.conversation_history = []
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run integration testing examples."""
@@ -348,11 +364,21 @@ def main():
     class IntegrationTestSuite:
         """Integration test suite."""
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self, name: str):
             self.name = name
             self.tests = []
             self.results = []
         
+
+# %%
+# Add Test
+# --------
+
         def add_test(self, test_name: str, test_func):
             """Add a test to the suite."""
             self.tests.append((test_name, test_func))
@@ -371,6 +397,11 @@ def main():
                     self.results.append((test_name, "FAIL", str(e)))
                     print(f"  {test_name}: FAIL - {e}")
         
+
+# %%
+# Summary
+# -------
+
         def summary(self):
             """Print test summary."""
             passed = sum(1 for _, status, _ in self.results if status == "PASS")
@@ -443,6 +474,11 @@ def main():
     print("\n8. END-TO-END VALIDATION")
     print("-"*80)
     
+
+# %%
+# Validate E2E Pipeline
+# ---------------------
+
     def validate_e2e_pipeline(
         input_query: str,
         expected_characteristics: Dict[str, Any]

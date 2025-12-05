@@ -1,4 +1,6 @@
-"""Basic Agent Example
+"""
+Basic Agent Example
+===================
 
 This example demonstrates how to create and run a simple agent.
 
@@ -18,6 +20,10 @@ def simple_llm(prompt: str) -> str:
     
     In production, you would use a real LLM like OpenAI, Anthropic, etc.
     """
+
+# %%
+# Setup and Imports
+# -----------------
     # Mock responses based on prompt content
     if "weather" in prompt.lower():
         return "Thought: I should provide weather information.\nFinal Answer: The weather is sunny with a temperature of 72°F."
@@ -26,6 +32,11 @@ def simple_llm(prompt: str) -> str:
     else:
         return f"Thought: I'll process this request.\nFinal Answer: I have processed your request: {prompt[:50]}..."
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run basic agent example."""

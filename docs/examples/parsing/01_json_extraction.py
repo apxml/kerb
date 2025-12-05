@@ -1,4 +1,6 @@
-"""JSON Extraction from LLM Outputs
+"""
+JSON Extraction from LLM Outputs
+================================
 
 This example demonstrates how to extract and parse JSON from LLM responses
 that may contain markdown formatting, explanatory text, or other artifacts.
@@ -18,6 +20,10 @@ def simulate_llm_response(prompt: str) -> str:
     if "user_data" in prompt:
         # Response with JSON in markdown
         return """Here's the user data you requested:
+
+# %%
+# Setup and Imports
+# -----------------
 
 ```json
 {

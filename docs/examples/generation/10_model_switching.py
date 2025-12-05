@@ -1,4 +1,6 @@
-"""Model Switching and Universal Wrapper Example
+"""
+Model Switching and Universal Wrapper Example
+=============================================
 
 This example showcases the power of the universal wrapper pattern,
 demonstrating how easily you can switch between different models and providers.
@@ -61,6 +63,10 @@ def example_basic_switching():
 
 def example_context_manager():
     """Demonstrate temporary model switching with context manager."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("EXAMPLE 2: Temporary Model Switch with Context Manager")
     print("="*80)
@@ -88,6 +94,11 @@ def example_context_manager():
     response3 = gen.generate(prompt)
     print(f"Response: {response3.content}")
 
+
+
+# %%
+# Example Model Override
+# ----------------------
 
 def example_model_override():
     """Demonstrate per-call model override."""
@@ -154,6 +165,11 @@ def example_compare_models():
             print(f"  Response: {response.content[:80]}...")
 
 
+
+# %%
+# Example Model Comparator
+# ------------------------
+
 def example_model_comparator():
     """Use Generator's compare_models for advanced comparison features."""
     print("\n" + "="*80)
@@ -210,6 +226,11 @@ def example_multiple_api_keys():
     print("\nYou can now seamlessly switch between these providers!")
     print("The Generator will automatically use the correct API key.")
 
+
+
+# %%
+# Example Configuration Management
+# --------------------------------
 
 def example_configuration_management():
     """Manage default configurations across model switches."""
@@ -278,6 +299,11 @@ def example_practical_workflow():
     except Exception as e:
         print(f"   Error: {e}")
 
+
+
+# %%
+# Example Cost Tracking
+# ---------------------
 
 def example_cost_tracking():
     """Track costs across model switches."""

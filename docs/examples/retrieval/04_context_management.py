@@ -1,4 +1,6 @@
-"""Context Management Example
+"""
+Context Management Example
+==========================
 
 This example demonstrates context compression and filtering for RAG systems.
 
@@ -86,6 +88,10 @@ def create_sample_documents():
 
 def main():
     """Run context management examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("CONTEXT MANAGEMENT FOR RAG SYSTEMS")
@@ -257,6 +263,11 @@ def main():
     
     results = keyword_search(query, documents, top_k=6)
     
+
+# %%
+# Allocate Tokens
+# ---------------
+
     def allocate_tokens(results, total_budget):
         """Allocate more tokens to higher-ranked results."""
         allocated = []

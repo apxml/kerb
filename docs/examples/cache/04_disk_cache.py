@@ -1,4 +1,6 @@
-"""Disk Cache Example
+"""
+Disk Cache Example
+==================
 
 This example demonstrates persistent disk-based caching.
 
@@ -160,6 +162,10 @@ def main():
     
     def expensive_computation(n):
         """Simulate expensive computation."""
+
+# %%
+# Setup and Imports
+# -----------------
         # In real scenario, this might be model inference, data processing, etc.
         result = sum(range(n))
         return {"input": n, "result": result, "computed": True}

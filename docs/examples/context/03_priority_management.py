@@ -1,4 +1,6 @@
-"""Priority-Based Context Management Example
+"""
+Priority-Based Context Management Example
+=========================================
 
 This example demonstrates how to use priorities to intelligently manage
 context when dealing with token limits - essential for LLM applications.
@@ -193,6 +195,10 @@ def main():
     
     def code_review_priority(item: ContextItem) -> float:
         """Custom priority for code review context."""
+
+# %%
+# Setup and Imports
+# -----------------
         base_priority = 0.5
         
         # Boost priority based on item type

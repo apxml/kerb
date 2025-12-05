@@ -1,4 +1,8 @@
-"""Similarity Metrics Example
+"""
+Similarity Metrics Example
+==========================
+
+==========================
 
 This example demonstrates different similarity and distance metrics for comparing embeddings.
 

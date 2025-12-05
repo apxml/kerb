@@ -1,4 +1,6 @@
-"""Format Conversion Example
+"""
+Format Conversion Example
+=========================
 
 This example demonstrates how to convert datasets between different provider formats.
 
@@ -70,6 +72,10 @@ def create_sample_chat_dataset():
 
 def main():
     """Run format conversion example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("FORMAT CONVERSION EXAMPLE")

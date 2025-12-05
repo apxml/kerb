@@ -1,4 +1,6 @@
-"""LLM-as-Judge Evaluation.
+"""
+LLM-as-Judge Evaluation.
+========================
 
 This example demonstrates how to use LLM-as-judge for evaluating outputs
 when you don't have ground truth or want human-like quality assessment.
@@ -21,6 +23,10 @@ def simulate_llm_judge(prompt: str) -> str:
     Simulate an LLM judge response for demonstration.
     In production, replace this with actual LLM API calls.
     """
+
+# %%
+# Setup and Imports
+# -----------------
     # Simple simulation based on prompt keywords
     if "relevance" in prompt.lower():
         if "python" in prompt.lower():
@@ -49,6 +55,11 @@ def simulate_llm_judge(prompt: str) -> str:
     
     return "Rating: 4\nReasoning: Good quality response overall."
 
+
+
+# %%
+# Evaluate Relevance
+# ------------------
 
 def evaluate_relevance():
     """Evaluate how relevant outputs are to the prompt."""
@@ -122,6 +133,11 @@ def evaluate_accuracy():
         print(f"\nAccuracy Score: {result.score:.1f}/5.0")
         print(f"Assessment: {result.details.get('reasoning', 'N/A')}")
 
+
+
+# %%
+# Evaluate Multiple Criteria
+# --------------------------
 
 def evaluate_multiple_criteria():
     """Evaluate outputs across multiple judgment criteria."""
@@ -209,6 +225,11 @@ def compare_model_outputs():
         print(f"Reasoning: {result.reasoning}")
         print()
 
+
+
+# %%
+# Evaluate Creative Writing
+# -------------------------
 
 def evaluate_creative_writing():
     """Evaluate creative writing outputs using multiple judges."""
@@ -298,6 +319,11 @@ def batch_evaluate_chatbot():
     average = total_score / len(conversations)
     print(f"Average Helpfulness Score: {average:.2f}/5.0")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all LLM-as-judge examples."""

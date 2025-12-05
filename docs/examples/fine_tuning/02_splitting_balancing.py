@@ -1,4 +1,6 @@
-"""Dataset Splitting and Balancing Example
+"""
+Dataset Splitting and Balancing Example
+=======================================
 
 This example demonstrates how to split datasets and balance them for fine-tuning.
 
@@ -110,6 +112,10 @@ def create_sample_dataset():
 
 def main():
     """Run dataset splitting and balancing example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("DATASET SPLITTING AND BALANCING EXAMPLE")

@@ -1,4 +1,6 @@
-"""Data Quality Analysis Example
+"""
+Data Quality Analysis Example
+=============================
 
 This example demonstrates how to analyze and ensure quality of fine-tuning datasets.
 
@@ -118,6 +120,10 @@ def create_sample_dataset_with_issues():
 
 def main():
     """Run data quality analysis example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("DATA QUALITY ANALYSIS EXAMPLE")

@@ -1,4 +1,6 @@
-"""Rate Limiting Example
+"""
+Rate Limiting Example
+=====================
 
 This example demonstrates API rate limiting to stay within provider quotas.
 
@@ -61,6 +63,10 @@ def example_basic_rate_limiting():
 
 def example_token_rate_limiting():
     """Demonstrate rate limiting based on token usage."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("EXAMPLE 2: Token-Based Rate Limiting")
     print("="*80)
@@ -101,6 +107,11 @@ def example_token_rate_limiting():
         except Exception as e:
             print(f"    Error: {e}")
 
+
+
+# %%
+# Example Rate Limit Monitoring
+# -----------------------------
 
 def example_rate_limit_monitoring():
     """Monitor rate limit usage over time."""
@@ -211,6 +222,11 @@ def example_custom_rate_strategy():
     print(f"Success: {limiter.success_count}, Errors: {limiter.error_count}")
 
 
+
+# %%
+# Example Burst Protection
+# ------------------------
+
 def example_burst_protection():
     """Prevent request bursts that exceed limits."""
     print("\n" + "="*80)
@@ -280,6 +296,11 @@ def example_concurrent_rate_limiting():
     print(f"\nCompleted {len(responses)} requests in {elapsed:.2f}s")
     print(f"Average rate: {len(responses) / (elapsed / 60):.1f} req/min")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all rate limiting examples."""

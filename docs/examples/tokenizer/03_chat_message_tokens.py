@@ -1,4 +1,8 @@
-"""Chat Message Token Counting Example
+"""
+Chat Message Token Counting Example
+===================================
+
+===================================
 
 This example demonstrates how to count tokens in chat-formatted messages,
 which is critical for LLM applications using conversational models like

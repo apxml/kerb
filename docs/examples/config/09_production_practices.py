@@ -1,4 +1,6 @@
-"""Production Configuration Best Practices Example
+"""
+Production Configuration Best Practices Example
+===============================================
 
 This example demonstrates production-ready configuration management patterns.
 
@@ -60,6 +62,10 @@ def validate_production_config(config: ConfigManager) -> dict:
 
 def setup_production_config():
     """Create a production-ready configuration."""
+
+# %%
+# Setup and Imports
+# -----------------
     config = ConfigManager(app_name="production_app")
     
     # Primary production model
@@ -117,6 +123,11 @@ def setup_production_config():
     
     return config
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run production configuration best practices example."""
@@ -226,6 +237,11 @@ def main():
     print("\nStep 6: Monitoring and Logging Integration")
     print("-"*80)
     
+
+# %%
+# Log Config Access
+# -----------------
+
     def log_config_access(model_name: str, success: bool):
         """Log configuration access for monitoring."""
         log_entry = {
@@ -271,6 +287,11 @@ def main():
     print("\nStep 8: Configuration Health Check")
     print("-"*80)
     
+
+# %%
+# Health Check
+# ------------
+
     def health_check(config: ConfigManager):
         """Perform health check on configuration."""
         health = {
