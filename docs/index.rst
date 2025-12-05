@@ -3,7 +3,7 @@ Kerb Documentation
 
 The complete toolkit for developers building LLM applications.
 
-Built to drive production ML systems at ApX Machine Learning (`apxml.com <https://apxml.com>`_), now available as open source.
+Built to drive production ML systems at ApX Machine Learning (`apxml.com <https://apxml.com>`_), available open source.
 
 .. toctree::
    :maxdepth: 2
