@@ -4,13 +4,10 @@ This module provides utility functions for working with conversation buffers:
 - format_messages: Format messages for display or export
 - filter_messages: Filter messages by various criteria
 - merge_conversations: Merge multiple conversation buffers
-- save_conversation: Save buffer to file (wrapper for backward compatibility)
-- load_conversation: Load buffer from file (wrapper for backward compatibility)
-- prune_buffer: Prune messages (wrapper for backward compatibility)
 """
 
 import json
-from typing import TYPE_CHECKING, List, Optional, Union
+from typing import TYPE_CHECKING, List, Optional
 
 from kerb.core.types import Message
 
@@ -18,8 +15,6 @@ from .classes import Entity
 from .entities import merge_entities
 
 if TYPE_CHECKING:
-    from kerb.core.enums import PruneStrategy
-
     from .buffers import ConversationBuffer
 
 
@@ -159,76 +154,3 @@ def merge_conversations(
                 merged.entities[key] = entity
 
     return merged
-
-
-def save_conversation(buffer: "ConversationBuffer", filepath: str):
-    """Save conversation buffer to file.
-
-    DEPRECATED: Use buffer.save() method instead.
-
-    Args:
-        buffer: Buffer to save
-        filepath: Path to save to (JSON format)
-
-    Example:
-        >>> # Recommended
-        >>> buffer.save("conversation.json")
-
-        >>> # Deprecated
-        >>> save_conversation(buffer, "conversation.json")
-    """
-    buffer.save(filepath)
-
-
-def load_conversation(filepath: str) -> "ConversationBuffer":
-    """Load conversation buffer from file.
-
-    DEPRECATED: Use ConversationBuffer.load() class method instead.
-
-    Args:
-        filepath: Path to load from
-
-    Returns:
-        ConversationBuffer: Loaded buffer
-
-    Example:
-        >>> # Recommended
-        >>> buffer = ConversationBuffer.load("conversation.json")
-
-        >>> # Deprecated
-        >>> buffer = load_conversation("conversation.json")
-    """
-    from .buffers import ConversationBuffer
-
-    return ConversationBuffer.load(filepath)
-
-
-def prune_buffer(
-    buffer: "ConversationBuffer",
-    strategy: Union["PruneStrategy", str] = "oldest",
-    keep_count: Optional[int] = None,
-    keep_percentage: Optional[float] = None,
-) -> "ConversationBuffer":
-    """Prune messages from buffer using various strategies.
-
-    DEPRECATED: Use buffer.prune() method instead.
-
-    Args:
-        buffer: Buffer to prune
-        strategy: Pruning strategy
-        keep_count: Number of messages to keep
-        keep_percentage: Percentage of messages to keep (0-1)
-
-    Returns:
-        ConversationBuffer: Pruned buffer (modifies in place)
-
-    Examples:
-        >>> # Recommended - use method
-        >>> buffer.prune(strategy=PruneStrategy.OLDEST, keep_count=50)
-
-        >>> # Deprecated - standalone function
-        >>> prune_buffer(buffer, strategy="oldest", keep_count=50)
-    """
-    return buffer.prune(
-        strategy=strategy, keep_count=keep_count, keep_percentage=keep_percentage
-    )

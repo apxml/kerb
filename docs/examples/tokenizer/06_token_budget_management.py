@@ -1,4 +1,6 @@
-"""Token Budget Management Example
+"""
+Token Budget Management Example
+===============================
 
 This example demonstrates how to manage token budgets in LLM applications,
 ensuring that API calls stay within limits, tracking usage, and implementing
@@ -26,6 +28,10 @@ class TokenBudgetManager:
     
     def __init__(self, budget_limit: int):
         """Initialize budget manager.
+
+# %%
+# Setup and Imports
+# -----------------
         
         Args:
             budget_limit: Maximum tokens allowed
@@ -70,6 +76,11 @@ class TokenBudgetManager:
         """Get remaining token budget."""
         return self.budget_limit - self.tokens_used
     
+
+# %%
+# Get Usage Stats
+# ---------------
+
     def get_usage_stats(self) -> Dict:
         """Get usage statistics."""
         return {
@@ -85,6 +96,11 @@ class TokenBudgetManager:
         self.tokens_used = 0
         self.requests = []
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run token budget management examples."""
@@ -235,6 +251,11 @@ def main():
     print("EXAMPLE 4: Dynamic Budget Adjustment")
     print("-"*80)
     
+
+# %%
+# Adjust Request To Budget
+# ------------------------
+
     def adjust_request_to_budget(
         text: str,
         available_tokens: int,
@@ -321,6 +342,11 @@ def main():
                 self.messages.pop()
                 return False
         
+
+# %%
+# Get Stats
+# ---------
+
         def get_stats(self) -> Dict:
             """Get session statistics."""
             stats = self.budget.get_usage_stats()

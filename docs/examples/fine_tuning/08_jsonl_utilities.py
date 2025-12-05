@@ -1,4 +1,6 @@
-"""JSONL Utilities Example
+"""
+JSONL Utilities Example
+=======================
 
 This example demonstrates how to work with JSONL files for fine-tuning.
 
@@ -76,6 +78,10 @@ def create_sample_datasets():
 
 def main():
     """Run JSONL utilities example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("JSONL UTILITIES EXAMPLE")

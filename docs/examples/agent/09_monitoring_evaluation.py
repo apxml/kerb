@@ -1,4 +1,6 @@
-"""Agent Monitoring and Evaluation Example
+"""
+Agent Monitoring and Evaluation Example
+=======================================
 
 This example demonstrates how to monitor and evaluate agent performance.
 
@@ -27,9 +29,18 @@ def fast_llm(prompt: str) -> str:
 
 def slow_llm(prompt: str) -> str:
     """Slow mock LLM."""
+
+# %%
+# Setup and Imports
+# -----------------
     time.sleep(0.3)
     return "Detailed response"
 
+
+
+# %%
+# Accurate Llm
+# ------------
 
 def accurate_llm(prompt: str) -> str:
     """Accurate mock LLM."""
@@ -98,6 +109,11 @@ def main():
     print("2. PERFORMANCE METRICS")
     print("="*80)
     
+
+# %%
+# Calculate Metrics
+# -----------------
+
     def calculate_metrics(result: AgentResult) -> Dict[str, Any]:
         """Calculate performance metrics."""
         return {
@@ -325,6 +341,11 @@ def main():
                 'timestamp': time.time()
             })
         
+
+# %%
+# Get Summary
+# -----------
+
         def get_summary(self) -> Dict[str, Any]:
             """Get execution summary."""
             if not self.executions:

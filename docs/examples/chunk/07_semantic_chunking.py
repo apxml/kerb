@@ -1,4 +1,6 @@
-"""Semantic Chunking Example
+"""
+Semantic Chunking Example
+=========================
 
 This example demonstrates sentence-based semantic chunking.
 
@@ -25,6 +27,10 @@ def demonstrate_basic_semantic_chunking():
     print("="*80)
     
     text = """
+
+# %%
+# Setup and Imports
+# -----------------
 Transformers revolutionized natural language processing in 2017. The attention mechanism allows models to focus on relevant parts of the input. Self-attention computes relationships between all tokens in a sequence. Multi-head attention captures different types of relationships simultaneously. Positional encodings provide information about token order. These components combine to create powerful sequence models. BERT introduced bidirectional training for better understanding. GPT models demonstrated impressive generation capabilities. Modern LLMs build on these foundational architectures.
     """.strip()
     
@@ -77,6 +83,11 @@ RAG systems combine retrieval and generation. They retrieve relevant documents f
     for i, chunk in enumerate(chunks_6, 1):
         print(f"  {i}. {chunk[:100]}...")
 
+
+
+# %%
+# Demonstrate Qa Chunking
+# -----------------------
 
 def demonstrate_qa_chunking():
     """Show semantic chunking for question answering."""
@@ -133,6 +144,11 @@ Vector databases are essential for RAG systems. They store high-dimensional embe
         if not chunk.endswith('.'):
             print(f"  -> Sentence broken mid-way, loses coherence")
 
+
+
+# %%
+# Demonstrate Content Types
+# -------------------------
 
 def demonstrate_content_types():
     """Show semantic chunking for different content types."""
@@ -216,6 +232,11 @@ Prompt engineering optimizes LLM performance. Techniques include few-shot learni
     print("  - Ready for embedding")
     print("  - Optimized for retrieval")
 
+
+
+# %%
+# Demonstrate Optimal Settings
+# ----------------------------
 
 def demonstrate_optimal_settings():
     """Show recommended settings for different scenarios."""

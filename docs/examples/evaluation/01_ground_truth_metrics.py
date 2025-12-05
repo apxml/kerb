@@ -1,4 +1,6 @@
-"""Ground Truth Metrics for Translation and Summarization Evaluation.
+"""
+Ground Truth Metrics for Translation and Summarization Evaluation.
+==================================================================
 
 This example demonstrates how to use reference-based metrics to evaluate
 LLM outputs against ground truth answers. Common use cases:
@@ -60,6 +62,10 @@ def evaluate_translation_quality():
 
 def evaluate_summarization():
     """Evaluate summarization quality with multiple reference summaries."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("=" * 80)
     print("SUMMARIZATION EVALUATION")
     print("=" * 80)
@@ -105,6 +111,11 @@ def evaluate_summarization():
     semantic_sim = calculate_semantic_similarity(generated_summary, reference_summaries[0])
     print(f"Semantic Similarity: {semantic_sim:.3f}")
 
+
+
+# %%
+# Evaluate Qa Answers
+# -------------------
 
 def evaluate_qa_answers():
     """Evaluate question answering accuracy."""
@@ -191,6 +202,11 @@ def compare_metric_characteristics():
     print("- F1: Token-level precision/recall, good for partial matches")
     print("- Semantic: Captures meaning similarity even with different words")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all ground truth metric examples."""

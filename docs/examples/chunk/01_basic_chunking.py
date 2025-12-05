@@ -1,4 +1,6 @@
-"""Basic Text Chunking Example
+"""
+Basic Text Chunking Example
+===========================
 
 This example demonstrates fundamental chunking approaches for LLM applications.
 
@@ -24,6 +26,10 @@ def demonstrate_simple_chunking():
     
     # Sample text
     text = """
+
+# %%
+# Setup and Imports
+# -----------------
     Artificial intelligence (AI) is transforming the technology landscape.
     Machine learning enables computers to learn from data without explicit programming.
     Natural language processing allows machines to understand and generate human language.
@@ -72,6 +78,11 @@ def demonstrate_overlap_chunking():
             if len(chunk) >= overlap_chars:
                 print(f"  Overlap with next: '...{chunk[-overlap_chars:]}'")
 
+
+
+# %%
+# Demonstrate Utility Function
+# ----------------------------
 
 def demonstrate_utility_function():
     """Show the convenient chunk_text utility."""
@@ -132,6 +143,11 @@ def compare_chunking_strategies():
     for i, c in enumerate(chunks_direct, 1):
         print(f"  {i}: '{c}'")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run basic chunking examples."""

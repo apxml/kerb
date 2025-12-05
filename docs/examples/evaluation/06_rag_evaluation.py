@@ -1,4 +1,6 @@
-"""RAG (Retrieval-Augmented Generation) Evaluation.
+"""
+RAG (Retrieval-Augmented Generation) Evaluation.
+================================================
 
 This example demonstrates comprehensive evaluation strategies for RAG systems,
 which combine retrieval and generation. Common use cases:
@@ -33,6 +35,10 @@ class SimpleRAGSystem:
     
     def retrieve(self, query: str, top_k: int = 2):
         """Simple keyword-based retrieval."""
+
+# %%
+# Setup and Imports
+# -----------------
         scores = {}
         query_lower = query.lower()
         
@@ -48,6 +54,11 @@ class SimpleRAGSystem:
         sorted_docs = sorted(scores.items(), key=lambda x: x[1], reverse=True)
         return [(doc_id, self.documents[doc_id]) for doc_id, _ in sorted_docs[:top_k]]
     
+
+# %%
+# Generate
+# --------
+
     def generate(self, query: str, context: str) -> str:
         """Simple generation based on context."""
         # Extract key information from context
@@ -75,6 +86,11 @@ class SimpleRAGSystem:
             "context": context
         }
 
+
+
+# %%
+# Evaluate Retrieval Quality
+# --------------------------
 
 def evaluate_retrieval_quality():
     """Evaluate the quality of document retrieval."""
@@ -162,6 +178,11 @@ def evaluate_answer_faithfulness():
         print("-" * 80 + "\n")
 
 
+
+# %%
+# Detect Rag Hallucinations
+# -------------------------
+
 def detect_rag_hallucinations():
     """Detect hallucinations in RAG-generated answers."""
     print("=" * 80)
@@ -238,6 +259,11 @@ def evaluate_answer_relevance_rag():
     print(f"Average Relevance Score: {avg_relevance:.3f}")
 
 
+
+# %%
+# End To End Rag Evaluation
+# -------------------------
+
 def end_to_end_rag_evaluation():
     """Comprehensive end-to-end evaluation of RAG system."""
     print("\n" + "=" * 80)
@@ -272,6 +298,11 @@ def end_to_end_rag_evaluation():
         result = rag.answer_question(query)
         return result['answer']
     
+
+# %%
+# Rag Evaluator
+# -------------
+
     def rag_evaluator(output: str, expected: str) -> float:
         """Evaluate RAG output using F1 score."""
         return calculate_f1_score(output, expected)
@@ -340,6 +371,11 @@ def evaluate_rag_with_multiple_metrics():
     else:
         print("Assessment: NEEDS IMPROVEMENT - RAG output has issues")
 
+
+
+# %%
+# Compare Rag Configurations
+# --------------------------
 
 def compare_rag_configurations():
     """Compare different RAG configurations."""

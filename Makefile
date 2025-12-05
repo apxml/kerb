@@ -1,4 +1,4 @@
-.PHONY: help install install-dev clean build test lint format check-format publish-test publish dist
+.PHONY: help install install-dev clean build test lint format check-format publish-test publish dist docs docs-clean
 
 # Default target
 help:
@@ -14,6 +14,8 @@ help:
 	@echo "  publish-test - Publish to Test PyPI"
 	@echo "  publish	  - Publish to PyPI"
 	@echo "  dist		 - Build and show distribution info"
+	@echo "  docs		 - Build documentation"
+	@echo "  docs-clean   - Clean documentation build"
 
 install:
 	pip install -e .
@@ -103,3 +105,11 @@ version-minor:
 version-major:
 	@echo "Current version: $$(grep version pyproject.toml)"
 	@echo "Remember to update version in pyproject.toml for major release"
+
+# Documentation
+docs:
+	sphinx-build -b html docs docs/_build/html
+	@echo "\nDocumentation built! Open docs/_build/html/index.html"
+
+docs-clean:
+	rm -rf docs/_build/

@@ -1,4 +1,6 @@
-"""Dataset Deduplication for Training Quality
+"""
+Dataset Deduplication for Training Quality
+==========================================
 
 This example demonstrates deduplication techniques to remove redundant samples
 from training datasets, improving model efficiency and reducing overfitting.
@@ -133,6 +135,10 @@ def main():
     
     # Text with duplicate lines (common in logs, config files)
     text_with_dupe_lines = """import numpy as np
+
+# %%
+# Setup and Imports
+# -----------------
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np

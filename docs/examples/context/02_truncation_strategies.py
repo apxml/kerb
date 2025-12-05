@@ -1,4 +1,6 @@
-"""Context Truncation Strategies Example
+"""
+Context Truncation Strategies Example
+=====================================
 
 This example demonstrates different strategies for truncating context windows
 when they exceed token limits - a critical capability for LLM applications.
@@ -50,6 +52,10 @@ def create_sample_conversation() -> list[ContextItem]:
 
 def main():
     """Run truncation strategies example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("CONTEXT TRUNCATION STRATEGIES EXAMPLE")

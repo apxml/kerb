@@ -1,4 +1,8 @@
-"""Azure OpenAI Configuration Example
+"""
+Azure OpenAI Configuration Example
+==================================
+
+==================================
 
 This example demonstrates Azure-specific LLM configuration.
 

@@ -1,4 +1,6 @@
-"""Prompt Injection Detection Example
+"""
+Prompt Injection Detection Example
+==================================
 
 This example demonstrates how to detect and prevent prompt injection attacks
 and jailbreak attempts that could compromise LLM security.
@@ -37,6 +39,10 @@ def simulate_user_input(input_type: str) -> str:
 
 def main():
     """Run prompt injection detection example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("PROMPT INJECTION DETECTION EXAMPLE")
@@ -158,6 +164,11 @@ def main():
     print("\n\nExample 8: Input Filtering for LLM Applications")
     print("-"*80)
     
+
+# %%
+# Process User Request
+# --------------------
+
     def process_user_request(user_input: str) -> str:
         """Process user request with safety checks."""
         # Check input safety

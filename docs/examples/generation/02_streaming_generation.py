@@ -1,4 +1,6 @@
-"""Streaming Generation Example
+"""
+Streaming Generation Example
+============================
 
 This example demonstrates real-time token streaming for LLM responses.
 
@@ -48,12 +50,21 @@ def example_basic_streaming():
 
 def example_streaming_with_callback():
     """Streaming with callback function for processing each chunk."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("EXAMPLE 2: Streaming with Callback")
     print("="*80)
     
     chunks_received = []
     
+
+# %%
+# Chunk Callback
+# --------------
+
     def chunk_callback(chunk):
         """Process each chunk as it arrives."""
         chunks_received.append({
@@ -109,6 +120,11 @@ def example_streaming_conversation():
     
     print("\n")
 
+
+
+# %%
+# Example Streaming Comparison
+# ----------------------------
 
 def example_streaming_comparison():
     """Compare streaming vs non-streaming generation."""
@@ -176,6 +192,11 @@ def example_streaming_with_progress():
     print(content)
     print("-" * 80)
 
+
+
+# %%
+# Example Streaming Custom Models
+# -------------------------------
 
 def example_streaming_custom_models():
     """Stream with different model configurations."""

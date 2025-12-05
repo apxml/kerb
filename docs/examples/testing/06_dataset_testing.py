@@ -1,4 +1,6 @@
-"""Test Dataset Management Example
+"""
+Test Dataset Management Example
+===============================
 
 This example demonstrates how to create, manage, and use test datasets for
 evaluating LLM applications.
@@ -199,6 +201,10 @@ def main():
     
     def mock_llm_classify(prompt: str) -> str:
         """Mock sentiment classifier."""
+
+# %%
+# Setup and Imports
+# -----------------
         if "love" in prompt.lower() or "amazing" in prompt.lower():
             return "positive"
         elif "terrible" in prompt.lower():
@@ -206,6 +212,11 @@ def main():
         else:
             return "neutral"
     
+
+# %%
+# Evaluate On Dataset
+# -------------------
+
     def evaluate_on_dataset(dataset: TestDataset, model_func) -> dict:
         """Evaluate a model on a dataset."""
         correct = 0

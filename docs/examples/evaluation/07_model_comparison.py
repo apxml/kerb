@@ -1,4 +1,6 @@
-"""Model Comparison and Selection.
+"""
+Model Comparison and Selection.
+===============================
 
 This example demonstrates how to systematically compare multiple LLM models
 to select the best one for your use case. Common use cases:
@@ -24,6 +26,10 @@ class ModelSimulator:
     @staticmethod
     def gpt4_style(prompt: str) -> str:
         """Simulate GPT-4 style responses (detailed, accurate)."""
+
+# %%
+# Setup and Imports
+# -----------------
         responses = {
             "what is python": "Python is a high-level, interpreted programming language created by Guido van Rossum in 1991. It emphasizes code readability with significant indentation and supports multiple programming paradigms including procedural, object-oriented, and functional programming.",
             "explain ai": "Artificial Intelligence (AI) refers to the simulation of human intelligence in machines programmed to think and learn. It encompasses various subfields including machine learning, natural language processing, computer vision, and robotics.",
@@ -35,6 +41,11 @@ class ModelSimulator:
         return "I can provide detailed information on various topics."
     
     @staticmethod
+
+# %%
+# Gpt35 Style
+# -----------
+
     def gpt35_style(prompt: str) -> str:
         """Simulate GPT-3.5 style responses (good but less detailed)."""
         responses = {
@@ -60,6 +71,11 @@ class ModelSimulator:
                 return response
         return "I'd be happy to explore this topic with you."
 
+
+
+# %%
+# Compare Model Accuracy
+# ----------------------
 
 def compare_model_accuracy():
     """Compare accuracy of different models on factual questions."""
@@ -172,6 +188,11 @@ def compare_response_quality():
     print(f"\nBest Overall: {best_model[0]}")
 
 
+
+# %%
+# Compare Cost Performance
+# ------------------------
+
 def compare_cost_performance():
     """Compare models considering both quality and cost."""
     print("\n" + "=" * 80)
@@ -258,6 +279,11 @@ def side_by_side_comparison():
         print(f"\nClaude:")
         print(f"  {ModelSimulator.claude_style(prompt)}")
 
+
+
+# %%
+# Compare Consistency
+# -------------------
 
 def compare_consistency():
     """Compare model consistency across similar prompts."""
@@ -357,6 +383,11 @@ def automated_model_selection():
         print("No models meet all requirements!")
         print("Consider relaxing constraints or using a different model.")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all model comparison examples."""

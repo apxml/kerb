@@ -1,4 +1,6 @@
-"""Pydantic Model Parsing from LLM Outputs
+"""
+Pydantic Model Parsing from LLM Outputs
+=======================================
 
 This example demonstrates how to parse LLM outputs into validated Pydantic models,
 ensuring type safety and data validation for structured LLM responses.
@@ -37,6 +39,10 @@ class UserProfile(BaseModel):
 
 class SentimentAnalysis(BaseModel):
     """Sentiment analysis result."""
+
+# %%
+# Setup and Imports
+# -----------------
     text: str = Field(..., description="The analyzed text")
     sentiment: str = Field(..., description="Sentiment: positive, negative, or neutral")
     confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence score")
@@ -61,6 +67,11 @@ class TaskBreakdown(BaseModel):
     priority: str = Field(..., description="Priority: high, medium, or low")
     estimated_time: Optional[int] = Field(None, description="Estimated time in minutes")
 
+
+
+# %%
+# Simulate Llm Response
+# ---------------------
 
 def simulate_llm_response(task_type: str) -> str:
     """Simulate LLM responses for different task types."""

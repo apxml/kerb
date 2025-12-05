@@ -1,4 +1,6 @@
-"""Agent Tools Example
+"""
+Agent Tools Example
+===================
 
 This example demonstrates how to create and use tools with agents.
 
@@ -35,6 +37,10 @@ def get_weather(location: str) -> str:
 # Method 2: Use create_tool function
 def get_stock_price(ticker: str) -> str:
     """Get stock price for a ticker."""
+
+# %%
+# Setup and Imports
+# -----------------
     # Mock stock prices
     prices = {
         "AAPL": "$180.25",
@@ -49,6 +55,11 @@ def get_stock_price(ticker: str) -> str:
     return f"Price not available for {ticker_upper}"
 
 
+
+# %%
+# Calculate
+# ---------
+
 def calculate(expression: str) -> str:
     """Evaluate a mathematical expression."""
     try:
@@ -62,6 +73,11 @@ def count_characters(text: str) -> str:
     """Count characters in text."""
     return f"Character count: {len(text)}"
 
+
+
+# %%
+# Mock Llm
+# --------
 
 def mock_llm(prompt: str) -> str:
     """Mock LLM that suggests tool usage."""

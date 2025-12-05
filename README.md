@@ -2,7 +2,7 @@
 
 The complete toolkit for developers building LLM applications.
 
-Built to drive production ML systems at ApX Machine Learning ([apxml.com](https://apxml.com)), now available as open source.
+Built to drive production ML systems at ApX Machine Learning ([apxml.com](https://apxml.com)), available open source.
 
 **[Getting Started](https://apxml.com/courses/getting-started-with-llm-toolkit)**
 

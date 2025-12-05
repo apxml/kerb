@@ -1,4 +1,6 @@
-"""Sliding Window Context Example
+"""
+Sliding Window Context Example
+==============================
 
 This example demonstrates sliding window techniques for processing
 long documents and maintaining context continuity in LLM applications.
@@ -55,6 +57,10 @@ def create_long_document():
 
 def main():
     """Run sliding window example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("SLIDING WINDOW CONTEXT EXAMPLE")

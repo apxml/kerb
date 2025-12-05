@@ -1,4 +1,6 @@
-"""Context Optimization Example
+"""
+Context Optimization Example
+============================
 
 This example demonstrates optimization techniques for improving
 context quality and relevance in LLM applications.
@@ -291,6 +293,10 @@ def main():
     
     def calculate_quality_metrics(window: ContextWindow, query: str = "") -> dict:
         """Calculate quality metrics for context window."""
+
+# %%
+# Setup and Imports
+# -----------------
         metrics = {
             "total_items": len(window.items),
             "total_tokens": window.current_tokens,

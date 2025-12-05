@@ -1,4 +1,6 @@
-"""Multi-Provider Comparison Example
+"""
+Multi-Provider Comparison Example
+=================================
 
 This example demonstrates comparing responses across different LLM providers.
 
@@ -27,6 +29,10 @@ def compare_providers_simple(prompt: str, models: List[ModelName]) -> Dict[str, 
     Returns:
         Dictionary with comparison results
     """
+
+# %%
+# Setup and Imports
+# -----------------
     results = {}
     
     for model in models:
@@ -49,6 +55,11 @@ def compare_providers_simple(prompt: str, models: List[ModelName]) -> Dict[str, 
     
     return results
 
+
+
+# %%
+# Example Basic Comparison
+# ------------------------
 
 def example_basic_comparison():
     """Compare a simple prompt across providers."""
@@ -117,6 +128,11 @@ def example_cost_comparison():
         print(f"   Tokens: {response.usage.total_tokens}")
         print(f"   Cost per 1K tokens: ${(response.cost / response.usage.total_tokens * 1000):.6f}\n")
 
+
+
+# %%
+# Example Latency Comparison
+# --------------------------
 
 def example_latency_comparison():
     """Compare response latency across providers."""
@@ -194,6 +210,11 @@ def example_quality_comparison():
             print(f"\nTokens: {response.usage.total_tokens}, Cost: ${response.cost:.6f}")
 
 
+
+# %%
+# Example Temperature Comparison
+# ------------------------------
+
 def example_temperature_comparison():
     """Compare how different providers respond to temperature settings."""
     print("\n" + "="*80)
@@ -267,6 +288,11 @@ def example_model_capabilities():
         except Exception as e:
             print(f"  Error: {e}\n")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all multi-provider comparison examples."""

@@ -1,4 +1,6 @@
-"""Metadata Extraction for Document Analysis
+"""
+Metadata Extraction for Document Analysis
+=========================================
 
 This example demonstrates extracting structured information from documents.
 
@@ -36,6 +38,10 @@ def create_sample_documents(temp_dir: str):
     
     # Document with contact information
     contact_doc = """
+
+# %%
+# Setup and Imports
+# -----------------
     Company Information
     ===================
     

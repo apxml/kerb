@@ -1,4 +1,6 @@
-"""Structured Output Example
+"""
+Structured Output Example
+=========================
 
 This example demonstrates generating structured data and JSON responses.
 
@@ -23,6 +25,10 @@ def example_json_mode_basic():
     print("="*80)
     
     prompt = """Generate a JSON object representing a Python package with the following fields:
+
+# %%
+# Setup and Imports
+# -----------------
     - name: package name
     - version: semantic version
     - description: short description
@@ -89,6 +95,11 @@ def example_structured_data_extraction():
     else:
         print("Failed to extract JSON")
 
+
+
+# %%
+# Example Schema Generation
+# -------------------------
 
 def example_schema_generation():
     """Generate data that follows a specific schema."""
@@ -172,6 +183,11 @@ def example_multiple_entities():
             print(f"    Language: {framework.get('language', 'N/A')}")
             print(f"    Creators: {', '.join(framework.get('creators', []))}")
 
+
+
+# %%
+# Example Validation And Correction
+# ---------------------------------
 
 def example_validation_and_correction():
     """Generate and validate structured output."""
@@ -275,6 +291,11 @@ def example_code_to_json():
     if data:
         print(json.dumps(data, indent=2))
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all structured output examples."""

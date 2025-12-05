@@ -1,4 +1,6 @@
-"""Re-ranking and Fusion Example
+"""
+Re-ranking and Fusion Example
+=============================
 
 This example demonstrates result re-ranking and fusion techniques for RAG.
 
@@ -67,6 +69,10 @@ def create_sample_documents():
 
 def main():
     """Run re-ranking and fusion examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("RE-RANKING AND FUSION FOR RAG SYSTEMS")
@@ -114,6 +120,11 @@ def main():
     print("-"*80)
     print("Define custom re-ranking logic for specific use cases.\n")
     
+
+# %%
+# Category Booster
+# ----------------
+
     def category_booster(query: str, doc: Document) -> float:
         """Boost scores for documents in 'programming' category."""
         base_score = 1.0

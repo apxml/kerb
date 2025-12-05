@@ -1,4 +1,6 @@
-"""Search Methods Example
+"""
+Search Methods Example
+======================
 
 This example demonstrates different search approaches for RAG systems.
 
@@ -86,6 +88,10 @@ def create_sample_documents():
 
 def main():
     """Run search methods examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("SEARCH METHODS FOR RAG SYSTEMS")

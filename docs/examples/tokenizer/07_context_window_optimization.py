@@ -1,4 +1,6 @@
-"""Context Window Optimization Example
+"""
+Context Window Optimization Example
+===================================
 
 This example demonstrates how to optimize content to fit within model context
 windows, which is critical for LLM applications working with long documents,
@@ -34,6 +36,10 @@ def main():
     
     # Simulate a long document
     long_document = """
+
+# %%
+# Setup and Imports
+# -----------------
     Introduction to Machine Learning
     
     Machine learning is a subset of artificial intelligence that focuses on building

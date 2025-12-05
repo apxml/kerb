@@ -1,4 +1,6 @@
-"""Instruction Dataset Example
+"""
+Instruction Dataset Example
+===========================
 
 This example demonstrates how to create instruction-following datasets for fine-tuning.
 
@@ -41,6 +43,10 @@ def create_code_generation_instructions():
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": "Write a function to calculate the factorial of a number"},
             {"role": "assistant", "content": """def factorial(n):
+
+# %%
+# Setup and Imports
+# -----------------
     '''Calculate factorial of n.
     
     Args:
@@ -146,6 +152,11 @@ Python is a high-level, interpreted programming language known for its clear syn
         metadata={"task_type": "summarization"}
     )
 
+
+
+# %%
+# Create Multi Turn Instructions
+# ------------------------------
 
 def create_multi_turn_instructions():
     """Create multi-turn instruction conversations."""

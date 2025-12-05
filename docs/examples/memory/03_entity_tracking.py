@@ -1,4 +1,8 @@
-"""Entity Tracking Example
+"""
+Entity Tracking Example
+=======================
+
+=======================
 
 This example demonstrates entity extraction and tracking across conversations
 for maintaining context awareness in LLM applications.

@@ -1,4 +1,6 @@
-"""Web Document Loading and HTML Processing
+"""
+Web Document Loading and HTML Processing
+========================================
 
 This example demonstrates loading and processing web documents for LLM applications.
 
@@ -37,6 +39,10 @@ def create_sample_html_files(temp_dir: str):
     
     # Blog post HTML
     blog_html = """<!DOCTYPE html>
+
+# %%
+# Setup and Imports
+# -----------------
 <html>
 <head>
     <title>Introduction to RAG Systems</title>

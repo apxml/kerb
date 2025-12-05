@@ -1,4 +1,6 @@
-"""Advanced Chunking Patterns Example
+"""
+Advanced Chunking Patterns Example
+==================================
 
 This example demonstrates real-world chunking patterns and strategies.
 
@@ -30,6 +32,10 @@ def demonstrate_hybrid_chunking():
     print("="*80)
     
     document = """
+
+# %%
+# Setup and Imports
+# -----------------
 # Understanding RAG Systems
 
 RAG systems combine retrieval and generation for better LLM performance.
@@ -41,6 +47,11 @@ The architecture has three key components. First, a vector database stores embed
 ## Implementation
 
 ```python
+
+# %%
+# Create Rag System
+# -----------------
+
 def create_rag_system():
     chunker = RecursiveChunker(chunk_size=500)
     embedder = EmbeddingModel("ada-002")
@@ -135,6 +146,11 @@ def demonstrate_content_routing():
     print(f"Total chunks across all types: {len(all_chunks)}")
 
 
+
+# %%
+# Demonstrate Multi Stage Pipeline
+# --------------------------------
+
 def demonstrate_multi_stage_pipeline():
     """Show multi-stage chunking pipeline."""
     print("\n" + "="*80)
@@ -190,6 +206,11 @@ def demonstrate_adaptive_strategy():
     print("ADAPTIVE CHUNKING STRATEGY")
     print("="*80)
     
+
+# %%
+# Smart Chunk
+# -----------
+
     def smart_chunk(text: str, max_chunk_size: int = 500):
         """Intelligently choose chunking strategy."""
         
@@ -312,6 +333,11 @@ def demonstrate_rag_production_pipeline():
         print()
 
 
+
+# %%
+# Demonstrate Performance Optimization
+# ------------------------------------
+
 def demonstrate_performance_optimization():
     """Show chunking optimization for performance."""
     print("\n" + "="*80)
@@ -370,6 +396,11 @@ from package import feature
         '''.strip(),
         
         'api.py': '''
+
+# %%
+# Authenticate
+# ------------
+
 def authenticate(api_key):
     """Verify API key."""
     return validate(api_key)

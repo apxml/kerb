@@ -1,4 +1,6 @@
-"""Configuration Change Listeners Example
+"""
+Configuration Change Listeners Example
+======================================
 
 This example demonstrates reactive configuration updates using change listeners.
 
@@ -33,8 +35,17 @@ def log_config_change(config: AppConfig):
 
 def notify_monitoring_system(config: AppConfig):
     """Simulate notifying a monitoring system of config changes."""
+
+# %%
+# Setup and Imports
+# -----------------
     print(f"[MONITORING] Configuration updated for: {config.app_name}")
 
+
+
+# %%
+# Validate Config On Change
+# -------------------------
 
 def validate_config_on_change(config: AppConfig):
     """Validate configuration on every change."""
@@ -130,6 +141,11 @@ def main():
     print("\nStep 5: Custom Validation Listener")
     print("-"*80)
     
+
+# %%
+# Cost Optimization Validator
+# ---------------------------
+
     def cost_optimization_validator(config: AppConfig):
         """Custom listener to validate cost optimization."""
         total_max_tokens = 0
@@ -198,6 +214,11 @@ def main():
     print("\nStep 7: Event-Specific Listeners")
     print("-"*80)
     
+
+# %%
+# Model Threshold Alert
+# ---------------------
+
     def model_threshold_alert(config: AppConfig):
         """Alert when model count exceeds threshold."""
         threshold = 5

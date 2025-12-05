@@ -1,4 +1,6 @@
-"""Universal Generator Example
+"""
+Universal Generator Example
+===========================
 
 This example demonstrates the universal generator with easy model switching.
 
@@ -71,6 +73,10 @@ def example_provider_specification():
 
 def example_generator_class():
     """Demonstrate the Generator class."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("EXAMPLE 2: Generator Class")
     print("="*80)
@@ -104,6 +110,11 @@ def example_generator_class():
             print(f"\n  Q: {prompt}")
             print(f"  Error: {e}")
 
+
+
+# %%
+# Example Easy Model Switching
+# ----------------------------
 
 def example_easy_model_switching():
     """Demonstrate easy model and provider switching."""
@@ -189,6 +200,11 @@ def example_custom_models():
     print("   ✓ Will call local/custom provider")
 
 
+
+# %%
+# Example With Modelname Enum
+# ---------------------------
+
 def example_with_modelname_enum():
     """Demonstrate using ModelName enum."""
     print("\n" + "="*80)
@@ -248,6 +264,11 @@ def example_multi_turn_conversation():
     except Exception as e:
         print(f"\nError: {e}")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all examples."""

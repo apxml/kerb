@@ -1,4 +1,8 @@
-"""Basic Configuration Example
+"""
+Basic Configuration Example
+===========================
+
+===========================
 
 This example demonstrates fundamental configuration management for LLM applications.
 

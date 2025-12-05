@@ -1,4 +1,6 @@
-"""Environment Variable Management Example
+"""
+Environment Variable Management Example
+=======================================
 
 This example demonstrates secure API key management using environment variables.
 
@@ -28,6 +30,10 @@ def setup_mock_env_vars():
 
 def main():
     """Run environment variable management example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("ENVIRONMENT VARIABLE MANAGEMENT EXAMPLE")

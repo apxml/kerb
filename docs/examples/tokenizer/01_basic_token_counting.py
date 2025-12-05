@@ -1,4 +1,8 @@
-"""Basic Token Counting Example
+"""
+Basic Token Counting Example
+============================
+
+============================
 
 This example demonstrates the fundamental token counting capabilities
 for LLM applications using different tokenizers.

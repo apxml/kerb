@@ -1,4 +1,8 @@
-"""Basic Cache Example
+"""
+Basic Cache Example
+===================
+
+===================
 
 This example demonstrates fundamental cache operations.
 

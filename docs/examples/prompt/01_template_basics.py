@@ -1,4 +1,6 @@
-"""Basic prompt template usage for LLM developers.
+"""
+Basic prompt template usage for LLM developers.
+===============================================
 
 This example demonstrates:
 - Variable substitution in prompt templates
@@ -23,6 +25,10 @@ def basic_template_rendering():
     
     # Simple system prompt with variables
     template = """You are a {{role}} assistant specialized in {{domain}}.
+
+# %%
+# Setup and Imports
+# -----------------
 Your task is to help users with {{task}}."""
     
     variables = {
@@ -66,6 +72,11 @@ Focus on:
     print("\nCode Analysis Prompt:")
     print(result)
 
+
+
+# %%
+# Nested Variable Templates
+# -------------------------
 
 def nested_variable_templates():
     """Use nested variables for structured prompt data."""
@@ -128,6 +139,11 @@ def custom_delimiters():
     print(result2)
 
 
+
+# %%
+# Safe Rendering With Fallbacks
+# -----------------------------
+
 def safe_rendering_with_fallbacks():
     """Handle missing variables gracefully in production."""
     print("\n" + "=" * 80)
@@ -179,6 +195,11 @@ Baseline: {{baseline_score}}"""
         print(f"Missing variables: {missing}")
         print("\nYou should provide values for these variables before rendering.")
 
+
+
+# %%
+# Extract Required Variables
+# --------------------------
 
 def extract_required_variables():
     """Extract and inspect required variables from templates."""

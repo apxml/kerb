@@ -1,4 +1,6 @@
-"""Code Extraction from LLM Outputs
+"""
+Code Extraction from LLM Outputs
+================================
 
 This example demonstrates how to extract code blocks from LLM responses
 that include code snippets in markdown format.
@@ -19,7 +21,16 @@ def simulate_llm_code_response(task: str) -> str:
     if task == "python_function":
         return """Here's a Python function to calculate fibonacci numbers:
 
+# %%
+# Setup and Imports
+# -----------------
+
 ```python
+
+# %%
+# Fibonacci
+# ---------
+
 def fibonacci(n):
     if n <= 1:
         return n
@@ -40,6 +51,11 @@ This uses a recursive approach. For better performance with large numbers, you c
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class SimpleHandler(BaseHTTPRequestHandler):
+
+# %%
+# Do Get
+# ------
+
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
@@ -143,6 +159,11 @@ Apply these configurations to set up your environment."""
 
 **Original (problematic):**
 ```python
+
+# %%
+# Process Data
+# ------------
+
 def process_data(data):
     result = []
     for item in data:
@@ -153,6 +174,11 @@ def process_data(data):
 
 **Improved version:**
 ```python
+
+# %%
+# Process Data
+# ------------
+
 def process_data(data):
     \"\"\"Process data by doubling positive values.
     

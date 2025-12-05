@@ -1,4 +1,8 @@
-"""Multi-Provider Configuration Example
+"""
+Multi-Provider Configuration Example
+====================================
+
+====================================
 
 This example demonstrates managing multiple LLM providers in a single application.
 

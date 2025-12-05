@@ -1,4 +1,6 @@
-"""Batch Processing and Streaming Example
+"""
+Batch Processing and Streaming Example
+======================================
 
 This example demonstrates efficient batch processing and streaming for large datasets.
 
@@ -155,11 +157,25 @@ def main():
     
     class IncrementalIndex:
         """Index that processes documents incrementally."""
+
+# %%
+# Setup and Imports
+# -----------------
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self):
             self.documents = []
             self.embeddings = []
         
+
+# %%
+# Add Batch
+# ---------
+
         def add_batch(self, new_documents):
             """Add a batch of documents to the index."""
             print(f"  Adding {len(new_documents)} documents...")

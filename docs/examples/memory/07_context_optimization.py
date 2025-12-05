@@ -1,4 +1,6 @@
-"""LLM Context Optimization Example
+"""
+LLM Context Optimization Example
+================================
 
 This example demonstrates how to optimize conversation context for LLM API calls
 with token limits and intelligent memory selection.
@@ -27,6 +29,10 @@ def estimate_tokens(text: str) -> int:
 
 def main():
     """Run LLM context optimization example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("LLM CONTEXT OPTIMIZATION EXAMPLE")
@@ -103,6 +109,11 @@ def main():
     print("SCENARIO 2: PRIORITY-BASED SELECTION")
     print("-"*80)
     
+
+# %%
+# Get Message Priority
+# --------------------
+
     def get_message_priority(msg: Message) -> int:
         """Assign priority to messages."""
         priority = 0

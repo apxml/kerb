@@ -1,4 +1,6 @@
-"""Few-shot learning examples for LLM prompt engineering.
+"""
+Few-shot learning examples for LLM prompt engineering.
+======================================================
 
 This example demonstrates:
 - Creating and managing few-shot examples
@@ -48,6 +50,10 @@ def create_few_shot_examples():
 
 def random_selection():
     """Randomly select examples for variety."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "=" * 80)
     print("RANDOM SELECTION")
     print("=" * 80)
@@ -75,6 +81,11 @@ def random_selection():
     
     print("\nUse case: Prevent overfitting to specific example patterns")
 
+
+
+# %%
+# First And Last Selection
+# ------------------------
 
 def first_and_last_selection():
     """Select first or last examples."""
@@ -144,6 +155,11 @@ def diverse_selection():
     print("\nUse case: Maximize coverage of different patterns and styles")
 
 
+
+# %%
+# Filtered Selection
+# ------------------
+
 def filtered_selection():
     """Filter examples before selection."""
     print("\n" + "=" * 80)
@@ -212,6 +228,11 @@ def format_examples_for_prompt():
         if line.strip():
             print(f"{i}. {line}")
 
+
+
+# %%
+# Complete Few Shot Prompt
+# ------------------------
 
 def complete_few_shot_prompt():
     """Create a complete few-shot prompt."""
@@ -301,6 +322,11 @@ def semantic_selection_fallback():
         for ex in selected:
             print(f"  '{ex.input}'")
 
+
+
+# %%
+# Production Example Bank
+# -----------------------
 
 def production_example_bank():
     """Demonstrate managing a production example bank."""

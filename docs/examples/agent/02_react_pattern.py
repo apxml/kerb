@@ -1,4 +1,6 @@
-"""ReAct Agent Example
+"""
+ReAct Agent Example
+===================
 
 This example demonstrates the ReAct (Reasoning and Acting) pattern.
 
@@ -20,6 +22,10 @@ def mock_llm_react(prompt: str) -> str:
     
     In production, you would use a real LLM with ReAct prompting.
     """
+
+# %%
+# Setup and Imports
+# -----------------
     # Detect which phase we're in based on prompt
     if "what is 15 * 7" in prompt.lower() or "calculate" in prompt.lower():
         return """Thought: I need to calculate 15 multiplied by 7.
@@ -35,6 +41,11 @@ Final Answer: 15 * 7 = 105"""
 Action: proceed
 Action Input: continue"""
 
+
+
+# %%
+# Calculate
+# ---------
 
 def calculate(expression: str) -> str:
     """Calculator tool."""
@@ -60,6 +71,11 @@ def search(query: str) -> str:
     
     return f"No results found for: {query}"
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run ReAct agent example."""

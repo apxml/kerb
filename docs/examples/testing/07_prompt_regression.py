@@ -1,4 +1,6 @@
-"""Prompt Regression Testing Example
+"""
+Prompt Regression Testing Example
+=================================
 
 This example demonstrates how to test prompt changes and detect regressions
 when updating prompt templates.
@@ -40,8 +42,17 @@ class PromptTemplate:
     
     def format(self, **kwargs) -> str:
         """Format template with variables."""
+
+# %%
+# Setup and Imports
+# -----------------
         return self.template.format(**kwargs)
 
+
+
+# %%
+# Mock Llm With Prompt
+# --------------------
 
 def mock_llm_with_prompt(prompt: str) -> str:
     """Mock LLM that responds based on prompt structure."""
@@ -160,6 +171,11 @@ def main():
     print("\n4. QUALITY ASSERTION TESTING")
     print("-"*80)
     
+
+# %%
+# Test Prompt Quality
+# -------------------
+
     def test_prompt_quality(prompt_template: PromptTemplate, test_case: dict) -> dict:
         """Test prompt outputs meet quality criteria."""
         prompt = prompt_template.format(**test_case)
@@ -269,6 +285,11 @@ def main():
     print("\n7. TRACKING PROMPT METRICS")
     print("-"*80)
     
+
+# %%
+# Evaluate Prompt Version
+# -----------------------
+
     def evaluate_prompt_version(
         template: PromptTemplate,
         test_dataset: List[dict]
