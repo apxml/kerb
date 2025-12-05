@@ -1,4 +1,6 @@
-"""Output Validation and Schema Validation
+"""
+Output Validation and Schema Validation
+=======================================
 
 This example demonstrates comprehensive validation of LLM outputs against
 JSON schemas, custom validators, and output type validation.
@@ -22,6 +24,10 @@ def simulate_llm_validation_responses() -> dict:
     """Generate LLM responses for validation examples."""
     return {
         "user_data": """{
+
+# %%
+# Setup and Imports
+# -----------------
     "username": "alice123",
     "email": "alice@example.com",
     "age": 28,
@@ -90,6 +96,11 @@ def create_user_schema() -> dict:
         "additionalProperties": False
     }
 
+
+
+# %%
+# Create Api Response Schema
+# --------------------------
 
 def create_api_response_schema() -> dict:
     """Create JSON Schema for API response validation."""
@@ -220,6 +231,11 @@ def main():
     print("\n\nExample 5: Custom Validation Function")
     print("-"*80)
     
+
+# %%
+# Validate Api Key
+# ----------------
+
     def validate_api_key(data: dict) -> bool:
         """Custom validator for API configuration."""
         if "api_key" not in data:

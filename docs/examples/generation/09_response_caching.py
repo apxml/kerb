@@ -1,4 +1,6 @@
-"""Response Caching Example
+"""
+Response Caching Example
+========================
 
 This example demonstrates intelligent caching for LLM responses.
 
@@ -61,6 +63,10 @@ def example_basic_caching():
 
 def example_cache_with_generation():
     """Use caching with generate() function."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("EXAMPLE 2: Automatic Caching with generate()")
     print("="*80)
@@ -89,6 +95,11 @@ def example_cache_with_generation():
         print(f"    Cache: {cache_status}, Time: {elapsed:.3f}s")
         print(f"    Response: {response.content[:50]}...\n")
 
+
+
+# %%
+# Example Cache Ttl
+# -----------------
 
 def example_cache_ttl():
     """Demonstrate cache expiration (TTL)."""
@@ -167,6 +178,11 @@ def example_cache_size_limit():
         print(f"  '{prompt}': {status}")
 
 
+
+# %%
+# Example Cost Savings
+# --------------------
+
 def example_cost_savings():
     """Calculate cost savings from caching."""
     print("\n" + "="*80)
@@ -233,6 +249,11 @@ def example_conditional_caching():
     print("EXAMPLE 6: Conditional Caching")
     print("="*80)
     
+
+# %%
+# Should Cache
+# ------------
+
     def should_cache(prompt: str, config: GenerationConfig) -> bool:
         """Determine if response should be cached."""
         # Don't cache if temperature is high (non-deterministic)

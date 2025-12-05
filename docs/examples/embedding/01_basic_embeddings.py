@@ -1,4 +1,8 @@
-"""Basic Embedding Example
+"""
+Basic Embedding Example
+=======================
+
+=======================
 
 This example demonstrates how to generate embeddings for text using different models.
 

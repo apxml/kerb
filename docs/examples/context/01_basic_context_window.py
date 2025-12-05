@@ -1,4 +1,8 @@
-"""Basic Context Window Example
+"""
+Basic Context Window Example
+============================
+
+============================
 
 This example demonstrates fundamental context window management for LLM applications.
 

@@ -1,4 +1,6 @@
-"""Robust Parsing with Error Handling
+"""
+Robust Parsing with Error Handling
+==================================
 
 This example demonstrates handling malformed LLM outputs with automatic
 fixing, retry mechanisms, and progressive error recovery.
@@ -23,6 +25,10 @@ def simulate_malformed_llm_outputs() -> dict:
     """Generate various malformed LLM outputs for testing."""
     return {
         "missing_quotes": """{
+
+# %%
+# Setup and Imports
+# -----------------
     name: Alice,
     age: 30,
     city: New York
@@ -224,6 +230,11 @@ Hope this helps!"""
     print("\n\nExample 10: Practical Resilient Parsing Workflow")
     print("-"*80)
     
+
+# %%
+# Resilient Parse
+# ---------------
+
     def resilient_parse(text: str) -> dict:
         """Attempt to parse with progressive fallbacks."""
         

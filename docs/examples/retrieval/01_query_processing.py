@@ -1,4 +1,6 @@
-"""Query Processing Example
+"""
+Query Processing Example
+========================
 
 This example demonstrates query processing techniques for RAG systems.
 
@@ -149,6 +151,10 @@ def main():
     
     def optimize_query_for_rag(user_query: str) -> dict:
         """Optimize a query for RAG retrieval."""
+
+# %%
+# Setup and Imports
+# -----------------
         return {
             'original': user_query,
             'primary': rewrite_query(user_query, style="clear"),

@@ -1,4 +1,6 @@
-"""RAG-Specific Chunking Example
+"""
+RAG-Specific Chunking Example
+=============================
 
 This example demonstrates chunking strategies optimized for RAG systems.
 
@@ -26,6 +28,10 @@ def demonstrate_sentence_window():
     
     # Knowledge base article
     article = """
+
+# %%
+# Setup and Imports
+# -----------------
 Vector databases are essential for RAG systems. They store document embeddings and enable fast similarity search. Popular options include Pinecone, Weaviate, Qdrant, and Chroma. Each database has different trade-offs in terms of performance, scalability, and features. Pinecone offers a fully managed solution with excellent performance. Weaviate provides both cloud and self-hosted options. Qdrant emphasizes speed and efficiency. Chroma is designed for local development and prototyping. Choosing the right database depends on your specific requirements. Consider factors like query latency, storage capacity, and deployment preferences. Integration with your existing stack is also important. Most databases offer Python clients and REST APIs.
     """.strip()
     
@@ -70,6 +76,11 @@ Embedding models convert text into vector representations. These vectors capture
         print(f"\nChunk {i}:")
         print(f"  {chunk}")
 
+
+
+# %%
+# Demonstrate Overlap Benefits
+# ----------------------------
 
 def demonstrate_overlap_benefits():
     """Show why overlap is critical for RAG systems."""
@@ -163,6 +174,11 @@ def demonstrate_rag_pipeline():
     print("  3. Retrieved using semantic similarity search")
     print("  4. Passed as context to the LLM")
 
+
+
+# %%
+# Demonstrate Optimal Configurations
+# ----------------------------------
 
 def demonstrate_optimal_configurations():
     """Show recommended configurations for different RAG scenarios."""

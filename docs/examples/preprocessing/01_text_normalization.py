@@ -1,4 +1,6 @@
-"""Text Normalization for Training Data
+"""
+Text Normalization for Training Data
+====================================
 
 This example demonstrates text normalization techniques essential for preparing
 clean, consistent training data for LLMs.
@@ -40,6 +42,10 @@ def main():
     print("-"*80)
     
     raw_web_content = """
+
+# %%
+# Setup and Imports
+# -----------------
     Check out our site: https://example.com   
     Contact us at: support@example.com
     
@@ -187,6 +193,11 @@ def main():
     print("-"*80)
     
     code_snippet = """
+
+# %%
+#   Hello
+# -------
+
     def   hello():
         print("world")
         

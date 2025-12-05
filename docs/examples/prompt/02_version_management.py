@@ -1,4 +1,6 @@
-"""Prompt versioning and A/B testing for LLM applications.
+"""
+Prompt versioning and A/B testing for LLM applications.
+=======================================================
 
 This example demonstrates:
 - Creating and managing prompt versions
@@ -28,6 +30,10 @@ def create_prompt_versions():
         name="code_reviewer",
         version="1.0",
         template="""Review this code and provide feedback:
+
+# %%
+# Setup and Imports
+# -----------------
 
 {{code}}
 
@@ -96,6 +102,11 @@ def retrieve_and_render_versions():
     print(rendered)
 
 
+
+# %%
+# List Available Versions
+# -----------------------
+
 def list_available_versions():
     """List all versions of a prompt."""
     print("\n" + "=" * 80)
@@ -130,6 +141,11 @@ def compare_prompt_versions():
         if version_info.get('metadata'):
             print(f"  Metadata: {version_info['metadata']}")
 
+
+
+# %%
+# Ab Testing Selection
+# --------------------
 
 def ab_testing_selection():
     """Select versions for A/B testing."""
@@ -198,6 +214,11 @@ Provide: sentiment (positive/negative/neutral) and confidence score.""",
               f"(accuracy: {selected.metadata['accuracy']}, " +
               f"latency: {selected.metadata['latency_ms']}ms)")
 
+
+
+# %%
+# Version Rollout Strategy
+# ------------------------
 
 def version_rollout_strategy():
     """Demonstrate gradual version rollout."""

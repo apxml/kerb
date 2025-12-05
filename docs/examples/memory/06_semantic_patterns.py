@@ -1,4 +1,6 @@
-"""Semantic Memory Patterns Example
+"""
+Semantic Memory Patterns Example
+================================
 
 This example demonstrates advanced memory patterns including semantic grouping
 and episodic memory for better context organization in LLM applications.
@@ -198,6 +200,10 @@ def main():
     
     def build_smart_context(query: str, buffer: ConversationBuffer, max_messages: int = 5):
         """Build smart context using multiple memory patterns."""
+
+# %%
+# Setup and Imports
+# -----------------
         
         # 1. Get relevant memories
         relevant = get_relevant_memory(query, buffer, top_k=3)
@@ -232,6 +238,11 @@ def main():
     print("-"*80)
     
     # Score messages by importance
+
+# %%
+# Score Message
+# -------------
+
     def score_message(msg: Message) -> int:
         """Simple importance scoring."""
         score = 0

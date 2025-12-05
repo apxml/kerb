@@ -1,4 +1,6 @@
-"""Batch Generation Example
+"""
+Batch Generation Example
+========================
 
 This example demonstrates processing multiple prompts concurrently.
 
@@ -50,6 +52,10 @@ def example_basic_batch():
 
 def example_batch_with_progress():
     """Batch generation with progress tracking."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("EXAMPLE 2: Batch with Progress Tracking")
     print("="*80)
@@ -85,6 +91,11 @@ def example_batch_with_progress():
     print(f"Total tokens used: {total_tokens}")
     print(f"Total cost: ${total_cost:.6f}")
 
+
+
+# %%
+# Example Batch Vs Sequential
+# ---------------------------
 
 def example_batch_vs_sequential():
     """Compare batch processing to sequential processing."""
@@ -173,6 +184,11 @@ def example_batch_with_config():
         print(f"  ({response.usage.total_tokens} tokens)\n")
 
 
+
+# %%
+# Example Batch Error Handling
+# ----------------------------
+
 def example_batch_error_handling():
     """Handle errors gracefully in batch processing."""
     print("\n" + "="*80)
@@ -247,6 +263,11 @@ def example_batch_different_lengths():
         print(f"   Response ({len(response.content)} chars, {response.usage.total_tokens} tokens)")
         print(f"   Latency: {response.latency:.3f}s\n")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all batch generation examples."""

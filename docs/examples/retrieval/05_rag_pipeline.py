@@ -1,4 +1,6 @@
-"""Complete RAG Pipeline Example
+"""
+Complete RAG Pipeline Example
+=============================
 
 This example demonstrates a production-ready RAG pipeline.
 
@@ -33,6 +35,10 @@ class RAGPipeline:
     
     def __init__(self, documents, max_context_tokens=2000):
         """Initialize the RAG pipeline.
+
+# %%
+# Setup and Imports
+# -----------------
         
         Args:
             documents: List of Document objects
@@ -248,6 +254,11 @@ def create_knowledge_base():
         ),
     ]
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run complete RAG pipeline examples."""

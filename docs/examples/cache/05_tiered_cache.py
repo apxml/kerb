@@ -1,4 +1,6 @@
-"""Tiered Cache Example
+"""
+Tiered Cache Example
+====================
 
 This example demonstrates two-tier caching (memory + disk).
 
@@ -197,8 +199,17 @@ def main():
     # Simulate API requests
     def mock_api_call(endpoint):
         """Simulate API call."""
+
+# %%
+# Setup and Imports
+# -----------------
         return {"endpoint": endpoint, "data": "response", "timestamp": time.time()}
     
+
+# %%
+# Get With Cache
+# --------------
+
     def get_with_cache(endpoint):
         """Get API response with caching."""
         cached = api_cache.get(f"api:{endpoint}")

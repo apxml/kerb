@@ -1,4 +1,6 @@
-"""Text Truncation Example
+"""
+Text Truncation Example
+=======================
 
 This example demonstrates how to truncate text to fit within token limits,
 which is essential for LLM applications that need to stay within context
@@ -122,6 +124,10 @@ def main():
     print("-"*80)
     
     code_snippet = """def calculate_metrics(data):
+
+# %%
+# Setup and Imports
+# -----------------
     # Calculate various metrics
     total = sum(data)
     count = len(data)

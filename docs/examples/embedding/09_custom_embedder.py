@@ -1,4 +1,6 @@
-"""Custom Embedder and Provider Classes Example
+"""
+Custom Embedder and Provider Classes Example
+============================================
 
 This example demonstrates using provider classes for more control over embeddings.
 
@@ -100,10 +102,24 @@ def main():
     
     class CustomEmbeddingPipeline:
         """Custom pipeline with preprocessing and multiple embedders."""
+
+# %%
+# Setup and Imports
+# -----------------
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self):
             self.embedder = LocalEmbedder(dimensions=384)
         
+
+# %%
+# Preprocess
+# ----------
+
         def preprocess(self, text):
             """Preprocess text before embedding."""
             # Convert to lowercase
@@ -117,6 +133,11 @@ def main():
             processed = self.preprocess(text)
             return self.embedder.embed(processed)
         
+
+# %%
+# Embed Multi Representation
+# --------------------------
+
         def embed_multi_representation(self, text):
             """Create multiple representations and combine."""
             # Original
@@ -171,10 +192,20 @@ def main():
     class CachedEmbedder:
         """Embedder with built-in caching."""
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self, dimensions=384):
             self.embedder = LocalEmbedder(dimensions=dimensions)
             self.cache = {}
         
+
+# %%
+# Embed
+# -----
+
         def embed(self, text):
             """Embed with caching."""
             if text in self.cache:
@@ -190,6 +221,11 @@ def main():
             """Clear the cache."""
             self.cache.clear()
         
+
+# %%
+# Cache Size
+# ----------
+
         def cache_size(self):
             """Get cache size."""
             return len(self.cache)
@@ -217,6 +253,11 @@ def main():
     class DomainSpecificEmbedder:
         """Embedder optimized for specific domain."""
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self, domain="general"):
             self.domain = domain
             self.embedder = LocalEmbedder(dimensions=384)
@@ -229,6 +270,11 @@ def main():
                 "general": ""
             }
         
+
+# %%
+# Embed
+# -----
+
         def embed(self, text):
             """Embed with domain context."""
             prefix = self.prefixes.get(self.domain, "")

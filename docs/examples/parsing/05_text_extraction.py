@@ -1,4 +1,6 @@
-"""Text and Markdown Extraction
+"""
+Text and Markdown Extraction
+============================
 
 This example demonstrates extracting structured content from LLM text outputs,
 including XML tags, markdown sections, lists, and tables.
@@ -23,6 +25,10 @@ def simulate_llm_text_response(response_type: str) -> str:
     
     if response_type == "xml_tags":
         return """Let me analyze the document:
+
+# %%
+# Setup and Imports
+# -----------------
 
 <summary>
 This document discusses the implementation of a new authentication system

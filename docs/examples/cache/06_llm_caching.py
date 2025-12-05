@@ -1,4 +1,6 @@
-"""LLM Prompt Caching Example
+"""
+LLM Prompt Caching Example
+==========================
 
 This example demonstrates caching LLM prompts and responses.
 
@@ -21,6 +23,10 @@ def mock_llm_api_call(prompt, model="gpt-4", temperature=0.7, max_tokens=100):
     
     In production, this would be a real API call to OpenAI, Anthropic, etc.
     """
+
+# %%
+# Setup and Imports
+# -----------------
     # Simulate cost (in USD)
     cost = 0.01 if model == "gpt-4" else 0.001
     
@@ -42,6 +48,11 @@ def mock_llm_api_call(prompt, model="gpt-4", temperature=0.7, max_tokens=100):
         "cost": cost
     }
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run LLM prompt caching example."""
@@ -157,11 +168,21 @@ def main():
     class CachedLLMClient:
         """LLM client with automatic caching."""
         
+
+# %%
+#   Init  
+# --------
+
         def __init__(self):
             self.cache = create_memory_cache()
             self.api_calls = 0
             self.cache_hits = 0
         
+
+# %%
+# Generate
+# --------
+
         def generate(self, prompt, model="gpt-4", temperature=0.7, max_tokens=100):
             """Generate response with automatic caching."""
             # Generate cache key

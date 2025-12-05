@@ -1,4 +1,8 @@
-"""LRU Eviction Example
+"""
+LRU Eviction Example
+====================
+
+====================
 
 This example demonstrates Least Recently Used (LRU) cache eviction.
 

@@ -1,4 +1,6 @@
-"""A/B Testing for LLM Systems.
+"""
+A/B Testing for LLM Systems.
+============================
 
 This example demonstrates how to perform statistical A/B testing to compare
 different model variants, prompts, or configurations. Common use cases:
@@ -48,6 +50,10 @@ def test_prompt_variations():
     # Evaluation function: longer, more detailed answers score higher
     def evaluate_detail_level(output: str) -> float:
         """Score based on answer length and detail."""
+
+# %%
+# Setup and Imports
+# -----------------
         word_count = len(output.split())
         # Ideal answer: 8-15 words
         if word_count < 8:
@@ -78,6 +84,11 @@ def test_prompt_variations():
     print(f"\nDifference: {results['difference']:.3f}")
     print(f"Statistical Significance: {results.get('significant', 'N/A')}")
 
+
+
+# %%
+# Compare Model Versions
+# ----------------------
 
 def compare_model_versions():
     """A/B test two different model versions."""
@@ -160,6 +171,11 @@ def compare_model_versions():
         print("\nRecommendation: Keep Model v1 (v2 doesn't show improvement)")
 
 
+
+# %%
+# Test Response Length
+# --------------------
+
 def test_response_length():
     """A/B test different response length configurations."""
     print("\n" + "=" * 80)
@@ -220,6 +236,11 @@ def test_response_length():
     print(f"Long responses: Mean = {results['variant_b']['mean']:.3f}")
     print(f"\nConclusion: {results['winner']} configuration provides better balance")
 
+
+
+# %%
+# Multi Variant Comparison
+# ------------------------
 
 def multi_variant_comparison():
     """Compare multiple variants simultaneously."""
@@ -289,6 +310,11 @@ def multi_variant_comparison():
     print(f"\nBest Variant: {sorted_variants[0][0]}")
     print(f"Rankings: {[v for v, _ in sorted_variants]}")
 
+
+
+# %%
+# Statistical Significance Analysis
+# ---------------------------------
 
 def statistical_significance_analysis():
     """Demonstrate statistical analysis of A/B test results."""

@@ -1,4 +1,6 @@
-"""Conversational Context Management Example
+"""
+Conversational Context Management Example
+=========================================
 
 This example demonstrates managing context in multi-turn conversations
 with LLMs while respecting token limits.
@@ -40,6 +42,10 @@ def main():
     
     def add_message(role: str, content: str, priority: float = 1.0):
         """Add message to conversation."""
+
+# %%
+# Setup and Imports
+# -----------------
         msg = ContextItem(
             content=f"{role}: {content}",
             token_count=count_tokens(f"{role}: {content}"),
@@ -197,6 +203,11 @@ def main():
     print("-"*80)
     print("Use case: Different strategies for managing conversation history")
     
+
+# %%
+# Demonstrate Strategy
+# --------------------
+
     def demonstrate_strategy(strategy_name: str, description: str, keep_system: bool = True):
         """Demonstrate a rotation strategy."""
         print(f"\n{strategy_name}:")

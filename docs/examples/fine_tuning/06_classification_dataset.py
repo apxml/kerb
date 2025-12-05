@@ -1,4 +1,6 @@
-"""Classification Dataset Example
+"""
+Classification Dataset Example
+==============================
 
 This example demonstrates how to prepare datasets for classification fine-tuning.
 
@@ -95,6 +97,10 @@ def create_sentiment_classification():
 
 def create_intent_classification():
     """Create intent detection classification dataset."""
+
+# %%
+# Setup and Imports
+# -----------------
     examples = []
     
     # Booking intents
@@ -169,6 +175,11 @@ def create_intent_classification():
         metadata={"classification_type": "intent", "num_classes": 4}
     )
 
+
+
+# %%
+# Create Topic Classification
+# ---------------------------
 
 def create_topic_classification():
     """Create topic categorization dataset."""
@@ -258,6 +269,11 @@ def create_binary_classification():
         metadata={"classification_type": "spam_detection", "num_classes": 2}
     )
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run classification dataset example."""

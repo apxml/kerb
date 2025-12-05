@@ -1,4 +1,6 @@
-"""Result Formatting Example
+"""
+Result Formatting Example
+=========================
 
 This example demonstrates formatting search results for LLM consumption.
 
@@ -70,6 +72,10 @@ def create_sample_documents():
 
 def main():
     """Run result formatting examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("RESULT FORMATTING FOR LLM CONSUMPTION")
@@ -119,6 +125,11 @@ def main():
     print("\n\n3. CUSTOM FORMATTING TEMPLATES")
     print("-"*80)
     
+
+# %%
+# Format With Citations
+# ---------------------
+
     def format_with_citations(results):
         """Format results with citation numbers."""
         output = []
@@ -165,6 +176,11 @@ def main():
     print("\n\n5. STRUCTURED FORMAT WITH METADATA")
     print("-"*80)
     
+
+# %%
+# Structured Format
+# -----------------
+
     def structured_format(results):
         """Format with structured metadata."""
         output = ["Retrieved Documents:\n"]
@@ -213,6 +229,11 @@ def main():
     print("\n\n7. JSON-LIKE STRUCTURED FORMAT")
     print("-"*80)
     
+
+# %%
+# Json Like Format
+# ----------------
+
     def json_like_format(results):
         """Format results in a JSON-like structure."""
         output = ["Documents: ["]
@@ -314,6 +335,11 @@ Comparison:"""
     print("\n\n10. PRODUCTION FORMATTING PIPELINE")
     print("-"*80)
     
+
+# %%
+# Format For Llm
+# --------------
+
     def format_for_llm(results, query_text, max_tokens=2000, include_citations=True):
         """Production-ready formatting for LLM context."""
         

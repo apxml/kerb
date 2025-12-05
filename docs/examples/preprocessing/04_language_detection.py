@@ -1,4 +1,8 @@
-"""Language Detection for Multilingual Datasets
+"""
+Language Detection for Multilingual Datasets
+============================================
+
+============================================
 
 This example demonstrates language detection and filtering for building
 multilingual LLM datasets or filtering to specific languages.

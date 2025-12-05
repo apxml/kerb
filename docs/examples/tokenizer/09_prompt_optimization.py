@@ -1,4 +1,6 @@
-"""Prompt Optimization Example
+"""
+Prompt Optimization Example
+===========================
 
 This example demonstrates how to optimize prompts for token efficiency,
 which is essential for LLM applications to reduce costs, improve performance,
@@ -28,6 +30,10 @@ def main():
     print("-"*80)
     
     verbose_prompt = """
+
+# %%
+# Setup and Imports
+# -----------------
     I would like you to please analyze the following text very carefully and 
     thoroughly, and then provide me with a comprehensive and detailed summary 
     that captures all of the main points and key ideas. Please make sure to 

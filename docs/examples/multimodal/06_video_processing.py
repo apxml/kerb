@@ -1,4 +1,6 @@
-"""Video Processing Example
+"""
+Video Processing Example
+========================
 
 This example demonstrates video frame extraction and processing.
 
@@ -25,6 +27,10 @@ def create_sample_video():
     Note: This creates a basic video for demonstration.
     In production, you would work with real video files.
     """
+
+# %%
+# Setup and Imports
+# -----------------
     try:
         from PIL import Image, ImageDraw
         import numpy as np
@@ -63,6 +69,11 @@ def create_sample_video():
         print("PIL not available. Skipping video creation.")
         return None
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run video processing examples."""

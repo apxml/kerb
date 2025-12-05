@@ -1,4 +1,6 @@
-"""Multi-Session Memory Management Example
+"""
+Multi-Session Memory Management Example
+=======================================
 
 This example demonstrates how to manage memory across multiple conversation sessions,
 maintain user context over time, and handle session transitions in LLM applications.
@@ -29,6 +31,10 @@ class SessionManager:
     
     def create_session(self, user_id: str, session_id: str = None) -> ConversationBuffer:
         """Create a new session for a user."""
+
+# %%
+# Setup and Imports
+# -----------------
         if session_id is None:
             session_id = f"{user_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         
@@ -44,6 +50,11 @@ class SessionManager:
         self.active_sessions[session_id] = buffer
         return buffer
     
+
+# %%
+# Get Session
+# -----------
+
     def get_session(self, session_id: str) -> ConversationBuffer:
         """Get an active or stored session."""
         if session_id in self.active_sessions:
@@ -65,6 +76,11 @@ class SessionManager:
             session_path = self.storage_dir / f"{session_id}.json"
             buffer.save(str(session_path))
     
+
+# %%
+# Get User Sessions
+# -----------------
+
     def get_user_sessions(self, user_id: str):
         """Get all sessions for a user."""
         sessions = []
@@ -232,6 +248,11 @@ def main():
             return age.days > days
         
         @staticmethod
+
+# %%
+# Archive Old Sessions
+# --------------------
+
         def archive_old_sessions(session_mgr: SessionManager, user_id: str, days: int = 30):
             """Archive sessions older than specified days."""
             archived = []

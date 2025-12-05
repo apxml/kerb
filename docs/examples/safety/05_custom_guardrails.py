@@ -1,4 +1,6 @@
-"""Custom Guardrails Example
+"""
+Custom Guardrails Example
+=========================
 
 This example demonstrates how to create and apply custom safety guardrails
 and content policies for LLM applications with specific requirements.
@@ -40,6 +42,15 @@ def create_length_guardrail(min_length: int, max_length: int):
 
 def create_topic_guardrail(allowed_topics: list, blocked_topics: list):
     """Create a guardrail for topic restrictions."""
+
+# %%
+# Setup and Imports
+# -----------------
+
+# %%
+# Check Topics
+# ------------
+
     def check_topics(text: str) -> SafetyResult:
         text_lower = text.lower()
         
@@ -71,6 +82,11 @@ def create_topic_guardrail(allowed_topics: list, blocked_topics: list):
     )
 
 
+
+# %%
+# Create Format Guardrail
+# -----------------------
+
 def create_format_guardrail(required_format: str):
     """Create a guardrail for output format."""
     def check_format(text: str) -> SafetyResult:
@@ -90,6 +106,11 @@ def create_format_guardrail(required_format: str):
 
 def create_no_pii_guardrail():
     """Create a guardrail that blocks PII."""
+
+# %%
+# Check No Pii
+# ------------
+
     def check_no_pii(text: str) -> SafetyResult:
         pii_matches = detect_pii(text)
         safe = len(pii_matches) == 0
@@ -103,6 +124,11 @@ def create_no_pii_guardrail():
         description="Ensures no PII is present in content"
     )
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run custom guardrails example."""
@@ -242,6 +268,11 @@ def main():
     def create_medical_guardrails():
         """Create guardrails for medical chatbot."""
         
+
+# %%
+# No Diagnosis
+# ------------
+
         def no_diagnosis(text: str) -> SafetyResult:
             diagnosis_terms = ["you have", "you are diagnosed", "you suffer from"]
             text_lower = text.lower()
@@ -250,6 +281,11 @@ def main():
             reason = "Contains medical diagnosis language" if has_diagnosis else None
             return SafetyResult(safe=safe, score=0.0 if has_diagnosis else 1.0, reason=reason)
         
+
+# %%
+# Requires Disclaimer
+# -------------------
+
         def requires_disclaimer(text: str) -> SafetyResult:
             has_disclaimer = "consult" in text.lower() and "doctor" in text.lower()
             safe = has_disclaimer

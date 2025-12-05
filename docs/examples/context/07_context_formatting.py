@@ -1,4 +1,6 @@
-"""Context Formatting Example
+"""
+Context Formatting Example
+==========================
 
 This example demonstrates formatting context for LLM consumption,
 including conversion to chat messages and various output formats.
@@ -187,6 +189,10 @@ def main():
     
     def format_for_instruction_model(window: ContextWindow) -> str:
         """Format context for instruction-following models."""
+
+# %%
+# Setup and Imports
+# -----------------
         parts = []
         
         # Add instruction header
@@ -203,6 +209,11 @@ def main():
         
         return "\n".join(parts)
     
+
+# %%
+# Format For Chat Model
+# ---------------------
+
     def format_for_chat_model(window: ContextWindow) -> list:
         """Format context for chat-based models."""
         messages = []
@@ -316,6 +327,11 @@ def main():
     print(format_for_code_review(review_window))
     
     # Documentation format
+
+# %%
+# Format For Documentation
+# ------------------------
+
     def format_for_documentation(window: ContextWindow) -> str:
         """Format context for documentation generation."""
         output = []

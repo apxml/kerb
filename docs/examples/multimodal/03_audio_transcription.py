@@ -1,4 +1,6 @@
-"""Audio Transcription Example
+"""
+Audio Transcription Example
+===========================
 
 This example demonstrates audio transcription and processing.
 
@@ -28,6 +30,10 @@ def create_sample_audio():
     Note: This creates a simple tone for testing. In production,
     you would work with real audio files (recordings, podcasts, etc.)
     """
+
+# %%
+# Setup and Imports
+# -----------------
     try:
         # Try to create a simple tone using pydub
         from pydub.generators import Sine
@@ -68,6 +74,11 @@ def create_sample_audio():
     
     return "sample_audio.wav"
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run audio transcription examples."""

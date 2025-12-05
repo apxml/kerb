@@ -1,4 +1,6 @@
-"""Response Assertions Example
+"""
+Response Assertions Example
+===========================
 
 This example demonstrates how to use assertion helpers to validate LLM outputs
 in your tests.
@@ -206,6 +208,10 @@ def main():
     
     code_output = '''def fibonacci(n):
     """Calculate nth Fibonacci number."""
+
+# %%
+# Setup and Imports
+# -----------------
     if n <= 1:
         return n
     return fibonacci(n-1) + fibonacci(n-2)

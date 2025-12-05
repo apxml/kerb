@@ -1,4 +1,6 @@
-"""Batch Document Processing and Management
+"""
+Batch Document Processing and Management
+========================================
 
 This example demonstrates loading and processing multiple documents efficiently.
 
@@ -42,6 +44,10 @@ def create_document_collection(temp_dir: str):
     # Technical documents
     tech_docs = {
         "api_guide.txt": """API Documentation
+
+# %%
+# Setup and Imports
+# -----------------
         
 This guide covers our REST API endpoints.
 Authentication is required via API keys.

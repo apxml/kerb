@@ -1,4 +1,6 @@
-"""Code Chunking Example
+"""
+Code Chunking Example
+=====================
 
 This example demonstrates chunking code while respecting structure.
 
@@ -27,10 +29,19 @@ def demonstrate_basic_code_chunking():
     python_code = '''
 def calculate_similarity(vec1, vec2):
     """Calculate cosine similarity between two vectors."""
+
+# %%
+# Setup and Imports
+# -----------------
     dot_product = sum(a * b for a, b in zip(vec1, vec2))
     magnitude1 = sum(a * a for a in vec1) ** 0.5
     magnitude2 = sum(b * b for b in vec2) ** 0.5
     return dot_product / (magnitude1 * magnitude2)
+
+
+# %%
+# Embed Text
+# ----------
 
 def embed_text(text, model="text-embedding-ada-002"):
     """Embed text using OpenAI API."""
@@ -50,6 +61,11 @@ class VectorStore:
         self.vectors.append(vector)
         self.metadata.append(metadata or {})
     
+
+# %%
+# Search
+# ------
+
     def search(self, query_vector, top_k=5):
         """Search for similar vectors."""
         similarities = []
@@ -103,10 +119,20 @@ class Embedder:
 class Retriever:
     """Retrieves relevant documents."""
     
+
+# %%
+#   Init  
+# --------
+
     def __init__(self, vector_store, embedder):
         self.vector_store = vector_store
         self.embedder = embedder
     
+
+# %%
+# Retrieve
+# --------
+
     def retrieve(self, query, top_k=3):
         query_embedding = self.embedder.embed(query)
         results = self.vector_store.search(query_embedding, top_k)
@@ -129,6 +155,11 @@ class Retriever:
             print(f"  Ends: {lines[-1]}")
 
 
+
+# %%
+# Demonstrate Function Boundaries
+# -------------------------------
+
 def demonstrate_function_boundaries():
     """Show function boundary preservation."""
     print("\n" + "="*80)
@@ -143,6 +174,11 @@ async def fetch_embeddings(texts, model="all-MiniLM-L6-v2"):
         embedding = await get_embedding(text, model)
         embeddings.append(embedding)
     return embeddings
+
+
+# %%
+# Preprocess Text
+# ---------------
 
 def preprocess_text(text):
     """Clean and normalize text before embedding."""
@@ -179,6 +215,11 @@ def chunk_document(doc, chunk_size=500):
         if len(lines) > 1:
             print(f"  ... ({len(lines)} lines total)")
 
+
+
+# %%
+# Demonstrate Code Documentation
+# ------------------------------
 
 def demonstrate_code_documentation():
     """Show code chunking for documentation/search."""
@@ -237,6 +278,11 @@ def create_rag_pipeline(docs, chunk_size=500):
         print(f"  Preview: {lines[0]}")
 
 
+
+# %%
+# Demonstrate Mixed Content
+# -------------------------
+
 def demonstrate_mixed_content():
     """Show handling of mixed code and comments."""
     print("\n" + "="*80)
@@ -290,6 +336,11 @@ def initialize_system():
         if len(lines) > 3:
             print(f"  ... ({len(lines)} lines total)")
 
+
+
+# %%
+# Demonstrate Code Rag Pipeline
+# -----------------------------
 
 def demonstrate_code_rag_pipeline():
     """Simulate a code search RAG pipeline."""

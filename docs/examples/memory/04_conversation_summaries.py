@@ -1,4 +1,6 @@
-"""Conversation Summary Example
+"""
+Conversation Summary Example
+============================
 
 This example demonstrates how to create and manage conversation summaries
 for long-running conversations in LLM applications.
@@ -159,6 +161,10 @@ def main():
     
     def estimate_tokens(text: str) -> int:
         """Estimate token count."""
+
+# %%
+# Setup and Imports
+# -----------------
         return int(len(text.split()) / 0.75)
     
     # Full conversation tokens

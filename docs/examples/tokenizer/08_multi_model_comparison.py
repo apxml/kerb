@@ -1,4 +1,6 @@
-"""Multi-Model Comparison Example
+"""
+Multi-Model Comparison Example
+==============================
 
 This example demonstrates how to compare token usage across different models
 and tokenizers, which is essential for choosing the right model, understanding
@@ -109,6 +111,10 @@ def main():
     
     # Simulate choosing between models for a specific use case
     use_case_text = """
+
+# %%
+# Setup and Imports
+# -----------------
     Process this customer support ticket:
     
     Customer: Jane Smith

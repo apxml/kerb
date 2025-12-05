@@ -1,4 +1,6 @@
-"""Training Configuration Example
+"""
+Training Configuration Example
+==============================
 
 This example demonstrates how to create optimal training configurations.
 
@@ -51,6 +53,10 @@ def create_sample_dataset(size: int = 100):
 
 def main():
     """Run training configuration example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("TRAINING CONFIGURATION EXAMPLE")

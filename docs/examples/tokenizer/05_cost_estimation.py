@@ -1,4 +1,8 @@
-"""Cost Estimation Example
+"""
+Cost Estimation Example
+=======================
+
+=======================
 
 This example demonstrates how to estimate API costs based on token usage,
 which is critical for LLM applications to manage budgets, optimize spending,

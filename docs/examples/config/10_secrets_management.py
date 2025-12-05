@@ -1,4 +1,6 @@
-"""Secrets Management Example
+"""
+Secrets Management Example
+==========================
 
 This example demonstrates secure secrets management in ConfigManager.
 
@@ -54,6 +56,10 @@ def basic_secrets_usage():
 
 def custom_encryption_key():
     """Use a custom encryption key for secrets."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*60)
     print("Custom Encryption Key")
     print("="*60)
@@ -80,6 +86,11 @@ def custom_encryption_key():
     # Important: The same encryption key is needed to decrypt
     print("\n⚠️  Remember: You need the same encryption_key to decrypt later!")
 
+
+
+# %%
+# Custom Encryption Salt
+# ----------------------
 
 def custom_encryption_salt():
     """Use a custom salt for key derivation"""
@@ -163,6 +174,11 @@ def production_secret_workflow():
     print(f"\n✅ Stored {len(config.list_secret_keys())} secrets securely")
     
     # Step 4: Use secrets at runtime
+
+# %%
+# Make Api Call
+# -------------
+
     def make_api_call():
         api_key = config.get_secret("openai_api_key")
         # Use api_key for API calls
@@ -175,6 +191,11 @@ def production_secret_workflow():
     config.clear_secrets()
     print(f"   Remaining secrets: {config.list_secret_keys()}")
 
+
+
+# %%
+# Persistence Pattern
+# -------------------
 
 def persistence_pattern():
     """Pattern for persisting salt across application restarts."""
@@ -254,6 +275,11 @@ def security_best_practices():
     print("  • HashiCorp Vault: hvac.Client()")
     print("  • Environment Variables: os.environ.get()")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run all examples."""

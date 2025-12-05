@@ -1,4 +1,6 @@
-"""Async Agent Execution Example
+"""
+Async Agent Execution Example
+=============================
 
 This example demonstrates asynchronous agent execution patterns.
 
@@ -32,6 +34,10 @@ def mock_llm_slow(prompt: str) -> str:
 
 async def async_llm(prompt: str) -> str:
     """Async mock LLM."""
+
+# %%
+# Setup and Imports
+# -----------------
     await asyncio.sleep(0.5)  # Simulate async API call
     
     if "analyze" in prompt.lower():
@@ -219,6 +225,11 @@ async def main():
     print("5. ASYNC ERROR HANDLING")
     print("="*80)
     
+
+# %%
+# Error Llm
+# ---------
+
     def error_llm(prompt: str) -> str:
         """LLM that sometimes errors."""
         if "error" in prompt.lower():

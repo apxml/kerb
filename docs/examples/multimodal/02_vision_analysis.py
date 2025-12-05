@@ -1,4 +1,6 @@
-"""Vision Model Analysis Example
+"""
+Vision Model Analysis Example
+=============================
 
 This example demonstrates image analysis using vision models (GPT-4V, Claude, Gemini).
 
@@ -46,6 +48,10 @@ def create_sample_image():
 
 def main():
     """Run vision model analysis examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("VISION MODEL ANALYSIS EXAMPLE")

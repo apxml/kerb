@@ -1,4 +1,6 @@
-"""Filtering and Diversification Example
+"""
+Filtering and Diversification Example
+=====================================
 
 This example demonstrates result filtering and diversity optimization.
 
@@ -77,6 +79,10 @@ def create_sample_documents():
 
 def main():
     """Run filtering and diversification examples."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("FILTERING AND DIVERSIFICATION")
@@ -312,6 +318,11 @@ def main():
     print("\n9. PRODUCTION FILTERING PIPELINE")
     print("-"*80)
     
+
+# %%
+# Production Filter
+# -----------------
+
     def production_filter(results, context="general"):
         """Apply context-aware filtering."""
         

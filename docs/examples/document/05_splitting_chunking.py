@@ -1,4 +1,6 @@
-"""Document Splitting for Chunking and Embedding
+"""
+Document Splitting for Chunking and Embedding
+=============================================
 
 This example demonstrates text splitting strategies for LLM applications.
 
@@ -31,6 +33,10 @@ def create_sample_documents(temp_dir: str):
     
     # Short document
     short_doc = """Introduction to Machine Learning
+
+# %%
+# Setup and Imports
+# -----------------
 
 Machine learning is a subset of artificial intelligence. It enables systems to learn from data.
 

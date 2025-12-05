@@ -1,4 +1,6 @@
-"""Recursive Chunking Example
+"""
+Recursive Chunking Example
+==========================
 
 This example demonstrates semantic-aware text splitting using recursive chunkers.
 
@@ -25,6 +27,10 @@ def demonstrate_basic_recursive():
     
     # Multi-paragraph text
     text = """
+
+# %%
+# Setup and Imports
+# -----------------
 Retrieval-Augmented Generation (RAG) is a powerful technique for LLM applications. It combines the benefits of retrieval systems with generative models.
 
 The process works in several steps. First, documents are chunked and embedded. Then, relevant chunks are retrieved based on the query. Finally, the LLM generates a response using the retrieved context.
@@ -80,6 +86,11 @@ Evaluation is essential. Test your fine-tuned model on held-out data. Compare pe
     print("  4. ' ' (words)")
     print("  5. '' (characters)")
 
+
+
+# %%
+# Demonstrate Custom Separators
+# -----------------------------
 
 def demonstrate_custom_separators():
     """Show custom separator hierarchies for specific use cases."""
@@ -158,6 +169,11 @@ Assistant: Use overlap_chunker or sentence_window_chunker. Overlap of 10-20% hel
     for i, chunk in enumerate(chunks, 1):
         print(f"Chunk {i}:\n{chunk}\n")
 
+
+
+# %%
+# Demonstrate Vs Simple Chunking
+# ------------------------------
 
 def demonstrate_vs_simple_chunking():
     """Compare recursive vs simple chunking."""

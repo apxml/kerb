@@ -1,4 +1,6 @@
-"""Content Moderation Example
+"""
+Content Moderation Example
+==========================
 
 This example demonstrates how to use content moderation functions to detect
 and filter harmful content in LLM applications.
@@ -33,6 +35,10 @@ def simulate_llm_response(prompt: str) -> str:
 
 def main():
     """Run content moderation example."""
+
+# %%
+# Setup and Imports
+# -----------------
     
     print("="*80)
     print("CONTENT MODERATION EXAMPLE")

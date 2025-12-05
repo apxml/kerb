@@ -1,4 +1,6 @@
-"""Markdown Chunking Example
+"""
+Markdown Chunking Example
+=========================
 
 This example demonstrates chunking markdown documents by heading hierarchy.
 
@@ -87,6 +89,10 @@ Pass retrieved chunks as context to your LLM for response generation.
 
 def demonstrate_heading_hierarchy():
     """Show how heading hierarchy affects chunking."""
+
+# %%
+# Setup and Imports
+# -----------------
     print("\n" + "="*80)
     print("HEADING HIERARCHY CHUNKING")
     print("="*80)
@@ -134,6 +140,11 @@ Specific information about B1.
         print(f"  Level: {level}")
         print(f"  Content: {chunk}")
 
+
+
+# %%
+# Demonstrate Readme Chunking
+# ---------------------------
 
 def demonstrate_readme_chunking():
     """Show chunking a typical README file."""
@@ -272,6 +283,11 @@ Consider these factors:
             print(f"  Headings: {', '.join(headings)}")
         print(f"  Preview: {lines[0][:60]}...")
 
+
+
+# %%
+# Demonstrate Documentation Search
+# --------------------------------
 
 def demonstrate_documentation_search():
     """Simulate documentation search with markdown chunking."""
@@ -470,6 +486,11 @@ Choose between OpenAI or open-source models.
     for chunk in all_chunks:
         print(f"  Article {chunk['article_id']}, Chunk {chunk['chunk_id']}: {chunk['heading']} ({chunk['size']} chars)")
 
+
+
+# %%
+# Main
+# ----
 
 def main():
     """Run markdown chunking examples."""
