@@ -130,6 +130,11 @@ def _generate_anthropic(
         request_params["tools"] = config.tools
     if config.tool_choice:
         request_params["tool_choice"] = config.tool_choice
+    if config.extended_thinking is not None:
+        request_params["thinking"] = {
+            "type": "enabled" if config.extended_thinking else "disabled",
+            "budget_tokens": config.thinking_budget or 10000,
+        }
 
     # Make request
     response = client.messages.create(**request_params)

@@ -127,6 +127,8 @@ def _generate_openai(
         request_params["tools"] = config.tools
     if config.tool_choice:
         request_params["tool_choice"] = config.tool_choice
+    if config.reasoning_effort:
+        request_params["reasoning_effort"] = config.reasoning_effort
 
     # Make request
     response = client.chat.completions.create(**request_params)

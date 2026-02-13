@@ -131,10 +131,23 @@ def _generate_google(
 
     model = genai.GenerativeModel(**model_params)
 
+    # Build tools list if grounding is enabled
+    tools_list = None
+    if config.grounding or config.google_search:
+        tools_list = []
+        if config.grounding:
+            # Enable Google Search grounding
+            tools_list.append({"google_search": {}})
+        if config.google_search:
+            # Custom search configuration
+            tools_list.append({"google_search": config.google_search})
+
     # Make request
-    response = model.generate_content(
-        conversation_messages, generation_config=generation_config
-    )
+    request_kwargs = {"generation_config": generation_config}
+    if tools_list:
+        request_kwargs["tools"] = tools_list
+
+    response = model.generate_content(conversation_messages, **request_kwargs)
 
     # Parse response
     content = response.text if response.text else ""

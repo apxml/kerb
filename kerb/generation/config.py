@@ -25,6 +25,13 @@ class GenerationConfig:
     response_format: Optional[Dict[str, Any]] = None  # For JSON mode
     tools: Optional[List[Dict[str, Any]]] = None
     tool_choice: Optional[Union[str, Dict[str, Any]]] = None
+    
+    # Provider-specific parameters
+    reasoning_effort: Optional[str] = None  # OpenAI: "low", "medium", "high"
+    extended_thinking: Optional[bool] = None  # Anthropic: Enable extended thinking
+    thinking_budget: Optional[int] = None  # Anthropic: Thinking token budget
+    grounding: Optional[bool] = None  # Google: Enable grounding with Google Search
+    google_search: Optional[Dict[str, Any]] = None  # Google: Search configuration
 
 
 @dataclass
