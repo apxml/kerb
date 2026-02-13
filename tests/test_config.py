@@ -33,7 +33,6 @@ def test_provider_type_enum():
     assert ProviderType.OPENAI.value == "openai"
     assert ProviderType.ANTHROPIC.value == "anthropic"
     assert ProviderType.GOOGLE.value == "google"
-    assert ProviderType.COHERE.value == "cohere"
     assert ProviderType.AZURE_OPENAI.value == "azure_openai"
 
 
@@ -53,13 +52,13 @@ def test_config_source_enum():
 def test_model_config_creation():
     """Test ModelConfig creation."""
     config = ModelConfig(
-        name="gpt-4",
+        name="gpt-4o",
         provider=ProviderType.OPENAI,
         max_tokens=8000,
         temperature=0.7,
     )
 
-    assert config.name == "gpt-4"
+    assert config.name == "gpt-4o"
     assert config.provider == ProviderType.OPENAI
     assert config.max_tokens == 8000
     assert config.temperature == 0.7
@@ -68,21 +67,21 @@ def test_model_config_creation():
 def test_model_config_to_dict():
     """Test ModelConfig serialization."""
     config = ModelConfig(
-        name="gpt-4", provider=ProviderType.OPENAI, metadata={"cost_per_1k": 0.03}
+        name="gpt-4o", provider=ProviderType.OPENAI, metadata={"cost_per_1k": 0.03}
     )
 
     data = config.to_dict()
-    assert data["name"] == "gpt-4"
+    assert data["name"] == "gpt-4o"
     assert data["provider"] == "openai"
     assert data["metadata"]["cost_per_1k"] == 0.03
 
 
 def test_model_config_from_dict():
     """Test ModelConfig deserialization."""
-    data = {"name": "gpt-4", "provider": "openai", "max_tokens": 8000, "metadata": {}}
+    data = {"name": "gpt-4o", "provider": "openai", "max_tokens": 8000, "metadata": {}}
 
     config = ModelConfig.from_dict(data)
-    assert config.name == "gpt-4"
+    assert config.name == "gpt-4o"
     assert config.provider == ProviderType.OPENAI
     assert config.max_tokens == 8000
 
@@ -137,11 +136,11 @@ def test_app_config_creation():
     """Test AppConfig creation."""
     config = AppConfig(
         app_name="test_app",
-        default_model="gpt-4",
+        default_model="gpt-4o",
     )
 
     assert config.app_name == "test_app"
-    assert config.default_model == "gpt-4"
+    assert config.default_model == "gpt-4o"
 
 
 # ============================================================================
@@ -161,27 +160,27 @@ def test_config_manager_add_model():
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
     model = ModelConfig(
-        name="gpt-4",
+        name="gpt-4o",
         provider=ProviderType.OPENAI,
     )
 
     manager.add_model(model)
-    assert "gpt-4" in manager.list_models()
+    assert "gpt-4o" in manager.list_models()
 
-    retrieved = manager.get_model("gpt-4")
+    retrieved = manager.get_model("gpt-4o")
     assert retrieved is not None
-    assert retrieved.name == "gpt-4"
+    assert retrieved.name == "gpt-4o"
 
 
 def test_config_manager_remove_model():
     """Test removing model from ConfigManager."""
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model)
 
-    assert manager.remove_model("gpt-4")
-    assert "gpt-4" not in manager.list_models()
+    assert manager.remove_model("gpt-4o")
+    assert "gpt-4o" not in manager.list_models()
     assert not manager.remove_model("nonexistent")
 
 
@@ -189,14 +188,14 @@ def test_config_manager_default_model():
     """Test default model management."""
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model)
 
-    manager.set_default_model("gpt-4")
+    manager.set_default_model("gpt-4o")
     default = manager.get_default_model()
 
     assert default is not None
-    assert default.name == "gpt-4"
+    assert default.name == "gpt-4o"
 
 
 def test_config_manager_default_model_not_found():
@@ -283,19 +282,19 @@ def test_config_manager_switch_provider():
     manager.add_provider(ProviderConfig(provider=ProviderType.ANTHROPIC))
 
     # Add model with OpenAI
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model)
-    manager.set_default_model("gpt-4")
+    manager.set_default_model("gpt-4o")
 
     # Switch to Anthropic
     manager.switch_provider(
         ProviderType.OPENAI,
         ProviderType.ANTHROPIC,
-        model_mapping={"gpt-4": "claude-3-opus"},
+        model_mapping={"gpt-4o": "claude-3-5-sonnet-20241022"},
     )
 
     # Check model was updated
-    updated = manager.get_model("claude-3-opus")
+    updated = manager.get_model("claude-3-5-sonnet-20241022")
     assert updated is not None
     assert updated.provider == ProviderType.ANTHROPIC
 
@@ -305,9 +304,9 @@ def test_config_manager_validation():
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
     # Add model without provider
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model)
-    manager.set_default_model("gpt-4")
+    manager.set_default_model("gpt-4o")
 
     issues = manager.validate()
     assert len(issues) > 0
@@ -373,7 +372,7 @@ def test_config_manager_reset():
     """Test configuration reset."""
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model)
     assert len(manager.list_models()) > 0
 
@@ -386,17 +385,17 @@ def test_config_manager_rollback():
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
     # Initial state
-    model1 = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model1 = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model1)
 
     # Change state
-    model2 = ModelConfig(name="claude-3", provider=ProviderType.ANTHROPIC)
+    model2 = ModelConfig(name="claude-3-5-sonnet-20241022", provider=ProviderType.ANTHROPIC)
     manager.add_model(model2)
 
     # Rollback
     assert manager.rollback()
-    assert "claude-3" not in manager.list_models()
-    assert "gpt-4" in manager.list_models()
+    assert "claude-3-5-sonnet-20241022" not in manager.list_models()
+    assert "gpt-4o" in manager.list_models()
 
 
 def test_config_manager_merge():
@@ -405,11 +404,11 @@ def test_config_manager_merge():
     manager2 = ConfigManager(app_name="test2", auto_load_env=False)
 
     # Add model to manager1
-    model1 = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model1 = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager1.add_model(model1)
 
     # Add model to manager2
-    model2 = ModelConfig(name="claude-3", provider=ProviderType.ANTHROPIC)
+    model2 = ModelConfig(name="claude-3-5-sonnet-20241022", provider=ProviderType.ANTHROPIC)
     manager2.add_model(model2)
 
     # Merge
@@ -417,8 +416,8 @@ def test_config_manager_merge():
     manager1.merge_config(config2)
 
     # Check both models exist
-    assert "gpt-4" in manager1.list_models()
-    assert "claude-3" in manager1.list_models()
+    assert "gpt-4o" in manager1.list_models()
+    assert "claude-3-5-sonnet-20241022" in manager1.list_models()
 
 
 def test_config_manager_get_model_for_task():
@@ -426,7 +425,7 @@ def test_config_manager_get_model_for_task():
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
     model1 = ModelConfig(
-        name="gpt-4", provider=ProviderType.OPENAI, metadata={"recommended_for": "chat"}
+        name="gpt-4o", provider=ProviderType.OPENAI, metadata={"recommended_for": "chat"}
     )
     model2 = ModelConfig(
         name="text-embedding-ada-002",
@@ -436,12 +435,12 @@ def test_config_manager_get_model_for_task():
 
     manager.add_model(model1)
     manager.add_model(model2)
-    manager.set_default_model("gpt-4")
+    manager.set_default_model("gpt-4o")
 
     # Get model for specific task
     chat_model = manager.get_model_for_task("chat")
     assert chat_model is not None
-    assert chat_model.name == "gpt-4"
+    assert chat_model.name == "gpt-4o"
 
     embedding_model = manager.get_model_for_task("embedding")
     assert embedding_model is not None
@@ -450,24 +449,24 @@ def test_config_manager_get_model_for_task():
     # Get default for unknown task
     default = manager.get_model_for_task("unknown")
     assert default is not None
-    assert default.name == "gpt-4"
+    assert default.name == "gpt-4o"
 
 
 def test_config_manager_clone():
     """Test configuration manager cloning."""
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model)
 
     cloned = manager.clone()
     assert cloned.app_name == manager.app_name
-    assert "gpt-4" in cloned.list_models()
+    assert "gpt-4o" in cloned.list_models()
 
     # Verify independence
-    cloned.remove_model("gpt-4")
-    assert "gpt-4" not in cloned.list_models()
-    assert "gpt-4" in manager.list_models()
+    cloned.remove_model("gpt-4o")
+    assert "gpt-4o" not in cloned.list_models()
+    assert "gpt-4o" in manager.list_models()
 
 
 def test_config_manager_change_listeners():
@@ -481,7 +480,7 @@ def test_config_manager_change_listeners():
 
     manager.add_change_listener(listener)
 
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model)
 
     assert len(changes) > 0
@@ -497,7 +496,7 @@ def test_save_and_load_config():
     manager = ConfigManager(app_name="test", auto_load_env=False)
 
     # Add some configuration
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
     manager.add_model(model)
 
     provider = ProviderConfig(
@@ -520,7 +519,7 @@ def test_save_and_load_config():
             auto_load_env=False,
         )
 
-        assert "gpt-4" in manager2.list_models()
+        assert "gpt-4o" in manager2.list_models()
         assert ProviderType.OPENAI in manager2.list_providers()
     finally:
         Path(temp_path).unlink()
@@ -531,11 +530,11 @@ def test_load_config_from_file():
     with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".json") as f:
         config_data = {
             "app_name": "test",
-            "default_model": "gpt-4",
+            "default_model": "gpt-4o",
             "providers": {},
             "models": {
-                "gpt-4": {
-                    "name": "gpt-4",
+                "gpt-4o": {
+                    "name": "gpt-4o",
                     "provider": "openai",
                     "max_tokens": 8000,
                     "metadata": {},
@@ -549,7 +548,7 @@ def test_load_config_from_file():
     try:
         config = load_config_from_file(temp_path)
         assert config.app_name == "test"
-        assert "gpt-4" in config.models
+        assert "gpt-4o" in config.models
     finally:
         Path(temp_path).unlink()
 
@@ -560,8 +559,8 @@ def test_save_config_to_file():
         app_name="test",
     )
 
-    model = ModelConfig(name="gpt-4", provider=ProviderType.OPENAI)
-    config.models["gpt-4"] = model
+    model = ModelConfig(name="gpt-4o", provider=ProviderType.OPENAI)
+    config.models["gpt-4o"] = model
 
     with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".json") as f:
         temp_path = f.name
@@ -577,7 +576,7 @@ def test_save_config_to_file():
             data = json.load(f)
 
         assert data["app_name"] == "test"
-        assert "gpt-4" in data["models"]
+        assert "gpt-4o" in data["models"]
     finally:
         Path(temp_path).unlink()
 
@@ -600,12 +599,12 @@ def test_create_config_manager():
 def test_create_model_config():
     """Test model config factory function."""
     config = create_model_config(
-        name="gpt-4",
+        name="gpt-4o",
         provider="openai",
         max_tokens=8000,
     )
 
-    assert config.name == "gpt-4"
+    assert config.name == "gpt-4o"
     assert config.provider == ProviderType.OPENAI
     assert config.max_tokens == 8000
 
@@ -644,7 +643,7 @@ def test_get_default_openai_config():
 
     assert config.provider == ProviderType.OPENAI
     assert config.api_key_env_var == "OPENAI_API_KEY"
-    assert "gpt-4" in config.models
+    assert "gpt-4o" in config.models
 
 
 def test_get_default_anthropic_config():
@@ -722,7 +721,7 @@ def test_full_configuration_workflow():
 
     # Add models
     gpt4 = create_model_config(
-        name="gpt-4",
+        name="gpt-4o",
         provider="openai",
         max_tokens=8000,
         temperature=0.7,
@@ -730,7 +729,7 @@ def test_full_configuration_workflow():
     manager.add_model(gpt4)
 
     claude = create_model_config(
-        name="claude-3-opus",
+        name="claude-3-5-sonnet-20241022",
         provider="anthropic",
         max_tokens=4000,
         temperature=0.8,
@@ -738,7 +737,7 @@ def test_full_configuration_workflow():
     manager.add_model(claude)
 
     # Set default
-    manager.set_default_model("gpt-4")
+    manager.set_default_model("gpt-4o")
 
     # Validate - check issues if validation fails
     issues = manager.validate()
@@ -749,7 +748,7 @@ def test_full_configuration_workflow():
     # Test retrieval
     default = manager.get_default_model()
     assert default is not None
-    assert default.name == "gpt-4"
+    assert default.name == "gpt-4o"
 
     # Test listing
     assert len(manager.list_models()) == 2

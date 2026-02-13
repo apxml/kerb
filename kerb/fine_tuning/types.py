@@ -16,7 +16,6 @@ class FineTuningProvider(Enum):
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     GOOGLE = "google"
-    COHERE = "cohere"
     HUGGINGFACE = "huggingface"
     GENERIC = "generic"
 

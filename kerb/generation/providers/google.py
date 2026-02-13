@@ -29,7 +29,7 @@ class GoogleGenerator:
         self.config = kwargs
 
     def generate(
-        self, messages: List[Message], model: str = "gemini-1.5-flash", **kwargs
+        self, messages: List[Message], model: str = "gemini-2.5-flash", **kwargs
     ) -> GenerationResponse:
         """Generate using Google Gemini API.
 
@@ -47,7 +47,7 @@ class GoogleGenerator:
     def stream(
         self,
         messages: List[Message],
-        model: str = "gemini-1.5-flash",
+        model: str = "gemini-2.5-flash",
         callback: Optional[Callable[[StreamChunk], None]] = None,
         **kwargs,
     ) -> Iterator[StreamChunk]:

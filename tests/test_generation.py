@@ -469,7 +469,7 @@ def test_model_pricing_exists():
     """Test that MODEL_PRICING contains expected models."""
     assert "gpt-4o-mini" in MODEL_PRICING
     assert "claude-3-5-sonnet-20241022" in MODEL_PRICING
-    assert "gemini-1.5-pro" in MODEL_PRICING
+    assert "gemini-2.5-pro" in MODEL_PRICING
 
 
 def test_model_pricing_format():

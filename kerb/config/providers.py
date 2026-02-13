@@ -25,7 +25,7 @@ def get_openai_config(api_key_env_var: str = "OPENAI_API_KEY") -> ProviderConfig
         base_url="https://api.openai.com/v1",
         timeout=60.0,
         max_retries=3,
-        models=["gpt-4", "gpt-4-turbo", "gpt-3.5-turbo"],
+        models=["gpt-4o", "gpt-4o-mini"],
     )
 
 
@@ -44,7 +44,7 @@ def get_anthropic_config(api_key_env_var: str = "ANTHROPIC_API_KEY") -> Provider
         base_url="https://api.anthropic.com",
         timeout=60.0,
         max_retries=3,
-        models=["claude-3-opus-20240229", "claude-3-sonnet-20240229"],
+        models=["claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022"],
     )
 
 
@@ -89,7 +89,6 @@ def validate_credentials(
     prefix_checks = {
         ProviderType.OPENAI: api_key.startswith("sk-"),
         ProviderType.ANTHROPIC: api_key.startswith("sk-ant-"),
-        ProviderType.COHERE: len(api_key) > 20,
         ProviderType.GOOGLE: len(api_key) > 20,
     }
 

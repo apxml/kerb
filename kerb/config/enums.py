@@ -21,7 +21,6 @@ class ProviderType(Enum):
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     GOOGLE = "google"
-    COHERE = "cohere"
     AZURE_OPENAI = "azure_openai"
     HUGGINGFACE = "huggingface"
     CUSTOM = "custom"

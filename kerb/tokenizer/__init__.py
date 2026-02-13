@@ -1,7 +1,7 @@
 """Tokenizer utilities for counting tokens across different LLM models.
 
 This module provides comprehensive token counting support for:
-- OpenAI models (GPT-3.5, GPT-4, etc.) via tiktoken
+- OpenAI models (GPT-4o, GPT-4o-mini, etc.) via tiktoken
 - HuggingFace models (BERT, Llama, etc.) via transformers
 - Fast approximation methods for quick estimates
 

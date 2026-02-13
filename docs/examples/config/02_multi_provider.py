@@ -76,14 +76,14 @@ def main():
             api_key_env_var="OPENAI_API_KEY"
         ),
         create_model_config(
-            name="claude-3-opus",
+            name="claude-3-5-sonnet-20241022",
             provider=ProviderType.ANTHROPIC,
             max_tokens=4096,
             temperature=0.7,
             api_key_env_var="ANTHROPIC_API_KEY"
         ),
         create_model_config(
-            name="claude-3-sonnet",
+            name="claude-3-5-haiku-20241022",
             provider=ProviderType.ANTHROPIC,
             max_tokens=4096,
             temperature=0.5,
@@ -126,7 +126,7 @@ def main():
     print(f"Current model: {current_model.name} ({current_model.provider.value})")
     
     # Find equivalent Claude model
-    claude_model = config.get_model("claude-3-opus")
+    claude_model = config.get_model("claude-3-5-sonnet-20241022")
     print(f"Switching to: {claude_model.name} ({claude_model.provider.value})")
     print("Reason: Better performance on complex reasoning tasks")
     
@@ -137,8 +137,8 @@ def main():
     print("Migrating OpenAI models to Anthropic equivalents...")
     
     model_mapping = {
-        "gpt-4": "claude-3-opus-migration",
-        "gpt-3.5-turbo": "claude-3-sonnet-migration"
+        "gpt-4o": "claude-3-5-sonnet-20241022",
+        "gpt-4o-mini": "claude-3-5-haiku-20241022"
     }
     
     config.switch_provider(
