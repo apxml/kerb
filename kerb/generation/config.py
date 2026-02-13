@@ -28,6 +28,7 @@ class GenerationConfig:
     
     # Provider-specific parameters
     reasoning_effort: Optional[str] = None  # OpenAI: "low", "medium", "high"
+    thinking_level: Optional[str] = None  # Google: "low", "medium", "high"
     extended_thinking: Optional[bool] = None  # Anthropic: Enable extended thinking
     thinking_budget: Optional[int] = None  # Anthropic: Thinking token budget
     grounding: Optional[bool] = None  # Google: Enable grounding with Google Search

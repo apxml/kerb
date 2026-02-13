@@ -100,6 +100,18 @@ def _generate_google(
 
     genai.configure(api_key=api_key)
 
+    # Warning for Gemini 3 thinking defaults
+    if config.model.startswith("gemini-3") and not config.thinking_level:
+        import warnings
+        warnings.warn(
+            f"Thinking level not set for {config.model}. Defaults to 'medium'.",
+            UserWarning,
+            stacklevel=2
+        )
+        # We don't modify config.thinking_level here since it might be a frozen dataclass
+        # but we can use a local variable or just let the API handle its own defaults if we don't pass it.
+        # However, the user's prompt implies we should acknowledge the default.
+
     # Convert messages to Gemini format
     # Gemini uses a different format - system instruction separate, then user/model alternating
     system_instruction = None
@@ -121,6 +133,11 @@ def _generate_google(
         "top_p": config.top_p,
         "max_output_tokens": config.max_tokens or 2048,
     }
+
+    if config.thinking_level:
+        generation_config["thinking_level"] = config.thinking_level
+    elif config.model.startswith("gemini-3"):
+        generation_config["thinking_level"] = "medium"
 
     if config.stop_sequences:
         generation_config["stop_sequences"] = config.stop_sequences
@@ -202,6 +219,15 @@ def _generate_stream_google(
 
     genai.configure(api_key=api_key)
 
+    # Warning for Gemini 3 thinking defaults
+    if config.model.startswith("gemini-3") and not config.thinking_level:
+        import warnings
+        warnings.warn(
+            f"Thinking level not set for {config.model}. Defaulting to 'medium'.",
+            UserWarning,
+            stacklevel=2
+        )
+
     # Convert messages to Gemini format
     system_instruction = None
     conversation_messages = []
@@ -219,6 +245,11 @@ def _generate_stream_google(
         "temperature": config.temperature,
         "max_output_tokens": config.max_tokens or 2048,
     }
+
+    if config.thinking_level:
+        generation_config["thinking_level"] = config.thinking_level
+    elif config.model.startswith("gemini-3"):
+        generation_config["thinking_level"] = "medium"
 
     model_params = {"model_name": config.model}
     if system_instruction:
