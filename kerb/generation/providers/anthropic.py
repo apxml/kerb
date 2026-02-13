@@ -130,11 +130,22 @@ def _generate_anthropic(
         request_params["tools"] = config.tools
     if config.tool_choice:
         request_params["tool_choice"] = config.tool_choice
-    if config.extended_thinking is not None:
-        request_params["thinking"] = {
-            "type": "enabled" if config.extended_thinking else "disabled",
-            "budget_tokens": config.thinking_budget or 10000,
-        }
+    
+    # Handle reasoning/thinking
+    if config.reasoning_level or config.reasoning_budget:
+        # Anthropic 'thinking' is supported on Claude 3.7/3.5 models and newer
+        if "claude-3-5" in config.model or "claude-3-7" in config.model or "claude-4" in config.model:
+            # Anthropic uses "thinking" block with budget_tokens
+            request_params["thinking"] = {
+                "type": "enabled",
+                "budget_tokens": config.reasoning_budget or 16000,  # Default budget
+            }
+        else:
+            import warnings
+            warnings.warn(
+                f"Reasoning/Thinking is not supported for model {config.model}. Ignoring.",
+                UserWarning
+            )
 
     # Make request
     response = client.messages.create(**request_params)

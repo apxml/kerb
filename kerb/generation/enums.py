@@ -13,6 +13,14 @@ class LLMProvider(Enum):
     LOCAL = "local"
 
 
+class ReasoningLevel(Enum):
+    """Universal reasoning effort levels."""
+
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+
+
 class ModelName(Enum):
     """Supported model names with their actual string identifiers."""
 

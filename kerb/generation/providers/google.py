@@ -101,10 +101,10 @@ def _generate_google(
     genai.configure(api_key=api_key)
 
     # Warning for Gemini 3 thinking defaults
-    if config.model.startswith("gemini-3") and not config.thinking_level:
+    if config.model.startswith("gemini-3") and not config.reasoning_level:
         import warnings
         warnings.warn(
-            f"Thinking level not set for {config.model}. Defaults to 'medium'.",
+            f"Reasoning level not set for {config.model}. Defaults to 'medium'.",
             UserWarning,
             stacklevel=2
         )
@@ -134,8 +134,21 @@ def _generate_google(
         "max_output_tokens": config.max_tokens or 2048,
     }
 
-    if config.thinking_level:
-        generation_config["thinking_level"] = config.thinking_level
+    if config.reasoning_level:
+        # Google 'thinking_level' is supported on Gemini 2.5, 3.0 and newer
+        if "gemini-2.5" in config.model or "gemini-3" in config.model:
+            level = (
+                config.reasoning_level.value
+                if hasattr(config.reasoning_level, "value")
+                else config.reasoning_level
+            )
+            generation_config["thinking_level"] = level
+        else:
+            import warnings
+            warnings.warn(
+                f"Reasoning level is not supported for model {config.model}. Ignoring.",
+                UserWarning
+            )
     elif config.model.startswith("gemini-3"):
         generation_config["thinking_level"] = "medium"
 
@@ -150,14 +163,14 @@ def _generate_google(
 
     # Build tools list if grounding is enabled
     tools_list = None
-    if config.grounding or config.google_search:
+    if config.enable_grounding or config.grounding_config:
         tools_list = []
-        if config.grounding:
+        if config.enable_grounding:
             # Enable Google Search grounding
             tools_list.append({"google_search": {}})
-        if config.google_search:
+        if config.grounding_config:
             # Custom search configuration
-            tools_list.append({"google_search": config.google_search})
+            tools_list.append({"google_search": config.grounding_config})
 
     # Make request
     request_kwargs = {"generation_config": generation_config}
@@ -220,10 +233,10 @@ def _generate_stream_google(
     genai.configure(api_key=api_key)
 
     # Warning for Gemini 3 thinking defaults
-    if config.model.startswith("gemini-3") and not config.thinking_level:
+    if config.model.startswith("gemini-3") and not config.reasoning_level:
         import warnings
         warnings.warn(
-            f"Thinking level not set for {config.model}. Defaulting to 'medium'.",
+            f"Reasoning level not set for {config.model}. Defaulting to 'medium'.",
             UserWarning,
             stacklevel=2
         )
@@ -246,8 +259,21 @@ def _generate_stream_google(
         "max_output_tokens": config.max_tokens or 2048,
     }
 
-    if config.thinking_level:
-        generation_config["thinking_level"] = config.thinking_level
+    if config.reasoning_level:
+        # Google 'thinking_level' is supported on Gemini 2.5, 3.0 and newer
+        if "gemini-2.5" in config.model or "gemini-3" in config.model:
+            level = (
+                config.reasoning_level.value
+                if hasattr(config.reasoning_level, "value")
+                else config.reasoning_level
+            )
+            generation_config["thinking_level"] = level
+        else:
+            import warnings
+            warnings.warn(
+                f"Reasoning level is not supported for model {config.model}. Ignoring.",
+                UserWarning
+            )
     elif config.model.startswith("gemini-3"):
         generation_config["thinking_level"] = "medium"
 

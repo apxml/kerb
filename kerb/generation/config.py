@@ -6,6 +6,8 @@ This module contains data classes for configuring generation requests and respon
 from dataclasses import asdict, dataclass, field
 from typing import Any, Dict, List, Optional, Union
 
+from .enums import ReasoningLevel
+
 
 @dataclass
 class GenerationConfig:
@@ -26,13 +28,11 @@ class GenerationConfig:
     tools: Optional[List[Dict[str, Any]]] = None
     tool_choice: Optional[Union[str, Dict[str, Any]]] = None
     
-    # Provider-specific parameters
-    reasoning_effort: Optional[str] = None  # OpenAI: "low", "medium", "high"
-    thinking_level: Optional[str] = None  # Google: "low", "medium", "high"
-    extended_thinking: Optional[bool] = None  # Anthropic: Enable extended thinking
-    thinking_budget: Optional[int] = None  # Anthropic: Thinking token budget
-    grounding: Optional[bool] = None  # Google: Enable grounding with Google Search
-    google_search: Optional[Dict[str, Any]] = None  # Google: Search configuration
+    # Universal reasoning & grounding parameters
+    reasoning_level: Optional[Union[str, ReasoningLevel]] = None  # effort: low, medium, high
+    reasoning_budget: Optional[int] = None  # Max tokens for internal reasoning
+    enable_grounding: Optional[bool] = None  # Enable search/grounding
+    grounding_config: Optional[Dict[str, Any]] = None  # Grounding configuration
 
 
 @dataclass

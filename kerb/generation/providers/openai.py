@@ -127,8 +127,23 @@ def _generate_openai(
         request_params["tools"] = config.tools
     if config.tool_choice:
         request_params["tool_choice"] = config.tool_choice
-    if config.reasoning_effort:
-        request_params["reasoning_effort"] = config.reasoning_effort
+    
+    # Handle reasoning level
+    if config.reasoning_level:
+        # OpenAI only supports reasoning_effort on 'o' models (o1, o3, etc.)
+        if config.model.startswith(("o1", "o3")):
+            level = (
+                config.reasoning_level.value
+                if hasattr(config.reasoning_level, "value")
+                else config.reasoning_level
+            )
+            request_params["reasoning_effort"] = level
+        else:
+            import warnings
+            warnings.warn(
+                f"Reasoning level is not supported for model {config.model}. Ignoring.",
+                UserWarning
+            )
 
     # Make request
     response = client.chat.completions.create(**request_params)
