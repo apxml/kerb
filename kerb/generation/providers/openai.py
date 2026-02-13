@@ -10,7 +10,7 @@ from typing import Callable, Iterator, List, Optional
 from kerb.core.types import Message
 
 from ..config import GenerationConfig, GenerationResponse, StreamChunk, Usage
-from ..enums import LLMProvider
+from ..enums import LLMProvider, ModelName
 
 
 class OpenAIGenerator:
@@ -30,7 +30,7 @@ class OpenAIGenerator:
         self.config = kwargs
 
     def generate(
-        self, messages: List[Message], model: str = "gpt-4o-mini", **kwargs
+        self, messages: List[Message], model: str = ModelName.GPT_4O_MINI.value, **kwargs
     ) -> GenerationResponse:
         """Generate using OpenAI API.
 
@@ -48,7 +48,7 @@ class OpenAIGenerator:
     def stream(
         self,
         messages: List[Message],
-        model: str = "gpt-4o-mini",
+        model: str = ModelName.GPT_4O_MINI.value,
         callback: Optional[Callable[[StreamChunk], None]] = None,
         **kwargs,
     ) -> Iterator[StreamChunk]:

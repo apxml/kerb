@@ -9,7 +9,7 @@ from typing import Callable, Iterator, List, Optional
 from kerb.core.types import Message, MessageRole
 
 from ..config import GenerationConfig, GenerationResponse, StreamChunk, Usage
-from ..enums import LLMProvider
+from ..enums import LLMProvider, ModelName
 
 
 class AnthropicGenerator:
@@ -31,7 +31,7 @@ class AnthropicGenerator:
     def generate(
         self,
         messages: List[Message],
-        model: str = "claude-3-5-haiku-20241022",
+        model: str = ModelName.CLAUDE_35_HAIKU.value,
         **kwargs,
     ) -> GenerationResponse:
         """Generate using Anthropic API.
@@ -50,7 +50,7 @@ class AnthropicGenerator:
     def stream(
         self,
         messages: List[Message],
-        model: str = "claude-3-5-haiku-20241022",
+        model: str = ModelName.CLAUDE_35_HAIKU.value,
         callback: Optional[Callable[[StreamChunk], None]] = None,
         **kwargs,
     ) -> Iterator[StreamChunk]:

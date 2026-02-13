@@ -64,18 +64,26 @@ def estimate_test_cost(
 
     Args:
         test_cases: List of test prompts
-        model: Model to use
+        model: Model to use (string or ModelName enum)
         avg_completion_tokens: Average completion tokens
 
     Returns:
         Estimated cost
     """
-    from ..generation import MODEL_PRICING
+    from ..generation import MODEL_PRICING, ModelName
 
-    if model not in MODEL_PRICING:
+    # Find matching enum for the model string
+    model_enum = None
+    for enum_member in ModelName:
+        if enum_member.value == model:
+            model_enum = enum_member
+            break
+
+    # If no matching enum found, return 0.0 (custom/unknown model)
+    if model_enum is None or model_enum not in MODEL_PRICING:
         return 0.0
 
-    input_price, output_price = MODEL_PRICING[model]
+    input_price, output_price = MODEL_PRICING[model_enum]
 
     total_cost = 0.0
     for prompt in test_cases:
