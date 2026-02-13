@@ -4,10 +4,14 @@ This module provides utility functions for working with conversation buffers:
 - format_messages: Format messages for display or export
 - filter_messages: Filter messages by various criteria
 - merge_conversations: Merge multiple conversation buffers
+- save_conversation: Save conversation buffer to file
+- load_conversation: Load conversation buffer from file
+- prune_buffer: Prune messages from buffer
 """
 
 import json
-from typing import TYPE_CHECKING, List, Optional
+from pathlib import Path
+from typing import TYPE_CHECKING, List, Optional, Union
 
 from kerb.core.types import Message
 
@@ -154,3 +158,99 @@ def merge_conversations(
                 merged.entities[key] = entity
 
     return merged
+
+
+def save_conversation(
+    buffer: "ConversationBuffer", filepath: Union[str, Path]
+) -> None:
+    """Save conversation buffer to a JSON file.
+
+    Args:
+        buffer: Conversation buffer to save
+        filepath: Path to save file
+
+    Example:
+        >>> save_conversation(buffer, "conversation.json")
+    """
+    filepath = Path(filepath)
+    data = buffer.to_dict()
+
+    with open(filepath, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def load_conversation(filepath: Union[str, Path]) -> "ConversationBuffer":
+    """Load conversation buffer from a JSON file.
+
+    Args:
+        filepath: Path to load file from
+
+    Returns:
+        ConversationBuffer: Loaded buffer
+
+    Example:
+        >>> buffer = load_conversation("conversation.json")
+    """
+    from .buffers import ConversationBuffer
+
+    filepath = Path(filepath)
+
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    buffer = ConversationBuffer()
+    buffer.from_dict(data)
+    return buffer
+
+
+def prune_buffer(
+    buffer: "ConversationBuffer",
+    strategy: str = "oldest",
+    keep_count: Optional[int] = None,
+) -> "ConversationBuffer":
+    """Prune messages from buffer based on strategy.
+
+    Args:
+        buffer: Buffer to prune
+        strategy: Pruning strategy ("oldest", "newest", "alternating")
+        keep_count: Number of messages to keep
+
+    Returns:
+        ConversationBuffer: Pruned buffer (new instance)
+
+    Example:
+        >>> pruned = prune_buffer(buffer, strategy="oldest", keep_count=10)
+    """
+    from .buffers import ConversationBuffer
+
+    if keep_count is None:
+        return buffer
+
+    pruned = ConversationBuffer(
+        max_messages=buffer.max_messages,
+        enable_entity_tracking=buffer.enable_entity_tracking,
+    )
+
+    if len(buffer.messages) <= keep_count:
+        pruned.messages = buffer.messages.copy()
+        return pruned
+
+    if strategy == "oldest":
+        # Keep most recent messages
+        pruned.messages = buffer.messages[-keep_count:]
+    elif strategy == "newest":
+        # Keep oldest messages
+        pruned.messages = buffer.messages[:keep_count]
+    elif strategy == "alternating":
+        # Keep alternating messages evenly distributed
+        indices = []
+        step = len(buffer.messages) / keep_count
+        for i in range(keep_count):
+            idx = int(i * step)
+            indices.append(idx)
+        pruned.messages = [buffer.messages[i] for i in indices]
+    else:
+        # Default to oldest strategy
+        pruned.messages = buffer.messages[-keep_count:]
+
+    return pruned
