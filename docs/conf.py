@@ -9,7 +9,7 @@
 project = 'Kerb'
 copyright = '2025, ApX Machine Learning'
 author = 'Wei-Ming Thor'
-release = '0.1.5'
+release = '0.2.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -20,6 +20,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
     'myst_parser',
+    'sphinx_autodoc_typehints',
 ]
 
 templates_path = ['_templates']
