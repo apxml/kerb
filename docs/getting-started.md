@@ -23,7 +23,7 @@ pip install kerb[generation,embeddings,retrieval]
 
 - `tokenizers` - Token counting and text splitting
 - `embeddings` - Embedding generation with multiple providers
-- `generation` - LLM generation (OpenAI, Anthropic, Gemini, Cohere)
+- `generation` - LLM generation (OpenAI, Anthropic, Gemini)
 - `evaluation` - Metrics and benchmarking (BLEU, ROUGE, BERTScore)
 - `documents` - Document loading (PDF, DOCX, web pages)
 - `preprocessing` - Text cleaning and language detection
@@ -211,7 +211,6 @@ Set up your API keys as environment variables:
 export OPENAI_API_KEY="your-openai-key"
 export ANTHROPIC_API_KEY="your-anthropic-key"
 export GOOGLE_API_KEY="your-gemini-key"
-export COHERE_API_KEY="your-cohere-key"
 ```
 
 Or use Kerb's config management:

@@ -62,13 +62,13 @@ class VisionModel(Enum):
     GPT4_VISION = "gpt-4-vision-preview"
     GPT4O = "gpt-4o"
     GPT4O_MINI = "gpt-4o-mini"
-    CLAUDE_3_OPUS = "claude-3-opus-20240229"
-    CLAUDE_3_SONNET = "claude-3-sonnet-20240229"
-    CLAUDE_3_HAIKU = "claude-3-haiku-20240307"
     CLAUDE_3_5_SONNET = "claude-3-5-sonnet-20241022"
+    CLAUDE_OPUS_4 = "claude-opus-4"
+    CLAUDE_SONNET_4 = "claude-sonnet-4"
+    CLAUDE_35_HAIKU = "claude-3-5-haiku-20241022"
     GEMINI_PRO_VISION = "gemini-pro-vision"
-    GEMINI_1_5_PRO = "gemini-1.5-pro"
-    GEMINI_1_5_FLASH = "gemini-1.5-flash"
+    GEMINI_2_5_PRO = "gemini-2.5-pro"
+    GEMINI_2_5_FLASH = "gemini-2.5-flash"
 
 
 class TranscriptionModel(Enum):

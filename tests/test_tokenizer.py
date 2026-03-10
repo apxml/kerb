@@ -159,7 +159,7 @@ def test_different_tokenizers():
     """Test different tokenizer enums."""
     text = "Hello world!"
 
-    # Test CL100K_BASE (GPT-4, GPT-3.5)
+    # Test CL100K_BASE (GPT-4o, GPT-4o-mini)
     count_cl100k = count_tokens(text, tokenizer=Tokenizer.CL100K_BASE)
     assert count_cl100k > 0
 

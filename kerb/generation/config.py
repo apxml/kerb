@@ -6,6 +6,8 @@ This module contains data classes for configuring generation requests and respon
 from dataclasses import asdict, dataclass, field
 from typing import Any, Dict, List, Optional, Union
 
+from .enums import ReasoningLevel
+
 
 @dataclass
 class GenerationConfig:
@@ -25,6 +27,12 @@ class GenerationConfig:
     response_format: Optional[Dict[str, Any]] = None  # For JSON mode
     tools: Optional[List[Dict[str, Any]]] = None
     tool_choice: Optional[Union[str, Dict[str, Any]]] = None
+    
+    # Universal reasoning & grounding parameters
+    reasoning_level: Optional[Union[str, ReasoningLevel]] = None  # effort: low, medium, high
+    reasoning_budget: Optional[int] = None  # Max tokens for internal reasoning
+    enable_grounding: Optional[bool] = None  # Enable search/grounding
+    grounding_config: Optional[Dict[str, Any]] = None  # Grounding configuration
 
 
 @dataclass

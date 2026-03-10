@@ -97,7 +97,7 @@ def main():
     
     print("\nAdding second model...")
     model2 = create_model_config(
-        name="claude-3-opus",
+        name="claude-3-5-sonnet-20241022",
         provider=ProviderType.ANTHROPIC,
         temperature=0.5
     )
@@ -206,7 +206,7 @@ def main():
     gpt4_model.api_key_env_var = "OPENAI_API_KEY"
     config.add_model(gpt4_model)
     
-    claude_model = config.get_model("claude-3-opus")
+    claude_model = config.get_model("claude-3-5-sonnet-20241022")
     claude_model.api_key_env_var = "ANTHROPIC_API_KEY"
     config.add_model(claude_model)
     

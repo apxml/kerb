@@ -17,7 +17,7 @@ class Tokenizer(Enum):
     and consistency for LLM developers.
 
     Tiktoken Encodings (OpenAI):
-        CL100K_BASE: GPT-4, GPT-3.5-turbo, text-embedding-ada-002
+        CL100K_BASE: GPT-4o, GPT-4o-mini, text-embedding-ada-002
         P50K_BASE: Code models (Codex, text-davinci-002, text-davinci-003)
         R50K_BASE: GPT-3 models (davinci, curie, babbage, ada)
 
@@ -56,7 +56,7 @@ def count_tokens(
         text (str): Text to count tokens for
         tokenizer (Union[Tokenizer, str]): Tokenizer to use. Can be a Tokenizer enum value
             or a HuggingFace model name (e.g., "bert-base-uncased", "meta-llama/Llama-2-7b-hf").
-            Defaults to Tokenizer.CL100K_BASE (used by GPT-4 and GPT-3.5-turbo).
+            Defaults to Tokenizer.CL100K_BASE (used by GPT-4o and GPT-4o-mini).
 
     Returns:
         int: Token count

@@ -578,7 +578,7 @@ class LLMCache:
             >>> key = cache.cache_prompt(
             ...     prompt="What is AI?",
             ...     response="AI is...",
-            ...     model="gpt-4",
+            ...     model="gpt-4o",
             ...     cost=0.001
             ... )
         """
@@ -614,7 +614,7 @@ class LLMCache:
         Example:
             >>> response = cache.get_cached_prompt(
             ...     prompt="What is AI?",
-            ...     model="gpt-4"
+            ...     model="gpt-4o"
             ... )
         """
         key = generate_prompt_key(prompt, model, temperature, max_tokens, **kwargs)
@@ -814,7 +814,7 @@ class LLMCache:
             int: Number of keys invalidated
 
         Example:
-            >>> cache.invalidate_by_pattern(lambda k: "gpt-3" in k)
+            >>> cache.invalidate_by_pattern(lambda k: "gpt-4o" in k)
             15
         """
         keys = self.backend.keys()

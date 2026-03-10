@@ -26,7 +26,6 @@ class FineTuningProvider(Enum):
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     GOOGLE = "google"
-    COHERE = "cohere"
     HUGGINGFACE = "huggingface"
     GENERIC = "generic"
 
@@ -1148,7 +1147,7 @@ def estimate_training_tokens(dataset: TrainingDataset) -> int:
 
 
 def estimate_cost(
-    dataset: TrainingDataset, model: str = "gpt-3.5-turbo", n_epochs: int = 3
+    dataset: TrainingDataset, model: str = "gpt-4o-mini", n_epochs: int = 3
 ) -> Dict[str, float]:
     """Estimate fine-tuning cost.
 
