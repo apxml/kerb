@@ -107,7 +107,7 @@ filterwarnings = [
 [project.urls]
 "Homepage" = "https://github.com/apxml/kerb"
 "Bug Tracker" = "https://github.com/apxml/kerb/issues"
-"Documentation" = "https://github.com/apxml/kerb/docs"
+"Documentation" = "https://kerb.readthedocs.io/en/latest/getting-started.html"
 "Source Code" = "https://github.com/apxml/kerb"
 
 [tool.setuptools.packages.find]
