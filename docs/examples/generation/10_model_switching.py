@@ -47,7 +47,7 @@ def example_basic_switching():
         print(f"   Error: {e}")
     
     # Switch again
-    gen.set_model(ModelName.GEMINI_15_FLASH)
+    gen.set_model(ModelName.GEMINI_2_5_FLASH)
     print(f"\n3. Switched to: {gen.get_current_model()}")
     try:
         response3 = gen.generate(prompt)
@@ -147,9 +147,7 @@ def example_compare_models():
         prompt,
         models=[
             ModelName.GPT_4O_MINI,
-            ModelName.GPT_35_TURBO,
             ModelName.CLAUDE_35_HAIKU,
-            ModelName.GEMINI_15_FLASH,
         ],
         temperature=0.7
     )
@@ -323,7 +321,6 @@ def example_cost_tracking():
     models = [
         ModelName.GPT_4O_MINI,
         ModelName.CLAUDE_35_HAIKU,
-        ModelName.GEMINI_15_FLASH,
     ]
     
     for prompt, model in zip(prompts, models):

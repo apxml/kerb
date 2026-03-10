@@ -80,13 +80,13 @@ def chars_to_tokens(
 
 
 def estimate_cost(
-    token_count: int, model: str = "gpt-4", is_input: bool = True
+    token_count: int, model: str = "gpt-4o", is_input: bool = True
 ) -> float:
     """Estimate API cost based on token usage.
 
     Args:
         token_count (int): Number of tokens
-        model (str): Model name for pricing. Defaults to "gpt-4".
+        model (str): Model name for pricing. Defaults to "gpt-4o".
         is_input (bool): Whether tokens are input (True) or output (False).
             Defaults to True.
 
@@ -94,27 +94,25 @@ def estimate_cost(
         float: Estimated cost in USD
 
     Examples:
-        >>> estimate_cost(1000, model="gpt-4", is_input=True)
-        0.03
+        >>> estimate_cost(1000, model="gpt-4o", is_input=True)
+        0.005
 
-        >>> estimate_cost(1000, model="gpt-3.5-turbo", is_input=False)
-        0.002
+        >>> estimate_cost(1000, model="gpt-4o-mini", is_input=False)
+        0.0006
 
     Note:
         Pricing is approximate and may change. Check official pricing for accuracy.
     """
-    # Approximate pricing per 1K tokens (as of late 2024)
+    # Approximate pricing per 1K tokens (as of 2026)
     # These should be updated to match current pricing
     pricing = {
-        "gpt-4": {"input": 0.03, "output": 0.06},
-        "gpt-4-turbo": {"input": 0.01, "output": 0.03},
-        "gpt-3.5-turbo": {"input": 0.0005, "output": 0.0015},
-        "gpt-3.5-turbo-16k": {"input": 0.003, "output": 0.004},
+        "gpt-4o": {"input": 0.005, "output": 0.015},
+        "gpt-4o-mini": {"input": 0.00015, "output": 0.0006},
         "text-embedding-ada-002": {"input": 0.0001, "output": 0.0001},
     }
 
-    # Get pricing for model (default to gpt-4 if not found)
-    model_pricing = pricing.get(model, pricing["gpt-4"])
+    # Get pricing for model (default to gpt-4o if not found)
+    model_pricing = pricing.get(model, pricing["gpt-4o"])
     price_per_1k = model_pricing["input"] if is_input else model_pricing["output"]
 
     # Calculate cost

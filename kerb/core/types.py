@@ -177,7 +177,7 @@ class Message:
         >>> msg = Message(
         ...     role="assistant",
         ...     content="Here's the answer",
-        ...     metadata={"model": "gpt-4", "tokens": 150}
+        ...     metadata={"model": "gpt-4o", "tokens": 150}
         ... )
     """
 

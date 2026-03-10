@@ -24,7 +24,7 @@ Usage::
 Features:
 
 - Centralized LLM configuration management
-- Multi-provider support (OpenAI, Anthropic, Google, Cohere, Azure, HuggingFace)
+- Multi-provider support (OpenAI, Anthropic, Google, Azure, HuggingFace)
 - Secure API key management with environment variables
 - Encrypted secrets storage for prototyping/development
 - Model configuration with full parameter control (temperature, max_tokens, etc.)

@@ -9,7 +9,7 @@ from typing import Callable, Iterator, List, Optional
 from kerb.core.types import Message, MessageRole
 
 from ..config import GenerationConfig, GenerationResponse, StreamChunk, Usage
-from ..enums import LLMProvider
+from ..enums import LLMProvider, ModelName
 
 
 class AnthropicGenerator:
@@ -31,7 +31,7 @@ class AnthropicGenerator:
     def generate(
         self,
         messages: List[Message],
-        model: str = "claude-3-5-haiku-20241022",
+        model: str = ModelName.CLAUDE_35_HAIKU.value,
         **kwargs,
     ) -> GenerationResponse:
         """Generate using Anthropic API.
@@ -50,7 +50,7 @@ class AnthropicGenerator:
     def stream(
         self,
         messages: List[Message],
-        model: str = "claude-3-5-haiku-20241022",
+        model: str = ModelName.CLAUDE_35_HAIKU.value,
         callback: Optional[Callable[[StreamChunk], None]] = None,
         **kwargs,
     ) -> Iterator[StreamChunk]:
@@ -130,6 +130,22 @@ def _generate_anthropic(
         request_params["tools"] = config.tools
     if config.tool_choice:
         request_params["tool_choice"] = config.tool_choice
+    
+    # Handle reasoning/thinking
+    if config.reasoning_level or config.reasoning_budget:
+        # Anthropic 'thinking' is supported on Claude 3.7/3.5 models and newer
+        if "claude-3-5" in config.model or "claude-3-7" in config.model or "claude-4" in config.model:
+            # Anthropic uses "thinking" block with budget_tokens
+            request_params["thinking"] = {
+                "type": "enabled",
+                "budget_tokens": config.reasoning_budget or 16000,  # Default budget
+            }
+        else:
+            import warnings
+            warnings.warn(
+                f"Reasoning/Thinking is not supported for model {config.model}. Ignoring.",
+                UserWarning
+            )
 
     # Make request
     response = client.messages.create(**request_params)

@@ -10,7 +10,7 @@ from typing import Callable, Iterator, List, Optional
 from kerb.core.types import Message
 
 from ..config import GenerationConfig, GenerationResponse, StreamChunk, Usage
-from ..enums import LLMProvider
+from ..enums import LLMProvider, ModelName
 
 
 class OpenAIGenerator:
@@ -30,7 +30,7 @@ class OpenAIGenerator:
         self.config = kwargs
 
     def generate(
-        self, messages: List[Message], model: str = "gpt-4o-mini", **kwargs
+        self, messages: List[Message], model: str = ModelName.GPT_4O_MINI.value, **kwargs
     ) -> GenerationResponse:
         """Generate using OpenAI API.
 
@@ -48,7 +48,7 @@ class OpenAIGenerator:
     def stream(
         self,
         messages: List[Message],
-        model: str = "gpt-4o-mini",
+        model: str = ModelName.GPT_4O_MINI.value,
         callback: Optional[Callable[[StreamChunk], None]] = None,
         **kwargs,
     ) -> Iterator[StreamChunk]:
@@ -127,6 +127,23 @@ def _generate_openai(
         request_params["tools"] = config.tools
     if config.tool_choice:
         request_params["tool_choice"] = config.tool_choice
+    
+    # Handle reasoning level
+    if config.reasoning_level:
+        # OpenAI only supports reasoning_effort on 'o' models (o1, o3, etc.)
+        if config.model.startswith(("o1", "o3")):
+            level = (
+                config.reasoning_level.value
+                if hasattr(config.reasoning_level, "value")
+                else config.reasoning_level
+            )
+            request_params["reasoning_effort"] = level
+        else:
+            import warnings
+            warnings.warn(
+                f"Reasoning level is not supported for model {config.model}. Ignoring.",
+                UserWarning
+            )
 
     # Make request
     response = client.chat.completions.create(**request_params)

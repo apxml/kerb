@@ -213,13 +213,26 @@ def calculate_cost(model: Union[str, ModelName], usage: Usage) -> float:
     Returns:
         float: Cost in USD
     """
-    # Convert ModelName enum to string
-    model_str = model.value if isinstance(model, ModelName) else model
+    # If model is already a ModelName enum, use it directly
+    if isinstance(model, ModelName):
+        model_enum = model
+    else:
+        # If it's a string, try to find the matching enum
+        model_enum = None
+        for enum_member in ModelName:
+            if enum_member.value == model:
+                model_enum = enum_member
+                break
+        
+        # If no matching enum found, return 0.0 (custom/unknown model)
+        if model_enum is None:
+            return 0.0
 
-    if model_str not in MODEL_PRICING:
+    # Look up pricing using enum key
+    if model_enum not in MODEL_PRICING:
         return 0.0
 
-    input_price, output_price = MODEL_PRICING[model_str]
+    input_price, output_price = MODEL_PRICING[model_enum]
     input_cost = (usage.prompt_tokens / 1_000_000) * input_price
     output_cost = (usage.completion_tokens / 1_000_000) * output_price
     return input_cost + output_cost

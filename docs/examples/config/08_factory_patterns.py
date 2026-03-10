@@ -192,7 +192,7 @@ def main():
     # Quick model creation
     models = [
         create_model_config("gpt-4", ProviderType.OPENAI, temperature=0.7),
-        create_model_config("claude-3-opus", ProviderType.ANTHROPIC, temperature=0.6),
+        create_model_config("claude-3-5-sonnet-20241022", ProviderType.ANTHROPIC, temperature=0.6),
         create_model_config("gemini-pro", ProviderType.GOOGLE, temperature=0.5)
     ]
     
@@ -240,13 +240,13 @@ def main():
             "balanced": {
                 "models": [
                     {"name": "gpt-4", "provider": ProviderType.OPENAI, "temperature": 0.5},
-                    {"name": "claude-3-sonnet", "provider": ProviderType.ANTHROPIC, "temperature": 0.5}
+                    {"name": "claude-3-5-haiku-20241022", "provider": ProviderType.ANTHROPIC, "temperature": 0.5}
                 ]
             },
             "comprehensive": {
                 "models": [
                     {"name": "gpt-4", "provider": ProviderType.OPENAI, "temperature": 0.7},
-                    {"name": "claude-3-opus", "provider": ProviderType.ANTHROPIC, "temperature": 0.6},
+                    {"name": "claude-3-5-sonnet-20241022", "provider": ProviderType.ANTHROPIC, "temperature": 0.6},
                     {"name": "gemini-pro", "provider": ProviderType.GOOGLE, "temperature": 0.5}
                 ]
             }
@@ -361,7 +361,7 @@ def main():
     # Use builder pattern
     builder_config = (ConfigBuilder("builder_demo")
         .add_openai_model("gpt-4", temperature=0.7, max_tokens=4096)
-        .add_anthropic_model("claude-3-opus", temperature=0.6, max_tokens=4096)
+        .add_anthropic_model("claude-3-5-sonnet-20241022", temperature=0.6, max_tokens=4096)
         .with_default("gpt-4")
         .build()
     )

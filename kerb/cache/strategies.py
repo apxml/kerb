@@ -31,7 +31,7 @@ def generate_cache_key(
         str: Generated cache key
 
     Example:
-        >>> key = generate_cache_key("prompt text", model="gpt-4", temp=0.7)
+        >>> key = generate_cache_key("prompt text", model="gpt-4o", temp=0.7)
         >>> key = generate_cache_key(prompt, prefix="llm", model=model)
     """
     # Create a deterministic representation
@@ -79,7 +79,7 @@ def generate_prompt_key(
         str: Cache key for the prompt
 
     Example:
-        >>> key = generate_prompt_key("What is AI?", model="gpt-4", temperature=0.7)
+        >>> key = generate_prompt_key("What is AI?", model="gpt-4o", temperature=0.7)
     """
     params = {"prompt": prompt}
     if model is not None:
@@ -141,7 +141,7 @@ def cached(
 
         >>> from kerb.cache.strategies import generate_prompt_key
         >>> @cached(key_fn=lambda prompt, **kw: generate_prompt_key(prompt, **kw))
-        ... def call_llm(prompt, model="gpt-4", **kwargs):
+        ... def call_llm(prompt, model="gpt-4o", **kwargs):
         ...     return make_api_call(prompt, model, **kwargs)
     """
     # Import here to avoid circular dependency

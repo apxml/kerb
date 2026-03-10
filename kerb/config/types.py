@@ -15,7 +15,7 @@ class ModelConfig:
     """Configuration for a specific model.
 
     Attributes:
-        name: Model identifier (e.g., "gpt-4", "claude-3-opus")
+        name: Model identifier (e.g., "gpt-4o", "claude-3-5-sonnet-20241022")
         provider: LLM provider
         api_key_env_var: Environment variable name for API key
         max_tokens: Maximum tokens for this model

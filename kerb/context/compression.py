@@ -16,7 +16,7 @@ def compress_context(
     content: str,
     target_tokens: int,
     method: CompressionMethod = CompressionMethod.SUMMARIZE,
-    model: str = "gpt-3.5-turbo",
+    model: str = "gpt-4o-mini",
 ) -> CompressionResult:
     """Compress context to target token count.
 

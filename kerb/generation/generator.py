@@ -16,9 +16,7 @@ from .config import GenerationConfig, GenerationResponse, StreamChunk, Usage
 from .enums import LLMProvider, ModelName
 from .providers.anthropic import (_generate_anthropic,
                                   _generate_stream_anthropic)
-from .providers.cohere import _generate_cohere, _generate_stream_cohere
 from .providers.google import _generate_google, _generate_stream_google
-from .providers.mistral import _generate_mistral, _generate_stream_mistral
 # Import provider-specific functions
 from .providers.openai import _generate_openai, _generate_stream_openai
 from .utils import (CostTracker, RateLimiter, ResponseCache,
@@ -123,10 +121,6 @@ def generate(
             raise ValueError("Anthropic API key not found")
         elif provider == LLMProvider.GOOGLE and not os.getenv("GOOGLE_API_KEY"):
             raise ValueError("Google API key not found")
-        elif provider == LLMProvider.COHERE and not os.getenv("COHERE_API_KEY"):
-            raise ValueError("Cohere API key not found")
-        elif provider == LLMProvider.MISTRAL and not os.getenv("MISTRAL_API_KEY"):
-            raise ValueError("Mistral API key not found")
 
     # Check cache
     if use_cache:
@@ -149,10 +143,6 @@ def generate(
             response = _generate_anthropic(messages, config, api_key)
         elif provider == LLMProvider.GOOGLE:
             response = _generate_google(messages, config, api_key)
-        elif provider == LLMProvider.COHERE:
-            response = _generate_cohere(messages, config, api_key)
-        elif provider == LLMProvider.MISTRAL:
-            response = _generate_mistral(messages, config, api_key)
         else:
             response = _generate_mock(messages, config, provider)
         response.latency = time.time() - start_time
@@ -242,10 +232,6 @@ def generate_stream(
         yield from _generate_stream_anthropic(messages, config, api_key, callback)
     elif provider == LLMProvider.GOOGLE:
         yield from _generate_stream_google(messages, config, api_key, callback)
-    elif provider == LLMProvider.COHERE:
-        yield from _generate_stream_cohere(messages, config, api_key, callback)
-    elif provider == LLMProvider.MISTRAL:
-        yield from _generate_stream_mistral(messages, config, api_key, callback)
     else:
         response = generate(
             messages, model, config, api_key, provider=provider, **kwargs
